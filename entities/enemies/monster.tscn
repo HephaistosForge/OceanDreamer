@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://tjhu343tjkvw"]
+
+[ext_resource type="Texture2D" uid="uid://beyr3aajwcbsu" path="res://entities/white.png" id="1_mlif1"]
+
+[node name="Monster" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.641361, 0.103913, 0.123813, 1)
+scale = Vector2(0.264, 0.264)
+texture = ExtResource("1_mlif1")

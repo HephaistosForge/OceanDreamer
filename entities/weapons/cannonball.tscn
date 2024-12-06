@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://hnwpogbt087y"]
+
+[ext_resource type="Script" path="res://entities/weapons/cannonball.gd" id="1_8dncf"]
+[ext_resource type="Texture2D" uid="uid://cxdx6wgybx3dd" path="res://entities/weapons/cannonball.png" id="1_qspim"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qiv36"]
+
+[node name="Cannonball" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 3
+script = ExtResource("1_8dncf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_qspim")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_qiv36")

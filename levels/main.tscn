@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckt0uyxiiar40"]
+
+[ext_resource type="PackedScene" uid="uid://c7tm36f80vf4x" path="res://entities/ship/ship.tscn" id="1_2dg1b"]
+[ext_resource type="PackedScene" uid="uid://brm5t5bdf23on" path="res://world/water.tscn" id="2_jjhdk"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Ship" parent="." instance=ExtResource("1_2dg1b")]
+
+[node name="Water" parent="." instance=ExtResource("2_jjhdk")]
+position = Vector2(-33, 43)
