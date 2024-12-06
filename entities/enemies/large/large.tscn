@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2iwlq8iuc8df"]
+
+[ext_resource type="PackedScene" uid="uid://tjhu343tjkvw" path="res://entities/enemies/monster.tscn" id="1_ey8y0"]
+[ext_resource type="Texture2D" uid="uid://d0v7qag7uf1wx" path="res://entities/enemies/large/large.png" id="2_gmatp"]
+
+[node name="Monster" instance=ExtResource("1_ey8y0")]
+speed = 50.0
+max_hp = 45
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(1, 1, 1, 1)
+texture = ExtResource("2_gmatp")

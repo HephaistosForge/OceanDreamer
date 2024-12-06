@@ -1,8 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4x06yi0ho4mc"]
+[gd_scene load_steps=5 format=3 uid="uid://c4x06yi0ho4mc"]
 
 [ext_resource type="Script" path="res://entities/enemies/spawner.gd" id="1_ic738"]
-[ext_resource type="PackedScene" uid="uid://tjhu343tjkvw" path="res://entities/enemies/monster.tscn" id="2_ak8bv"]
+[ext_resource type="PackedScene" uid="uid://pnved6uqqkab" path="res://entities/enemies/small/small.tscn" id="2_jgre2"]
+[ext_resource type="PackedScene" uid="uid://f2gh6350us55" path="res://entities/enemies/medium/medium.tscn" id="3_wcdvt"]
+[ext_resource type="PackedScene" uid="uid://b2iwlq8iuc8df" path="res://entities/enemies/large/large.tscn" id="4_hdqsq"]
 
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_ic738")
-monsters = Array[PackedScene]([ExtResource("2_ak8bv")])
+monsters = Array[PackedScene]([ExtResource("2_jgre2"), ExtResource("3_wcdvt"), ExtResource("4_hdqsq")])
