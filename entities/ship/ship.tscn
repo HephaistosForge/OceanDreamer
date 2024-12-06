@@ -9,7 +9,7 @@
 size = Vector2(306, 89)
 
 [node name="Ship" type="CharacterBody2D" groups=["ship"]]
-collision_mask = 3
+collision_mask = 0
 script = ExtResource("1_f6l46")
 is_enemy = false
 
