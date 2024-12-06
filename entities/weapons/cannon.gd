@@ -27,5 +27,6 @@ func _process(delta: float) -> void:
 		get_tree().root.add_child(cannonball)
 		cannonball.global_position = global_position
 		cannonball.velocity = Vector2(cos(global_rotation), sin(global_rotation)) * velocity
+		cannonball.is_enemy = false
 		
 		

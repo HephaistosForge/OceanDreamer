@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4x06yi0ho4mc"]
+
+[ext_resource type="Script" path="res://entities/enemies/spawner.gd" id="1_ic738"]
+[ext_resource type="PackedScene" uid="uid://tjhu343tjkvw" path="res://entities/enemies/monster.tscn" id="2_ak8bv"]
+
+[node name="Spawner" type="Node2D"]
+script = ExtResource("1_ic738")
+monsters = Array[PackedScene]([ExtResource("2_ak8bv")])

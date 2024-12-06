@@ -1,12 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://c7tm36f80vf4x"]
+[gd_scene load_steps=6 format=3 uid="uid://c7tm36f80vf4x"]
 
 [ext_resource type="Script" path="res://entities/ship/ship.gd" id="1_f6l46"]
 [ext_resource type="Texture2D" uid="uid://beyr3aajwcbsu" path="res://entities/white.png" id="1_fi8el"]
 [ext_resource type="PackedScene" uid="uid://by7ohh6pv7e3" path="res://entities/ship/sail.tscn" id="2_cw1b2"]
 [ext_resource type="PackedScene" uid="uid://bwuj8ed1con3l" path="res://entities/weapons/cannon.tscn" id="3_ycsxb"]
 
-[node name="Ship" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lgjk7"]
+size = Vector2(306, 89)
+
+[node name="Ship" type="CharacterBody2D" groups=["ship"]]
+collision_mask = 3
 script = ExtResource("1_f6l46")
+is_enemy = false
 
 [node name="Hull" type="Sprite2D" parent="."]
 modulate = Color(0.38553, 0.239547, 0.104828, 1)
@@ -23,3 +28,7 @@ position = Vector2(144, -2)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position_smoothing_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_lgjk7")

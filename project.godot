@@ -35,6 +35,10 @@ folder_colors={
 "res://visual_effects/": "yellow"
 }
 
+[global_group]
+
+ship=""
+
 [input]
 
 forward={

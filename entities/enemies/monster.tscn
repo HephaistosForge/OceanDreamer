@@ -1,10 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://tjhu343tjkvw"]
+[gd_scene load_steps=4 format=3 uid="uid://tjhu343tjkvw"]
 
+[ext_resource type="Script" path="res://entities/enemies/monster.gd" id="1_j2033"]
 [ext_resource type="Texture2D" uid="uid://beyr3aajwcbsu" path="res://entities/white.png" id="1_mlif1"]
 
-[node name="Monster" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eft7m"]
+size = Vector2(102, 102)
+
+[node name="Monster" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_j2033")
+max_hp = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.641361, 0.103913, 0.123813, 1)
-scale = Vector2(0.264, 0.264)
+scale = Vector2(0.11, 0.11)
 texture = ExtResource("1_mlif1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_eft7m")
