@@ -8,3 +8,4 @@ func _physics_process(delta: float) -> void:
 		look_at(ship.global_position)
 		velocity = Vector2(cos(rotation), sin(rotation)) * speed
 	move_and_slide()
+ 
