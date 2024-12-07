@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://dcgxol7iuc75o"]
+[gd_scene load_steps=4 format=3 uid="uid://dcgxol7iuc75o"]
 
 [ext_resource type="Texture2D" uid="uid://bptlrur4qgf8a" path="res://effects/ripple.png" id="1_rx78g"]
 
@@ -6,15 +6,19 @@
 _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Gradient" id="Gradient_w2lsw"]
+offsets = PackedFloat32Array(0, 0.00666667, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
 [node name="RippleEffect" type="Node2D"]
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = -1
-position = Vector2(-120, 0)
-scale = Vector2(5, 5)
-amount = 3
+position = Vector2(-80, 0)
+amount = 6
 texture = ExtResource("1_rx78g")
 gravity = Vector2(0, 0)
-scale_amount_min = 0.4
-scale_amount_max = 0.4
+scale_amount_min = 0.8
+scale_amount_max = 0.8
 scale_amount_curve = SubResource("Curve_gum6v")
+color_ramp = SubResource("Gradient_w2lsw")

@@ -6,13 +6,19 @@ const RIPPLE_SCENE = preload("res://effects/RippleEffect.tscn")
 @export var speed_multiplier: int = 2000
 @export var ripple: PackedScene = null
 
+var riple_effect: CPUParticles2D = null
+
 
 func _ready():
 	super()
 	
 	var ripple = RIPPLE_SCENE.instantiate()
 	self.add_child(ripple)
-	ripple.scale = self.scale
+	riple_effect = ripple.get_child(0)
+
+
+func _process(delta: float) -> void:
+	riple_effect.lifetime = 2 * exp(-velocity.length() / 1000)
 
 
 func _physics_process(delta: float) -> void:
