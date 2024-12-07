@@ -9,6 +9,8 @@ const CANNONBALL_SCENE = preload("res://entities/weapons/cannonball.tscn")
 @export var knockback: float = 0
 @export var ball_size: float = 1
 
+@onready var camera = get_tree().get_first_node_in_group("camera")
+
 var reload_timer: Timer = Timer.new()
 var can_shoot = true
 
@@ -41,4 +43,4 @@ func _process(delta: float) -> void:
 		cannonball.is_enemy = false
 		cannonball.damage = damage
 		
-		
+		camera.trigger_shake(2.0, 0.03, 1, global_rotation)
