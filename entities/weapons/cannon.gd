@@ -12,6 +12,8 @@ const CANNONBALL_SCENE = preload("res://entities/weapons/cannonball.tscn")
 @export var burst_delay: float = 0.1
 @export var spray_count: int = 1
 
+@onready var camera = get_tree().get_first_node_in_group("camera")
+
 var reload_timer: Timer = Timer.new()
 var can_shoot = true
 
@@ -52,4 +54,4 @@ func _process(delta: float) -> void:
 		
 		reload_timer.start()
 		
-		
+		camera.trigger_shake(2.0, 0.03, 1, global_rotation)
