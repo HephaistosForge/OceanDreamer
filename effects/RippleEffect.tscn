@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcgxol7iuc75o"]
+
+[ext_resource type="PackedScene" path="res://entities/ship/Ripple/ripple.tscn" id="1_ify5q"]
+
+[node name="RippleEffect" type="Node2D"]
+
+[node name="GPUParticles2D" parent="." instance=ExtResource("1_ify5q")]
+z_index = -1
+position = Vector2(-120, 0)
+emitting = true
+amount = 4
+lifetime = 1.5
+one_shot = false
+scale_amount_min = 0.2
