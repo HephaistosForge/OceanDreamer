@@ -1,14 +1,20 @@
-[gd_scene load_steps=2 format=3 uid="uid://dcgxol7iuc75o"]
+[gd_scene load_steps=3 format=3 uid="uid://dcgxol7iuc75o"]
 
-[ext_resource type="PackedScene" path="res://entities/ship/Ripple/ripple.tscn" id="1_ify5q"]
+[ext_resource type="Texture2D" uid="uid://bptlrur4qgf8a" path="res://effects/ripple.png" id="1_rx78g"]
+
+[sub_resource type="Curve" id="Curve_gum6v"]
+_data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="RippleEffect" type="Node2D"]
 
-[node name="GPUParticles2D" parent="." instance=ExtResource("1_ify5q")]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = -1
 position = Vector2(-120, 0)
-emitting = true
-amount = 4
-lifetime = 1.5
-one_shot = false
-scale_amount_min = 0.2
+scale = Vector2(5, 5)
+amount = 3
+texture = ExtResource("1_rx78g")
+gravity = Vector2(0, 0)
+scale_amount_min = 0.4
+scale_amount_max = 0.4
+scale_amount_curve = SubResource("Curve_gum6v")
