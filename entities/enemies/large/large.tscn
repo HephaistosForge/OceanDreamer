@@ -17,7 +17,7 @@ attack_delay = 3.0
 max_hp = 45
 
 [node name="Sprite2D" parent="." index="0"]
-modulate = Color(1, 1, 1, 1)
+modulate = Color(1, 1, 1, 0.478431)
 texture = ExtResource("2_gmatp")
 
 [node name="CollisionShape2D" parent="." index="1"]

@@ -11,7 +11,7 @@ height = 72.0
 turn_speed = 5.0
 
 [node name="Sprite2D" parent="." index="0"]
-modulate = Color(1, 1, 1, 1)
+modulate = Color(1, 1, 1, 0.478431)
 texture = ExtResource("2_ea1b2")
 
 [node name="CollisionShape2D" parent="." index="1"]
