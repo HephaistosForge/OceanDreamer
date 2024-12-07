@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://34j7k2pwvvtg"]
+
+[ext_resource type="PackedScene" uid="uid://tjhu343tjkvw" path="res://entities/enemies/monster.tscn" id="1_2rhcy"]
+[ext_resource type="Texture2D" uid="uid://4by14as6nrop" path="res://entities/enemies/boss/boss.png" id="2_qffa2"]
+[ext_resource type="PackedScene" uid="uid://c4x06yi0ho4mc" path="res://entities/enemies/spawner.tscn" id="3_5gmoh"]
+[ext_resource type="PackedScene" uid="uid://pnved6uqqkab" path="res://entities/enemies/small/small.tscn" id="4_i7gy8"]
+
+[node name="Monster" instance=ExtResource("1_2rhcy")]
+max_hp = 100
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(1, 1, 1, 0.478431)
+scale = Vector2(5, 5)
+texture = ExtResource("2_qffa2")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-539, 63)
+scale = Vector2(5, 5)
+
+[node name="Spawner" parent="." index="2" instance=ExtResource("3_5gmoh")]
+spawn_delay = 3.0
+monsters = Array[PackedScene]([ExtResource("4_i7gy8")])
+distance = 200
+amount = 5
