@@ -1,6 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cljhj3x1g71c0"]
-
-[ext_resource type="Script" path="res://vfx/explosion/explosion.gd" id="1_0if64"]
+[gd_scene load_steps=6 format=3 uid="uid://bt6x65r7rt0j5"]
 
 [sub_resource type="Curve" id="Curve_0n5nu"]
 max_value = 2.0
@@ -27,10 +25,7 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0.301961, 1, 1, 0.639216, 0, 1, 1, 0
 metadata/_snap_enabled = true
 metadata/_snap_count = 8
 
-[node name="Explosion" type="Node2D"]
-script = ExtResource("1_0if64")
-
-[node name="Particles" type="CPUParticles2D" parent="."]
+[node name="Explosion" type="CPUParticles2D"]
 emitting = false
 amount = 300
 lifetime = 2.0
@@ -39,6 +34,7 @@ speed_scale = 2.0
 explosiveness = 0.97
 randomness = 1.0
 lifetime_randomness = 0.3
+local_coords = true
 emission_shape = 1
 emission_sphere_radius = 8.0
 direction = Vector2(0, -1)
@@ -57,5 +53,3 @@ scale_amount_min = 2.0
 scale_amount_max = 5.0
 scale_amount_curve = SubResource("Curve_hqoom")
 color_initial_ramp = SubResource("Gradient_6ya0x")
-
-[connection signal="finished" from="Particles" to="." method="_on_particles_finished"]

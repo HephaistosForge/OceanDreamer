@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bwuj8ed1con3l"]
+[gd_scene load_steps=4 format=3 uid="uid://bwuj8ed1con3l"]
 
 [ext_resource type="Script" path="res://entities/weapons/cannon.gd" id="1_c1t3c"]
 [ext_resource type="Texture2D" uid="uid://btyp4fhj7wiq2" path="res://entities/weapons/cannon.png" id="2_ckaya"]
+[ext_resource type="PackedScene" uid="uid://bt6x65r7rt0j5" path="res://effects/explosion.tscn" id="3_wqmuq"]
 
 [node name="Cannon" type="Node2D" groups=["cannon"]]
 script = ExtResource("1_c1t3c")
@@ -10,6 +11,13 @@ script = ExtResource("1_c1t3c")
 position = Vector2(45, 0)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_ckaya")
+
+[node name="Explosion" parent="Sprite2D" instance=ExtResource("3_wqmuq")]
+position = Vector2(450, 0)
+scale = Vector2(9, 9)
+amount = 250
+lifetime = 0.5
+scale_amount_min = 1.0
 
 [node name="SpawnAt" type="Node2D" parent="."]
 position = Vector2(126, 0)
