@@ -2,6 +2,9 @@ extends Entity
 
 @export var max_speed: int = 1000
 
+func _ready():
+	super()
+
 func _physics_process(delta: float) -> void:
 	var speed = Input.get_action_strength("forward") \
 		- Input.get_action_strength("backward") * 0.2

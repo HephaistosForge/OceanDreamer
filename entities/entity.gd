@@ -15,7 +15,7 @@ func _ready():
 	death.connect(despawn_with_animation)
 
 func set_hp(new_hp):
-	var delta = clamp(new_hp, 0, max_hp) - hp
+	var delta = int(clamp(new_hp, 0, max_hp) - hp)
 	hp += delta
 	
 	if delta != 0:
