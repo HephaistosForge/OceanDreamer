@@ -7,6 +7,8 @@ extends Node2D
 
 
 func _process(delta):
+	if not is_instance_valid(ship): return
+	
 	for tile in tiles:
 		var tile_position = tile.global_position
 		var ship_position = ship.global_position

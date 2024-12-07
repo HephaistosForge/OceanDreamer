@@ -1,8 +1,8 @@
 extends Node2D
 
-@export var spawn_delay: int = 3
+@export var spawn_delay: float = 0.6
 @export var monsters: Array[PackedScene] = []
-@export var distance: int = 1000
+@export var distance: int = 2000
 var allow_spawning = true
 
 func _ready():

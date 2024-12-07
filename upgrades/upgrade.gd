@@ -25,5 +25,7 @@ func icon() -> Texture2D:
 func has(key: String) -> bool:
 	return upgrade.has(key)
 	
-func as_fma(suffix: String):
-	return func(val): val * of("factor_" + suffix) + of("delta_" + suffix)
+func fma(suffix: String, val: float):
+	if of("set_" + suffix) != null:
+		return of("set_" + suffix)
+	return val * of("factor_" + suffix) + of("delta_" + suffix)

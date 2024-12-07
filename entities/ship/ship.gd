@@ -3,8 +3,11 @@ extends Entity
 @export var max_speed: int = 1000
 @export var speed_multiplier: int = 2000
 
+@onready var cannon = $Cannon
+
 
 func _ready():
+	get_tree().get_first_node_in_group("level_manager").to_next_level.connect(_on_next_level)
 	super()
 
 
@@ -34,5 +37,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func _on_upgrade_selected(upgrade: Upgrade) -> void:
-	speed_multiplier = upgrade.as_fma("movement_speed").call(speed_multiplier)
+func _on_next_level(_level, upgrade: Upgrade) -> void:
+	speed_multiplier = upgrade.fma("movement_speed", speed_multiplier)
+	max_speed = upgrade.fma("max_speed", max_speed)
+	max_hp = upgrade.fma("hp", max_hp)
+	hp = max_hp
+	cannon.apply_upgrade(upgrade)
