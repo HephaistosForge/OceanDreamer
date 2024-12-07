@@ -32,3 +32,4 @@ text = "20% more damage"
 label_settings = SubResource("LabelSettings_qxfkr")
 
 [connection signal="gui_input" from="." to="." method="_on_mouse_click"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

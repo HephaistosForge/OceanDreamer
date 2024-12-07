@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://audio/audio_manager/AudioManager.gd" id="1_w6s5a"]
 
-[node name="AudioManager" type="Node"]
+[node name="Audio" type="Node"]
 process_mode = 3
 script = ExtResource("1_w6s5a")
 
