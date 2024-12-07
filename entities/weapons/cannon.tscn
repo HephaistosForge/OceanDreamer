@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://entities/weapons/cannon.gd" id="1_c1t3c"]
 [ext_resource type="Texture2D" uid="uid://btyp4fhj7wiq2" path="res://entities/weapons/cannon.png" id="2_ckaya"]
-[ext_resource type="PackedScene" uid="uid://bt6x65r7rt0j5" path="res://effects/explosion.tscn" id="3_wqmuq"]
+[ext_resource type="PackedScene" uid="uid://cljhj3x1g71c0" path="res://effects/explosion.tscn" id="3_wqmuq"]
 
 [node name="Cannon" type="Node2D" groups=["cannon"]]
 script = ExtResource("1_c1t3c")

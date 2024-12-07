@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://w38wwvdgg6dl"]
+
+[ext_resource type="Script" path="res://entities/enemies/waves/wave_manager.gd" id="1_fqeke"]
+
+[node name="WaveManager" type="Node2D"]
+script = ExtResource("1_fqeke")

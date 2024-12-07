@@ -1,17 +1,15 @@
 [gd_scene load_steps=7 format=3 uid="uid://ckt0uyxiiar40"]
 
 [ext_resource type="PackedScene" uid="uid://c7tm36f80vf4x" path="res://entities/ship/ship.tscn" id="1_2dg1b"]
-[ext_resource type="PackedScene" uid="uid://c4x06yi0ho4mc" path="res://entities/enemies/spawner.tscn" id="2_1dc6g"]
 [ext_resource type="PackedScene" uid="uid://brm5t5bdf23on" path="res://world/water.tscn" id="2_jjhdk"]
 [ext_resource type="PackedScene" uid="uid://bohyqueorty2n" path="res://ui_scenes/ingame_ui/overlay.tscn" id="4_u5id0"]
 [ext_resource type="PackedScene" uid="uid://bq8g3tuejsrif" path="res://upgrades/level_manager.tscn" id="5_6sywq"]
+[ext_resource type="PackedScene" uid="uid://w38wwvdgg6dl" path="res://entities/enemies/waves/wave_manager.tscn" id="6_d2ymk"]
 [ext_resource type="PackedScene" uid="uid://bwsy0xbgtawwj" path="res://world/reality_manager.tscn" id="6_jv1ly"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Ship" parent="." instance=ExtResource("1_2dg1b")]
-
-[node name="Spawner" parent="Ship" instance=ExtResource("2_1dc6g")]
 
 [node name="Water" parent="." instance=ExtResource("2_jjhdk")]
 
@@ -20,6 +18,8 @@
 [node name="LevelManager" parent="." instance=ExtResource("5_6sywq")]
 
 [node name="RealityManager" parent="." instance=ExtResource("6_jv1ly")]
+
+[node name="WaveManager" parent="." instance=ExtResource("6_d2ymk")]
 
 [connection signal="remaining_progress" from="LevelManager" to="UIOverlay" method="_on_level_manager_remaining_progress"]
 [connection signal="to_next_level" from="LevelManager" to="RealityManager" method="_on_level_manager_to_next_level"]

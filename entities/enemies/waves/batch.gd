@@ -4,6 +4,11 @@ class_name Batch
 
 var remaining = 0
 
+var scene 
+var batch
+var chance
+var max_count
+
 func _init(scene: PackedScene, batch: int, chance: float, max_count: int):
 	self.scene = scene
 	self.batch = batch
