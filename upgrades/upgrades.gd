@@ -13,4 +13,4 @@ func _init():
 	upgrades = parsed["upgrades"]
 	
 func random() -> Upgrade:
-	return Upgrade.new(default.merged(upgrades.pick_random()))
+	return Upgrade.new(upgrades.pick_random().merged(default))

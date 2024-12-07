@@ -5,8 +5,11 @@ extends PanelContainer
 
 var upgrade
 
+func _ready() -> void:
+	pass
+
 func set_upgrade(new_upgrade: Upgrade):
-	self.upgrade = new_upgrade
+	upgrade = new_upgrade
 	icon.texture = upgrade.icon()
 	label.text = upgrade.of("description")
 
