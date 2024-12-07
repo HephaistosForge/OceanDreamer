@@ -42,6 +42,6 @@ func take_damage(damage):
 	
 func despawn_with_animation():
 	var tween = create_tween()
-	tween.tween_property(self, "scale", Vector2.ZERO, 1) \
-		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_ELASTIC)
+	tween.tween_property(self, "scale", Vector2.ZERO, 0.1) \
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
 	tween.tween_callback(queue_free)
