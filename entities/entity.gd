@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Entity 
 
+const RIPPLE_SCENE = preload("res://effects/RippleEffect.tscn")
+
 signal death
 
 @export var max_hp: int = 100
@@ -10,9 +12,20 @@ signal death
 @onready var hp = max_hp : set = set_hp
 
 var modulate_tween = null
+var ripple_effect: CPUParticles2D = null
+
 
 func _ready():
 	death.connect(despawn_with_animation)
+	
+	var ripple = RIPPLE_SCENE.instantiate()
+	self.add_child(ripple)
+	ripple_effect = ripple.get_child(0)
+
+
+func _process(delta: float) -> void:
+	ripple_effect.lifetime = 2 * exp(-velocity.length() / 1000)
+
 
 func set_hp(new_hp):
 	var delta = int(clamp(new_hp, 0, max_hp) - hp)
