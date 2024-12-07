@@ -1,0 +1,61 @@
+[gd_scene load_steps=7 format=3 uid="uid://cljhj3x1g71c0"]
+
+[ext_resource type="Script" path="res://vfx/explosion/explosion.gd" id="1_0if64"]
+
+[sub_resource type="Curve" id="Curve_0n5nu"]
+max_value = 2.0
+_data = [Vector2(0, 1.69231), 0.0, -5.47692, 0, 0, Vector2(0.606742, 0), -0.0444553, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_4bqkg"]
+max_value = 2.0
+_data = [Vector2(0, 2), 0.0, -7.93924, 0, 0, Vector2(0.5, 0), 1.18101, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_7e5br"]
+max_value = 100.0
+_data = [Vector2(0.488764, 0), 0.0, 97.8022, 0, 0, Vector2(1, 100), 586.813, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_hqoom"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_6ya0x"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.75, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0.301961, 1, 1, 0.639216, 0, 1, 1, 0.92549, 0.152941, 1, 1, 1, 1, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[node name="Explosion" type="Node2D"]
+script = ExtResource("1_0if64")
+
+[node name="Particles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 300
+lifetime = 2.0
+one_shot = true
+speed_scale = 2.0
+explosiveness = 0.97
+randomness = 1.0
+lifetime_randomness = 0.3
+emission_shape = 1
+emission_sphere_radius = 8.0
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 30.0
+initial_velocity_max = 158.21
+linear_accel_min = -30.0
+linear_accel_curve = SubResource("Curve_0n5nu")
+radial_accel_max = 25.0
+radial_accel_curve = SubResource("Curve_4bqkg")
+damping_min = 5.051
+damping_max = 10.101
+damping_curve = SubResource("Curve_7e5br")
+scale_amount_min = 2.0
+scale_amount_max = 5.0
+scale_amount_curve = SubResource("Curve_hqoom")
+color_initial_ramp = SubResource("Gradient_6ya0x")
+
+[connection signal="finished" from="Particles" to="." method="_on_particles_finished"]
