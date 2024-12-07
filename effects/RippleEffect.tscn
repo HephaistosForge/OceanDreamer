@@ -14,7 +14,6 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 z_index = -1
-position = Vector2(-80, 0)
 amount = 6
 texture = ExtResource("1_rx78g")
 gravity = Vector2(0, 0)
