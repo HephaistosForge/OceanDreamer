@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://beyr3aajwcbsu" path="res://entities/white.png" id="1_mlif1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eft7m"]
-size = Vector2(102, 102)
+size = Vector2(99, 101)
 
 [node name="Monster" type="CharacterBody2D"]
 collision_layer = 2
