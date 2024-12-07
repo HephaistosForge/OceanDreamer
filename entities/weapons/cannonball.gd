@@ -9,7 +9,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_entity_entered(body: Node2D) -> void:
-	print(body)
 	if body is Entity and body.is_enemy != is_enemy:
 		body.take_damage(damage)
 		queue_free()

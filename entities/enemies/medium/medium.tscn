@@ -8,6 +8,10 @@ radius = 22.0
 height = 72.0
 
 [node name="Monster" instance=ExtResource("1_qtgs1")]
+speed = null
+turn_speed = 5.0
+power_impulse_frequency = null
+is_enemy = null
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(1, 1, 1, 1)

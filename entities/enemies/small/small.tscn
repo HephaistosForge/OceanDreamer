@@ -9,7 +9,10 @@ height = 58.0
 
 [node name="Monster" instance=ExtResource("1_nyft1")]
 speed = 200.0
+turn_speed = null
+power_impulse_frequency = null
 max_hp = 15
+is_enemy = null
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(1, 1, 1, 1)
