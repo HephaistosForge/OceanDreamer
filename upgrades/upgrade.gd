@@ -3,11 +3,13 @@ class_name Upgrade
 var upgrade: Dictionary
 
 var default_icon = preload("res://assets/icons/default.svg")
+var used_keys = {"name": 0, "tier": 0}
 
 func _init(upgrade: Dictionary):
 	self.upgrade = upgrade
 	
 func of(key: String) -> Variant:
+	used_keys[key] = 0
 	var value = upgrade.get(key)
 	if value == null:
 		if key.begins_with("factor_"):
@@ -29,3 +31,8 @@ func fma(suffix: String, val: float):
 	if of("set_" + suffix) != null:
 		return of("set_" + suffix)
 	return val * of("factor_" + suffix) + of("delta_" + suffix)
+	
+func assert_all_keys_were_used():
+	for key in upgrade:
+		if upgrade[key] != null:
+			assert(key in used_keys, "key " + key + " was never used")

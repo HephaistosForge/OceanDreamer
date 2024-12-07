@@ -2,6 +2,7 @@ extends Entity
 
 @export var max_speed: int = 1000
 @export var speed_multiplier: int = 2000
+@export var rotation_speed: float = 2
 
 @onready var cannon = $Cannon
 
@@ -31,8 +32,11 @@ func _physics_process(delta: float) -> void:
 	# normalize velocity after soem max speed
 	velocity /= max(1, velocity.length() / max_speed)
 	
-	velocity = velocity.rotated(turn * delta)
-	rotate(turn * delta * 2)
+	# Rotate ship, and also rotate the velocity vector in that range, to simulate
+	# the pressure difference on both sides of the ship
+	var delta_rotate = turn * delta * rotation_speed
+	velocity = velocity.rotated(delta_rotate / 2)
+	rotate(delta_rotate)
 	
 	move_and_slide()
 
@@ -41,5 +45,7 @@ func _on_next_level(_level, upgrade: Upgrade) -> void:
 	speed_multiplier = upgrade.fma("movement_speed", speed_multiplier)
 	max_speed = upgrade.fma("max_speed", max_speed)
 	max_hp = upgrade.fma("hp", max_hp)
+	rotation_speed = upgrade.fma("rotation_speed", rotation_speed)
 	hp = max_hp
+	scale = Vector2.ONE * upgrade.fma("ship_size", scale.x)
 	cannon.apply_upgrade(upgrade)

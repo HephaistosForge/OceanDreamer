@@ -39,3 +39,4 @@ func transition_to_next_level(upgrade: Upgrade):
 	level += 1
 	update_remaining_monsters(total_monsters)
 	to_next_level.emit(level, upgrade)
+	upgrade.assert_all_keys_were_used()

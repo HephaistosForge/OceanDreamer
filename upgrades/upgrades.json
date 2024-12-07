@@ -53,7 +53,7 @@
 			"factor_cannon_size": 1.1,
 			"factor_cannon_ball_size": 1.1,
 			"factor_cannon_velocity": 0.9,
-			"factor_cannon_turn_speed": 0.9,
+			"factor_cannon_rotation_speed": 0.9,
 		}, 
 		{
 			"description": "Smaller, faster and sleeker ship",
@@ -67,8 +67,8 @@
 			"factor_cannon_size": 0.9,
 			"factor_cannon_ball_size": 0.7,
 			"factor_cannon_velocity": 1.1,
-			"factor_cannon_turn_speed": 1.1,
-			"delta_cannon_ball_burst_cound": 2,
+			"factor_cannon_rotation_speed": 1.1,
+			"delta_cannon_ball_burst_count": 2,
 		},
 	]
 }

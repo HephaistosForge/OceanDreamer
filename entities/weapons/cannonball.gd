@@ -20,11 +20,7 @@ func despawn():
 
 func _physics_process(delta: float) -> void:
 	position += velocity * delta
-	distance_travelled += (velocity * delta).length()
-	if distance_travelled < acceleration_cutoff_distance:
-		velocity += acceleration
-	else:
-		velocity -= velocity * delta / seconds_flight_time
+	velocity -= velocity * delta / seconds_flight_time
 
 
 func _on_entity_entered(body: Node2D) -> void:
