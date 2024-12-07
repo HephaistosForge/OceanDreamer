@@ -12,6 +12,8 @@ const sounds: Dictionary = {
 	"button_select": preload("res://audio/sound_effects/buttonSelect.wav"),
 	"cannon_shoot": preload("res://audio/sound_effects/cannon.wav"),
 	"level_up": preload("res://audio/sound_effects/levelUp.wav"),
+	"fish_attack": preload("res://audio/sound_effects/fishattack.wav"),
+	"game_over": preload("res://audio/sound_effects/gameover.wav"),
 }
 
 var music_volume: float = 70

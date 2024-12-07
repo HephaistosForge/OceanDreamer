@@ -21,6 +21,8 @@ func _ready():
 	reload_timer.wait_time = attack_delay
 	reload_timer.timeout.connect(func(): can_attack = true)
 	
+	death.connect(despawn_with_animation)
+	
 	get_tree().get_first_node_in_group("level_manager") \
 		.to_upgrade_screen.connect(func(_ignore): despawn_with_animation())
 
@@ -49,4 +51,5 @@ func attack_player_in_melee_if_possible():
 				can_attack = false
 				reload_timer.start()
 				collision.get_collider().take_damage(melee_attack_damage)
+				Audio.play("fish_attack")
 	 

@@ -18,7 +18,7 @@ var ripple_effect: CPUParticles2D = null
 
 func _ready():
 	appear()
-	death.connect(despawn_with_animation)
+	
 	
 	var ripple = RIPPLE_SCENE.instantiate()
 	self.add_child(ripple)

@@ -10,6 +10,8 @@ extends Entity
 func _ready():
 	get_tree().get_first_node_in_group("level_manager").to_next_level.connect(_on_next_level)
 	super()
+	
+	death.connect(game_over)
 
 
 func _physics_process(delta: float) -> void:
@@ -49,3 +51,7 @@ func _on_next_level(_level, upgrade: Upgrade) -> void:
 	hp = max_hp
 	scale = Vector2.ONE * upgrade.fma("ship_size", scale.x)
 	cannon.apply_upgrade(upgrade)
+
+
+func game_over() -> void:
+	Audio.play("game_over")
