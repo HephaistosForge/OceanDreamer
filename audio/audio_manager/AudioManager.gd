@@ -4,56 +4,37 @@ const background_music: Array = [
 	# input list of background music files goes here
 	# background music is randomly shuffled
 	# preload("<path_to_file>")
-	]
-	
-# define an object like sound_example for each individual sound you want to play
-const sound_example: Array = [
-	# provide a single or a list of sound files
-	# # preload("<path_to_file>")
+	preload("res://audio/music/dreamsailor.ogg")
 ]
 
-const button_click: Array = [
-	
-]
+const sounds: Dictionary = {
+	"button_hover": preload("res://audio/sound_effects/buttonHover.wav"),
+	"button_select": preload("res://audio/sound_effects/buttonSelect.wav"),
+	"cannon_shoot": preload("res://audio/sound_effects/cannon.wav"),
+	"level_up": preload("res://audio/sound_effects/levelUp.wav"),
+	"fish_attack": preload("res://audio/sound_effects/fishattack.wav"),
+	"game_over": preload("res://audio/sound_effects/gameover.wav"),
+}
 
-const button_hover: Array = [
-	
-]
+var music_volume: float = 70
+var sound_volume: float = 50
 
-var music_volume: float = 3
-var sound_volume: float = 3
-
-@onready var background_player = $BackgroundMusic
+@onready var background_player = AudioStreamPlayer.new()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	_on_background_music_finished()
+	await get_tree().create_timer(.1).timeout
+	get_tree().root.add_child(background_player)
 	set_music_volume(music_volume)
+	background_player.finished.connect(_on_background_music_finished)
+	_on_background_music_finished()
 
 # SOUNDS
 
-# to play a sound call AudioManager.play_sound_example()
-func play_sound_example() -> void:
-	if sound_example.is_empty():
-		push_warning("This function should not be called since it is only an example function")
-		return
-	_create_sound_player(sound_example.pick_random(), null, false, 0.5)
-
-
-func play_button_hover() -> void:
-	if button_hover.is_empty():
-		push_warning("No button hover sound defined yet. Please fill the Array button_hover with tracks to play")
-		return
-	_create_sound_player(button_hover.pick_random(), null, false, 0.5)
-
-
-func play_button_click() -> void:
-	if button_click.is_empty():
-		push_warning("No button click sound defined yet. Please fill the Array button_click with sounds to play")
-		return
-	_create_sound_player(button_click.pick_random(), null, false, 0.5)
-
+func play(name_: String, volume_multiplier=1.0):
+	_create_sound_player(sounds[name_], null, false, volume_multiplier)
+	
 
 # HELPER
 func set_sound_volume(percent:float) -> void:

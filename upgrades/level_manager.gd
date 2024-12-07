@@ -50,3 +50,4 @@ func transition_to_next_level(upgrade: Upgrade):
 		update_remaining_monsters(total_monsters)
 		to_next_level.emit(level, upgrade)
 		upgrade.assert_all_keys_were_used()
+		Audio.play("level_up")

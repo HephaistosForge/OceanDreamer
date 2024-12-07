@@ -56,6 +56,7 @@ func _process(delta: float) -> void:
 			cannonball.damage = damage
 			cannonball.seconds_flight_time = flight_range
 		
+			Audio.play("cannon_shoot")
 			camera.trigger_shake(0.5 * ball_size, 0.03, 1, global_rotation)
 			await get_tree().create_timer(burst_delay).timeout
 		
