@@ -11,6 +11,7 @@ const CANNONBALL_SCENE = preload("res://entities/weapons/cannonball.tscn")
 @export var burst_count: int = 1
 @export var burst_delay: float = 0.1
 @export var spray_count: int = 1
+@export var flight_range: float = 2
 
 @onready var camera = get_tree().get_first_node_in_group("camera")
 
@@ -33,6 +34,7 @@ func apply_upgrade(upgrade: Upgrade):
 	burst_delay = upgrade.fma("cannon_ball_burst_delay", burst_delay)
 	spray_count = upgrade.fma("cannon_ball_spray_count", spray_count)
 	scale = Vector2.ONE * upgrade.fma("cannon_size", scale.x)
+	flight_range = upgrade.fma("cannon_ball_flight_range", flight_range)
 	
 
 func _process(delta: float) -> void:
@@ -51,6 +53,7 @@ func _process(delta: float) -> void:
 			cannonball.is_enemy = false
 			cannonball.scale = Vector2.ONE * ball_size
 			cannonball.damage = damage
+			cannonball.seconds_flight_time = flight_range
 		
 			camera.trigger_shake(0.5 * ball_size, 0.03, 1, global_rotation)
 			await get_tree().create_timer(burst_delay).timeout

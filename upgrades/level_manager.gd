@@ -12,6 +12,7 @@ signal remaining_progress(count: int, total: int)
 var level = 1
 var total_monsters = 1
 var remaining_monsters = total_monsters
+var is_in_upgrade_state = false
 
 func _ready():
 	remaining_progress.emit(remaining_monsters, total_monsters)
@@ -20,7 +21,12 @@ func _ready():
 func get_random_upgrades():
 	var next_upgrades = []
 	for i in upgrade_count:
-		next_upgrades.append(upgrades.random())
+		var upgrade
+		while true:
+			upgrade = upgrades.random(level)
+			if upgrade not in next_upgrades:
+				break
+		next_upgrades.append(upgrade)
 	return next_upgrades
 
 func _on_monster_death():
@@ -33,10 +39,14 @@ func update_remaining_monsters(new_value):
 		transition_to_upgrade_screen()
 		
 func transition_to_upgrade_screen():
-	to_upgrade_screen.emit(get_random_upgrades())
+	if not is_in_upgrade_state:
+		is_in_upgrade_state = true
+		to_upgrade_screen.emit(get_random_upgrades())
 		
 func transition_to_next_level(upgrade: Upgrade):
-	level += 1
-	update_remaining_monsters(total_monsters)
-	to_next_level.emit(level, upgrade)
-	upgrade.assert_all_keys_were_used()
+	if is_in_upgrade_state:
+		is_in_upgrade_state = false
+		level += 1
+		update_remaining_monsters(total_monsters)
+		to_next_level.emit(level, upgrade)
+		upgrade.assert_all_keys_were_used()

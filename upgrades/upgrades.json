@@ -29,6 +29,8 @@
 			"factor_cannon_ball_knockback": null,
 			"delta_cannon_ball_size": null,
 			"factor_cannon_ball_size": null,
+			"delta_cannon_ball_flight_range": null,
+			"factor_cannon_ball_flight_range": null,
 			"delta_cannon_ball_burst_count": null,
 			"delta_cannon_ball_spray_count": null,
 			"homing": null,

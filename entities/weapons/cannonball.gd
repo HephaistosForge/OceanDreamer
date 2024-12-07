@@ -13,8 +13,10 @@ func _ready() -> void:
 	
 func despawn():
 	var tween = create_tween()
-	tween.tween_property(self, "scale", Vector2.ZERO, 0.1) \
-		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+	tween.tween_property(self, "modulate", Color(0.3, 0.3, 0.6, 0), 5) \
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
+	tween.parallel().tween_property(self, "scale", Vector2.ZERO, 10) \
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 	tween.tween_callback(queue_free)
 	
 
