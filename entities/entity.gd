@@ -9,20 +9,17 @@ signal death
 @export var max_hp: int = 100
 @export var is_enemy: bool = true
 @export var ripple_scale: float = 0.8
-
 @onready var hp = max_hp : set = set_hp
 
-var modulate_tween = null
 var ripple_effect: CPUParticles2D = null
+var modulate_tween = null
 
 
 func _ready():
 	appear()
 	
-	
-	var ripple = RIPPLE_SCENE.instantiate()
-	self.add_child(ripple)
-	ripple_effect = ripple.get_child(0)
+	ripple_effect = RIPPLE_SCENE.instantiate()
+	self.add_child(ripple_effect)
 	ripple_effect.scale_amount_max = ripple_scale
 	ripple_effect.scale_amount_min = ripple_effect.scale_amount_max
 

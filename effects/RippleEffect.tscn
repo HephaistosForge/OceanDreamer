@@ -10,9 +10,7 @@ point_count = 2
 offsets = PackedFloat32Array(0, 0.00666667, 1)
 colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="RippleEffect" type="Node2D"]
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="RippleEffect" type="CPUParticles2D"]
 z_index = -1
 amount = 6
 texture = ExtResource("1_rx78g")
