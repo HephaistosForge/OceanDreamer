@@ -16,6 +16,7 @@ var elapsed_time = 0
 
 func _ready():
 	super()
+	fade_in()
 	add_child(reload_timer)
 	reload_timer.wait_time = attack_delay
 	reload_timer.timeout.connect(func(): can_attack = true)

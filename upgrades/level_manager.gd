@@ -38,5 +38,4 @@ func transition_to_upgrade_screen():
 func transition_to_next_level(upgrade: Upgrade):
 	level += 1
 	update_remaining_monsters(total_monsters)
-	print("next level")
 	to_next_level.emit(level, upgrade)

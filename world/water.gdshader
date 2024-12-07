@@ -11,7 +11,7 @@ void fragment() {
 	vec2 tiled_uvs_raw = mod(UV * tile_factor, 2.0);
 	vec2 tiled_uvs = min(tiled_uvs_raw, vec2(2) - tiled_uvs_raw);
 	tiled_uvs.y *= aspect_ratio;
-	
+
 	vec2 wave_uv_offset;
 	wave_uv_offset.x = sin(TIME * time_factor.x + (tiled_uvs_raw.x + tiled_uvs_raw.y) * offset_factor.x);
 	wave_uv_offset.y = cos(TIME * time_factor.y + (tiled_uvs_raw.x + tiled_uvs_raw.y) * offset_factor.y);
