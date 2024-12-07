@@ -44,14 +44,16 @@ func _process(delta: float) -> void:
 		for burst in burst_count:
 			var cannonball = CANNONBALL_SCENE.instantiate()
 			get_tree().root.add_child(cannonball)
-			cannonball.global_position = global_position
-			# cannonball.acceleration_cutoff_distance = $SpawnAt.global_position.distance_to($AccelerateTo.global_position)
-			cannonball.velocity = Vector2(cos(global_rotation), sin(global_rotation)) * velocity
+			cannonball.global_position = $SpawnAt.global_position
+	
+			var velocity_direction = Vector2(cos(global_rotation), sin(global_rotation))
+			cannonball.velocity = velocity_direction * velocity + get_parent().velocity
 			cannonball.is_enemy = false
 			cannonball.scale = Vector2.ONE * ball_size
 			cannonball.damage = damage
+		
+			camera.trigger_shake(0.5 * ball_size, 0.03, 1, global_rotation)
 			await get_tree().create_timer(burst_delay).timeout
 		
 		reload_timer.start()
 		
-		camera.trigger_shake(2.0, 0.03, 1, global_rotation)
