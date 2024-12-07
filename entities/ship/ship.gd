@@ -3,6 +3,7 @@ extends Entity
 const RIPPLE_SCENE = preload("res://effects/RippleEffect.tscn")
 
 @export var max_speed: int = 1000
+@export var speed_multiplier: int = 2000
 @export var ripple: PackedScene = null
 
 
@@ -29,7 +30,7 @@ func _physics_process(delta: float) -> void:
 	velocity -= delta * velocity * 0.2
 	
 	# increase velocity if action is pressed
-	velocity += speed * Vector2(cos(rotation), sin(rotation)) * 2000 * delta
+	velocity += speed * Vector2(cos(rotation), sin(rotation)) * speed_multiplier * delta
 	
 	# normalize velocity after soem max speed
 	velocity /= max(1, velocity.length() / max_speed)
@@ -38,3 +39,7 @@ func _physics_process(delta: float) -> void:
 	rotate(turn * delta * 2)
 	
 	move_and_slide()
+
+
+func _on_upgrade_selected(upgrade: Upgrade) -> void:
+	speed_multiplier = upgrade.as_fma("movement_speed").call(speed_multiplier)

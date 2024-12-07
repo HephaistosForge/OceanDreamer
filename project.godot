@@ -32,12 +32,15 @@ folder_colors={
 "res://levels/": "blue",
 "res://playgrounds/": "purple",
 "res://ui_scenes/": "green",
+"res://upgrades/": "red",
 "res://visual_effects/": "yellow"
 }
 
 [global_group]
 
 ship=""
+level_manager=""
+monster=""
 
 [input]
 

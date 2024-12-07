@@ -19,6 +19,9 @@ func _ready():
 	add_child(reload_timer)
 	reload_timer.wait_time = attack_delay
 	reload_timer.timeout.connect(func(): can_attack = true)
+	
+	get_tree().get_first_node_in_group("level_manager") \
+		.to_upgrade_screen.connect(func(_ignore): despawn_with_animation())
 
 func power_func(x):
 	return sin(x)**2 + 0.4

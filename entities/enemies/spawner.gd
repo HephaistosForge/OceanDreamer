@@ -3,6 +3,7 @@ extends Node2D
 @export var spawn_delay: int = 3
 @export var monsters: Array[PackedScene] = []
 @export var distance: int = 1000
+var allow_spawning = true
 
 func _ready():
 	var timer = Timer.new()
@@ -10,14 +11,18 @@ func _ready():
 	timer.wait_time = spawn_delay
 	timer.start()
 	timer.timeout.connect(_spawn_enemy)
+	var level_manager = get_tree().get_first_node_in_group("level_manager")
+	level_manager.to_next_level.connect(func(_a, _b): allow_spawning = true)
+	level_manager.to_upgrade_screen.connect(func(_a): allow_spawning = false)
+	
 	
 func _spawn_enemy():
+	if not allow_spawning: return
 	var angle = randf_range(0, TAU) 
 	var monster = monsters.pick_random().instantiate() 
 	get_tree().root.add_child(monster)
 	monster.global_position = global_position + Vector2(cos(angle), sin(angle)) * distance
-	monster.death.connect(update_label_text)
-	
-func update_label_text() -> void:
-	var label = get_tree().get_first_node_in_group("enemy_kill_count_requirement_label")
-	label.update_text(int(label.text) - 1)
+
+	var level_manager = get_tree().get_first_node_in_group("level_manager")
+	if level_manager:
+		monster.death.connect(level_manager._on_monster_death)

@@ -1,14 +1,14 @@
 {
 	"default": [
 		{
-			"name": null,
-			"description": null,
-			"tier": null,
-			"icon": null,
+			"name": "",
+			"description": "",
+			"tier": 1,
+			"icon": "res://assets/icons/default.svg",
 			"delta_hp": null,
-			"hp": null,
+			"factor_hp": null,
 			"delta_movement_speed": null,
-			"movement_speed": null,
+			"factor_movement_speed": null,
 			"delta_max_speed": null,
 			"factor_max_speed": null,
 			"delta_rotation_speed": null,
@@ -45,13 +45,11 @@
 		{
 			"name": "cannonball_damage_factor_increase",
 			"description": "Triple cannonball damage.",
-			"icon": null,
 			"delta_cannon_ball_damage": 3.0
 		},
 		{
 			"name": "ship_velocity_factor_increase",
 			"description": "Double ship movement speed.",
-			"icon": null,
 			"delta_cannon_ball_damage": 2.0
 		}
 	]

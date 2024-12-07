@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://ognu53ffqgc1"]
+[gd_scene load_steps=5 format=3 uid="uid://ognu53ffqgc1"]
 
 [ext_resource type="Theme" uid="uid://c2sxl83j3rate" path="res://ui_scenes/main_menu/menu_theme.tres" id="1_gvckj"]
 [ext_resource type="Texture2D" uid="uid://hy0fgtaqk61a" path="res://icon.svg" id="1_nm67r"]
+[ext_resource type="Script" path="res://ui_scenes/ingame_ui/upgrade_item.gd" id="2_sl8m2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qxfkr"]
 font_size = 28
 
 [node name="UpgradeItem" type="PanelContainer"]
 theme = ExtResource("1_gvckj")
+script = ExtResource("2_sl8m2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
@@ -28,3 +30,5 @@ expand_mode = 2
 layout_mode = 2
 text = "20% more damage"
 label_settings = SubResource("LabelSettings_qxfkr")
+
+[connection signal="gui_input" from="." to="." method="_on_mouse_click"]
