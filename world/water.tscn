@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://brm5t5bdf23on"]
 
-[ext_resource type="Texture2D" uid="uid://cy18o1x0ymjfx" path="res://world/water.jpg" id="1_bi1p8"]
 [ext_resource type="Shader" path="res://world/water.gdshader" id="1_mwxqk"]
+[ext_resource type="Texture2D" uid="uid://v4gw3ruesw6d" path="res://world/water.png" id="2_325hb"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w1o8k"]
 shader = ExtResource("1_mwxqk")
@@ -18,4 +18,4 @@ z_index = -10
 material = SubResource("ShaderMaterial_w1o8k")
 position = Vector2(4.99988, -20.9999)
 scale = Vector2(5.314, 5.586)
-texture = ExtResource("1_bi1p8")
+texture = ExtResource("2_325hb")
