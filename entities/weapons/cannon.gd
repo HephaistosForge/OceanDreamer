@@ -4,7 +4,7 @@ const CANNONBALL_SCENE = preload("res://entities/weapons/cannonball.tscn")
 
 @export var rotation_speed: float = 10.0
 @export var shooting_delay: float = 0.5
-@export var velocity: float = 300
+@export var acceleration: float = 300
 
 var reload_timer: Timer = Timer.new()
 var can_shoot = true
@@ -16,9 +16,8 @@ func _ready():
 	
 
 func _process(delta: float) -> void:
-	look_at(get_global_mouse_position())
-	#var target = global_position.angle_to(get_global_mouse_position())
-	#global_rotation = rotate_toward(global_rotation, target, delta * rotation_speed)
+	var target = global_position.angle_to_point(get_global_mouse_position())
+	global_rotation = rotate_toward(global_rotation, target, delta * rotation_speed)
 	
 	if Input.is_action_pressed("shoot") and can_shoot:
 		can_shoot = false
@@ -26,7 +25,8 @@ func _process(delta: float) -> void:
 		var cannonball = CANNONBALL_SCENE.instantiate()
 		get_tree().root.add_child(cannonball)
 		cannonball.global_position = global_position
-		cannonball.velocity = Vector2(cos(global_rotation), sin(global_rotation)) * velocity
+		cannonball.acceleration_cutoff_distance = $SpawnAt.global_position.distance_to($AccelerateTo.global_position)
+		cannonball.acceleration = Vector2(cos(global_rotation), sin(global_rotation)) * acceleration
 		cannonball.is_enemy = false
 		
 		
