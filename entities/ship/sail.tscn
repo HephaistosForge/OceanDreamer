@@ -1,12 +1,10 @@
 [gd_scene load_steps=2 format=3 uid="uid://by7ohh6pv7e3"]
 
-[ext_resource type="Texture2D" uid="uid://beyr3aajwcbsu" path="res://entities/white.png" id="1_i7n7m"]
+[ext_resource type="Texture2D" uid="uid://cmmgmsj05o8b5" path="res://entities/ship/sail.png" id="1_py86o"]
 
 [node name="Sail" type="Node2D"]
+z_index = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 0.854902, 1)
-position = Vector2(0, -2)
-rotation = 1.57079
-scale = Vector2(0.352, 0.034)
-texture = ExtResource("1_i7n7m")
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_py86o")
