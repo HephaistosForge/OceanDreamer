@@ -70,11 +70,11 @@ func _on_exit_pressed() -> void:
 
 
 func _on_button_hover() -> void:
-	AudioManager.play_button_hover()
+	Audio.play_button_hover()
 
 
 func _on_button_click() -> void:
-	AudioManager.play_button_click()
+	Audio.play_button_click()
 
 
 func _on_how_to_play_pressed() -> void:
