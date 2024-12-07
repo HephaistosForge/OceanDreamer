@@ -17,11 +17,12 @@ const CANNONBALL_SCENE = preload("res://entities/weapons/cannonball.tscn")
 
 var reload_timer: Timer = Timer.new()
 var can_shoot = true
+var reloaded = true
 
 func _ready():
 	add_child(reload_timer)
 	reload_timer.wait_time = shooting_delay
-	reload_timer.timeout.connect(func(): can_shoot = true)
+	reload_timer.timeout.connect(func(): reloaded = true)
 	
 func apply_upgrade(upgrade: Upgrade):
 	velocity = upgrade.fma("cannon_velocity", velocity)
@@ -41,8 +42,8 @@ func _process(delta: float) -> void:
 	var target = global_position.angle_to_point(get_global_mouse_position())
 	global_rotation = rotate_toward(global_rotation, target, delta * rotation_speed)
 	
-	if Input.is_action_pressed("shoot") and can_shoot:
-		can_shoot = false
+	if Input.is_action_pressed("shoot") and reloaded and can_shoot:
+		reloaded = false
 		for burst in burst_count:
 			var cannonball = CANNONBALL_SCENE.instantiate()
 			get_tree().root.add_child(cannonball)
@@ -51,7 +52,7 @@ func _process(delta: float) -> void:
 			var velocity_direction = Vector2(cos(global_rotation), sin(global_rotation))
 			cannonball.velocity = velocity_direction * velocity + get_parent().velocity
 			cannonball.is_enemy = false
-			cannonball.scale = Vector2.ONE * ball_size
+			cannonball.scale = Vector2.ONE * ball_size * global_scale
 			cannonball.damage = damage
 			cannonball.seconds_flight_time = flight_range
 		

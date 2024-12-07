@@ -59,7 +59,7 @@ func take_damage(damage):
 	
 func appear():
 	var initial_scale = scale
-	scale = Vector2.ZERO
+	scale *= 0.8
 	var tween = create_tween()
 	tween.tween_property(self, "scale", initial_scale, 0.6) \
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -68,7 +68,7 @@ func fade_in():
 	var initial = modulate
 	modulate = Color(1, 1, 1, 0)
 	var tween = create_tween()
-	tween.tween_property(self, "modulate", initial, 0.6) \
+	tween.tween_property(self, "modulate", initial, 1.5) \
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	
 func despawn_with_animation():

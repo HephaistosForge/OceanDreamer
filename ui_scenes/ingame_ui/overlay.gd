@@ -11,4 +11,4 @@ func _on_level_manager_remaining_progress(count: Variant, total: Variant) -> voi
 func _on_level_manager_to_upgrade_screen(upgrades) -> void:
 	var dialog = UPGRADE_DIALOG_SCENE.instantiate()
 	dialog.show_and_pick_upgrades(upgrades)
-	$CenterContainer/Expander.add_child(dialog)
+	$CenterContainer/Expander/HBoxContainer/LeftHalf.add_child(dialog)

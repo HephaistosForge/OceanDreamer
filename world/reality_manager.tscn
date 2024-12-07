@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwsy0xbgtawwj"]
+
+[ext_resource type="Script" path="res://world/reality_manager.gd" id="1_w4527"]
+[ext_resource type="Texture2D" uid="uid://4qyyypcwd72e" path="res://assets/images/bathtub_transparent.png" id="2_ce133"]
+[ext_resource type="Texture2D" uid="uid://cxndykpo0fk2j" path="res://assets/images/hand.png" id="3_txy5h"]
+[ext_resource type="Script" path="res://world/fake_ship.gd" id="4_r4mpd"]
+
+[node name="RealityManager" type="Node2D"]
+script = ExtResource("1_w4527")
+
+[node name="Bathtub" type="Node2D" parent="."]
+z_index = -3
+
+[node name="PinJoint2D" type="PinJoint2D" parent="Bathtub"]
+position = Vector2(483, 3212)
+node_a = NodePath("../Hand")
+node_b = NodePath("../Tub")
+softness = 1.45
+motor_enabled = true
+motor_target_velocity = 0.0436332
+
+[node name="Tub" type="StaticBody2D" parent="Bathtub"]
+position = Vector2(-1774, -242)
+
+[node name="Tub" type="Sprite2D" parent="Bathtub/Tub"]
+position = Vector2(42, -168)
+scale = Vector2(22, 22)
+texture = ExtResource("2_ce133")
+
+[node name="Hand" type="RigidBody2D" parent="Bathtub"]
+position = Vector2(444, 2983)
+
+[node name="Hand" type="Sprite2D" parent="Bathtub/Hand"]
+position = Vector2(149, 401)
+rotation = 1.95651
+scale = Vector2(5, 5)
+texture = ExtResource("3_txy5h")
+offset = Vector2(-500, 100)
+
+[node name="Finger" type="Node2D" parent="Bathtub/Hand/Hand"]
+position = Vector2(-579.1, 352.576)
+
+[node name="HandJoint" type="PinJoint2D" parent="Bathtub"]
+position = Vector2(-32, 18)
+node_a = NodePath("../Hand")
+node_b = NodePath("../FakeShip")
+softness = 1.22
+
+[node name="FakeShip" type="RigidBody2D" parent="Bathtub"]
+position = Vector2(1593, -20)
+scale = Vector2(0.333333, 0.333333)
+script = ExtResource("4_r4mpd")

@@ -41,6 +41,7 @@ folder_colors={
 ship=""
 level_manager=""
 monster=""
+cannon=""
 
 [input]
 

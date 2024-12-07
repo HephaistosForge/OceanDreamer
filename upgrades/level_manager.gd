@@ -2,7 +2,7 @@ extends Node
 
 
 signal to_next_level(level: int, upgrade: Upgrade)
-signal to_upgrade_screen(upgrades)
+signal to_upgrade_screen(upgrades: Array[Upgrade])
 signal remaining_progress(count: int, total: int)
 
 @export var upgrade_count = 3
