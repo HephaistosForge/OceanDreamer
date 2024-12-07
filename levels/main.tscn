@@ -12,6 +12,5 @@
 [node name="Spawner" parent="Ship" instance=ExtResource("2_1dc6g")]
 
 [node name="Water" parent="." instance=ExtResource("2_jjhdk")]
-position = Vector2(-33, 43)
 
 [node name="UIOverlay" parent="." instance=ExtResource("4_u5id0")]
