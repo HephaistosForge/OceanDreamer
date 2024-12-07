@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://ognu53ffqgc1"]
+
+[ext_resource type="Theme" uid="uid://c2sxl83j3rate" path="res://ui_scenes/main_menu/menu_theme.tres" id="1_gvckj"]
+[ext_resource type="Texture2D" uid="uid://hy0fgtaqk61a" path="res://icon.svg" id="1_nm67r"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qxfkr"]
+font_size = 28
+
+[node name="UpgradeItem" type="PanelContainer"]
+theme = ExtResource("1_gvckj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_nm67r")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "20% more damage"
+label_settings = SubResource("LabelSettings_qxfkr")

@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://cll66qq0mko2x"]
+
+[ext_resource type="Theme" uid="uid://c2sxl83j3rate" path="res://ui_scenes/main_menu/menu_theme.tres" id="1_d0sao"]
+[ext_resource type="PackedScene" uid="uid://ognu53ffqgc1" path="res://ui_scenes/ingame_ui/upgrade_item.tscn" id="2_ev8gm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d8ffo"]
+font_size = 45
+
+[node name="CenterContainer" type="CenterContainer"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_d0sao")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Upgrade available!"
+label_settings = SubResource("LabelSettings_d8ffo")
+
+[node name="UpgradeItem" parent="Panel/MarginContainer/VBoxContainer" instance=ExtResource("2_ev8gm")]
+layout_mode = 2

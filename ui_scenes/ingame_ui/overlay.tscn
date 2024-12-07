@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://bohyqueorty2n"]
+
+[ext_resource type="Theme" uid="uid://c2sxl83j3rate" path="res://ui_scenes/main_menu/menu_theme.tres" id="1_mk57u"]
+[ext_resource type="Script" path="res://levels/enemy_kill_count_requirement_label.gd" id="2_xv5g3"]
+[ext_resource type="PackedScene" uid="uid://cll66qq0mko2x" path="res://ui_scenes/ingame_ui/upgrade_dialog.tscn" id="3_6bwg1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y1t66"]
+font_size = 100
+
+[node name="UIOverlay" type="CanvasLayer"]
+
+[node name="CenterContainer" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_mk57u")
+
+[node name="Top" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Top"]
+layout_mode = 2
+alignment = 1
+
+[node name="EnemyKillCountRequirementLabel" type="Label" parent="CenterContainer/Top/HBoxContainer"]
+layout_mode = 2
+text = "5"
+label_settings = SubResource("LabelSettings_y1t66")
+vertical_alignment = 2
+script = ExtResource("2_xv5g3")
+metadata/_edit_use_anchors_ = true
+
+[node name="Expander" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" parent="CenterContainer/Expander" instance=ExtResource("3_6bwg1")]
+visible = false
+layout_mode = 2
+
+[node name="Bottom" type="MarginContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/Bottom"]
+layout_mode = 2
+
+[node name="HP" type="Label" parent="CenterContainer/Bottom/HBoxContainer2"]
+layout_mode = 2
+text = "100 HP"
+label_settings = SubResource("LabelSettings_y1t66")
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/Bottom/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Level" type="Label" parent="CenterContainer/Bottom/HBoxContainer2"]
+layout_mode = 2
+text = "Level 1
+"
+label_settings = SubResource("LabelSettings_y1t66")
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
