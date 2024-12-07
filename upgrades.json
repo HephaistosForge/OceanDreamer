@@ -1,0 +1,58 @@
+{
+	"template": [
+		{
+			"name": null,
+			"description": null,
+			"tier": null,
+			"icon": null,
+			"delta_hp": null,
+			"hp": null,
+			"delta_movement_speed": null,
+			"movement_speed": null,
+			"delta_max_speed": null,
+			"factor_max_speed": null,
+			"delta_rotation_speed": null,
+			"factor_rotation_speed": null,
+			"delta_cannon_rotation_speed": null,
+			"factor_cannon_rotation_speed": null,
+			"delta_cannon_shooting_delay": null,
+			"factor_cannon_shooting_delay": null,
+			"delta_cannon_velocity": null,
+			"factor_cannon_velocity": null,
+			"delta_cannon_ball_damage": null,
+			"factor_cannon_ball_damage": null,
+			"delta_cannon_ball_knockback": null,
+			"factor_cannon_ball_knockback": null,
+			"delta_cannon_ball_size": null,
+			"factor_cannon_ball_size": null,
+			"delta_cannon_ball_count": null,
+			"homing": false,
+			"explosive": false,
+			"wiggle": false,
+			"mutate": false,
+			"bounce_count": null,
+			"pierce_count": null,
+			"cannon_can_rotate": true,
+			"ship_can_move": true,
+			"can_cloak": false,
+			"shield_count": null,
+			"shield_hp": null,
+			"shield_duration": null,
+			"upgrade_selection_count": null,
+		}
+	],
+	"upgrades": [
+		{
+			"name": "cannonball_damage_factor_increase",
+			"description": "Triple cannonball damage.",
+			"icon": null,
+			"delta_cannon_ball_damage": 3.0,
+		},
+		{
+			"name": "ship_velocity_factor_increase",
+			"description": "Double ship movement speed.",
+			"icon": null,
+			"delta_cannon_ball_damage": 2.0,
+		}
+	]
+}
