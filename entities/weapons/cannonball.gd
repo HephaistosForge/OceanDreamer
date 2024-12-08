@@ -15,6 +15,7 @@ var distance_travelled = 0
 var damage = 10
 var is_enemy = true
 var seconds_flight_time = 2
+var fragmentate_count = 0
 var bounce_count = 0
 var pierce_count = 0
 
@@ -64,11 +65,17 @@ func _on_entity_entered(body: Node2D) -> void:
 	if not grace_period_active and body is Entity and body.is_enemy != is_enemy:
 		body.take_damage(damage)
 		
+		var cannon = get_tree().get_first_node_in_group("cannon")
+		
+		for i in fragmentate_count:
+			var randomizer_vec = Vector2(BOUNCE_FACTOR_ARRAY[randi() % BOUNCE_FACTOR_ARRAY.size()], BOUNCE_FACTOR_ARRAY[randi() % BOUNCE_FACTOR_ARRAY.size()])
+			var _cannonball_velocity = velocity * randomizer_vec
+			cannon.create_cannonball(position, _cannonball_velocity, false, scale * 0.5, damage * 0.25, init_seconds_flight_time, 0, 0, bounce_count - 1, Color(0, 2, 0, 1), true)
+		
 		if bounce_count > 0:
-			var cannon = get_tree().get_first_node_in_group("cannon")
 			var randomizer_vec = Vector2(BOUNCE_FACTOR_ARRAY[randi() % BOUNCE_FACTOR_ARRAY.size()], BOUNCE_FACTOR_ARRAY[randi() % BOUNCE_FACTOR_ARRAY.size()])
 			var _cannonball_velocity = init_velocity * randomizer_vec
-			cannon.create_cannonball(position, _cannonball_velocity, false, scale, damage, init_seconds_flight_time, bounce_count - 1, 0, Color(2, 0, 0, 1), true)
+			cannon.create_cannonball(position, _cannonball_velocity, false, scale, damage, init_seconds_flight_time, fragmentate_count, 0, bounce_count - 1, Color(2, 0, 0, 1), true)
 		
 		if pierce_count > 0:
 			pierce_count -= 1
