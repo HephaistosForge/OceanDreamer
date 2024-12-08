@@ -7,6 +7,7 @@ extends Entity
 @export var apply_power_impulse_to_velocity: bool = false
 @export var melee_attack_damage: int = 5
 @export var attack_delay: float = 1.0
+@export var xp: int = 1
 
 @onready var ship = get_tree().get_first_node_in_group("ship")
 

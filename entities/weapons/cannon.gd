@@ -57,9 +57,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("shoot") and reloaded and can_shoot:
 		reload_timer.stop()
 		reloaded = false
-		
 		shoot()
-		
 		reload_timer.start()
 
 func shoot():

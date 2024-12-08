@@ -14,6 +14,7 @@ power_impulse_frequency = 3.0
 wiggle_factor = 0.05
 melee_attack_damage = 20
 attack_delay = 3.0
+xp = 5
 max_hp = 45
 ripple_scale = 0.6
 

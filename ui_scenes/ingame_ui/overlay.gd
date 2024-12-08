@@ -27,7 +27,7 @@ func _on_level_manager_remaining_progress(count: Variant, total: Variant) -> voi
 	var bar = find_child("XpBar")
 	bar.max_value = total
 	var tween = create_tween()
-	tween.parallel().tween_property(bar, "value", count, 0.1) \
+	tween.parallel().tween_property(bar, "value", total-count, 0.1) \
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
 	#label.text = str(count) + "/" + str(total)
 
