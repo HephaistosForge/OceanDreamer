@@ -18,6 +18,13 @@ const EXPLOSION_SCENE = preload("res://effects/explosion.tscn")
 @export var fragmentate_count: int = 0
 @export var ball_modulate = Color.WHITE
 
+func god_mode():
+	burst_count = 15
+	spray_count = 15
+	bounce_count = 1
+	pierce_count = 1
+	fragmentate_count = 1
+
 @onready var camera = get_tree().get_first_node_in_group("camera")
 
 var reload_timer: Timer = Timer.new()
@@ -27,6 +34,7 @@ var dead = false
 
 
 func _ready():
+	# god_mode()
 	add_child(reload_timer)
 	reload_timer.wait_time = shooting_delay
 	reload_timer.timeout.connect(func(): reloaded = true)
