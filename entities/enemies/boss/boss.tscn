@@ -12,14 +12,14 @@ height = 324.4
 
 [node name="Monster" instance=ExtResource("1_2rhcy")]
 speed = 50.0
-turn_speed = 1.0
+turn_speed = 0.1
 wiggle_factor = 0.0
-melee_attack_damage = 10
+melee_attack_damage = 40
 xp = 10000
 max_hp = 2000.0
 
 [node name="Sprite2D" parent="." index="0"]
-modulate = Color(1, 1, 1, 0.627451)
+modulate = Color(1, 1, 1, 0.54902)
 scale = Vector2(5, 5)
 texture = ExtResource("2_qffa2")
 
