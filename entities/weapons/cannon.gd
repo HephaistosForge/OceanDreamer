@@ -1,6 +1,7 @@
 extends Node2D
 
 const CANNONBALL_SCENE = preload("res://entities/weapons/cannonball.tscn")
+const EXPLOSION_SCENE = preload("res://effects/explosion.tscn")
 
 @export var rotation_speed: float = 10.0
 @export var shooting_delay: float = 0.5
@@ -12,22 +13,19 @@ const CANNONBALL_SCENE = preload("res://entities/weapons/cannonball.tscn")
 @export var burst_delay: float = 0.1
 @export var spray_count: int = 1
 @export var flight_range: float = 2
-
-@onready var explosion_effect: CPUParticles2D = $Sprite2D/Explosion
-
 @onready var camera = get_tree().get_first_node_in_group("camera")
 
 var reload_timer: Timer = Timer.new()
 var can_shoot = true
 var reloaded = true
-
+var explosion_effect: CPUParticles2D = null
 
 
 func _ready():
-	explosion_effect.emitting = false
 	add_child(reload_timer)
 	reload_timer.wait_time = shooting_delay
 	reload_timer.timeout.connect(func(): reloaded = true)
+	
 
 
 func apply_upgrade(upgrade: Upgrade):
@@ -51,12 +49,16 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("shoot") and reloaded and can_shoot:
 		reloaded = false
 		
-		explosion_effect.emitting = true
-		explosion_effect.global_rotation = global_rotation + PI / 2
-		
 		for burst in burst_count:
 			var cannonball = CANNONBALL_SCENE.instantiate()
 			get_tree().root.add_child(cannonball)
+			explosion_effect = EXPLOSION_SCENE.instantiate()
+			add_child(explosion_effect)
+			
+			explosion_effect.translate(Vector2(150, 0))
+			explosion_effect.global_rotation = global_rotation + PI / 2
+			explosion_effect.emitting = true
+			
 			cannonball.global_position = $SpawnAt.global_position
 			var velocity_direction = Vector2(cos(global_rotation), sin(global_rotation))
 			cannonball.velocity = velocity_direction * velocity + get_parent().velocity
