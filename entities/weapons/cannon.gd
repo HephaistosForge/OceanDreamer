@@ -43,7 +43,8 @@ func _ready():
 func apply_upgrade(upgrade: Upgrade):
 	velocity = upgrade.fma("cannon_velocity", velocity)
 	rotation_speed = upgrade.fma("cannon_rotation_speed", rotation_speed)
-	reload_timer.wait_time = upgrade.fma("cannon_shooting_delay", shooting_delay)
+	shooting_delay = upgrade.fma("cannon_shooting_delay", shooting_delay)
+	reload_timer.wait_time = shooting_delay
 	damage = upgrade.fma("cannon_ball_damage", damage)
 	knockback = upgrade.fma("cannon_ball_knockback", knockback)
 	ball_size = upgrade.fma("cannon_ball_size", ball_size)
