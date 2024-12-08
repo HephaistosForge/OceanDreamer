@@ -19,7 +19,7 @@ var fragmentate_count = 0
 var bounce_count = 0
 var pierce_count = 0
 
-var grace_period_active = false
+var grace_period_active = false # Duration in which cannonball does not interact with hit bodies
 
 var init_velocity = Vector2.ZERO
 var init_seconds_flight_time = 0

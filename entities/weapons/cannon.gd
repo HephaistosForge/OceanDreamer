@@ -44,9 +44,9 @@ func apply_upgrade(upgrade: Upgrade):
 	spray_count = upgrade.fma("cannon_ball_spray_count", spray_count)
 	scale = Vector2.ONE * upgrade.fma("cannon_size", scale.x)
 	flight_range = upgrade.fma("cannon_ball_flight_range", flight_range)
-	bounce_count += upgrade.fma("cannon_ball_bounce_count", bounce_count)
-	pierce_count += upgrade.fma("cannon_ball_pierce_count", pierce_count)
-	fragmentate_count += upgrade.fma("cannon_ball_fragmentate_count", fragmentate_count)
+	bounce_count = upgrade.fma("cannon_ball_bounce_count", bounce_count)
+	pierce_count = upgrade.fma("cannon_ball_pierce_count", pierce_count)
+	fragmentate_count = upgrade.fma("cannon_ball_fragmentate_count", fragmentate_count)
 	#custom_modulate = upgrade.fma("cannon_ball_modulate", custom_modulate)
 
 
