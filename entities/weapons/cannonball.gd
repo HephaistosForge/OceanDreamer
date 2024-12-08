@@ -36,8 +36,6 @@ func _ready() -> void:
 	ripple_effect.amount = 3
 	ripple_effect.one_shot = true
 	ripple_effect.emitting = false
-	
-	print(bounce_count)
 
 
 func despawn():
@@ -62,16 +60,10 @@ func _on_entity_entered(body: Node2D) -> void:
 		body.take_damage(damage)
 		
 		if bounce_count > 0:
-			var cannonball = CANNONBALL_SCENE.instantiate()
-			get_tree().root.add_child(cannonball)
-			cannonball.position = position
+			var cannon = get_tree().get_first_node_in_group("cannon")
 			var randomizer_vec = Vector2(BOUNCE_FACTOR_ARRAY[randi() % BOUNCE_FACTOR_ARRAY.size()], BOUNCE_FACTOR_ARRAY[randi() % BOUNCE_FACTOR_ARRAY.size()])
-			cannonball.velocity = init_velocity * randomizer_vec
-			cannonball.seconds_flight_time = init_seconds_flight_time
-			cannonball.bounce_count = bounce_count - 1
-			cannonball.change_color(Color(240, 0, 0, 255))
-			cannonball.is_enemy = false
-			cannonball.grace_period_active = true
+			var _cannonball_velocity = init_velocity * randomizer_vec
+			cannon.create_cannonball(position, _cannonball_velocity, false, scale, damage, init_seconds_flight_time, bounce_count - 1, Color(240, 0, 0, 255), true)
 		
 		queue_free()
 

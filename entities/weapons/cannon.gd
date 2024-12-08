@@ -55,29 +55,35 @@ func _process(delta: float) -> void:
 		reloaded = false
 		
 		for burst in burst_count:
-			var cannonball = CANNONBALL_SCENE.instantiate()
-			get_tree().root.add_child(cannonball)
 			explosion_effect = EXPLOSION_SCENE.instantiate()
 			add_child(explosion_effect)
-			
 			explosion_effect.translate(Vector2(150, 0))
 			explosion_effect.global_rotation = global_rotation + PI / 2
 			explosion_effect.emitting = true
 			
-			cannonball.global_position = $SpawnAt.global_position
 			var velocity_direction = Vector2(cos(global_rotation), sin(global_rotation))
-			cannonball.velocity = velocity_direction * velocity + get_parent().velocity
-			cannonball.init_velocity = cannonball.velocity
-			cannonball.is_enemy = false
-			cannonball.scale = Vector2.ONE * ball_size * global_scale
-			cannonball.damage = damage
-			cannonball.seconds_flight_time = flight_range
-			cannonball.init_seconds_flight_time = cannonball.seconds_flight_time
-			cannonball.bounce_count = bounce_count
+			var _cannonball_velocity = velocity_direction * velocity + get_parent().velocity
+			var _cannonball_scale = Vector2.ONE * ball_size * global_scale
+			create_cannonball($SpawnAt.global_position, _cannonball_velocity, false, _cannonball_scale, damage, flight_range, 0, Color(255,255,255,255), false)
 		
 			Audio.play("cannon_shoot")
 			camera.trigger_shake(0.5 * ball_size, 0.03, 1, global_rotation)
 			await get_tree().create_timer(burst_delay).timeout
 		
 		reload_timer.start()
-		
+
+
+func create_cannonball(_global_position, _velocity, _is_enemy, _scale, _damage, _seconds_flight_time, _bounce_count, _color, _grace_period_active) -> void:
+	var cannonball = CANNONBALL_SCENE.instantiate()
+	get_tree().current_scene.call_deferred("add_child", cannonball)
+	cannonball.global_position = _global_position
+	cannonball.velocity = _velocity
+	cannonball.init_velocity = _velocity
+	cannonball.is_enemy = _is_enemy
+	cannonball.scale = _scale
+	cannonball.damage = _damage
+	cannonball.seconds_flight_time = _seconds_flight_time
+	cannonball.init_seconds_flight_time = _seconds_flight_time
+	cannonball.bounce_count = _bounce_count
+	cannonball.change_color(_color)
+	cannonball.grace_period_active = _grace_period_active
