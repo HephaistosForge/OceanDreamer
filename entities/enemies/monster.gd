@@ -16,7 +16,7 @@ var can_attack = true
 var elapsed_time = 0
 
 func blend_coloring(color):
-	$Sprite2D.self_modulate = $Sprite2D.self_modulate.blend(color.lightened(0.5))
+	$Sprite2D.self_modulate = $Sprite2D.self_modulate.blend(color.lightened(0.7))
 
 func _ready():
 	super()

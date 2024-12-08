@@ -18,7 +18,7 @@ xp = 5
 ripple_scale = 0.6
 
 [node name="Sprite2D" parent="." index="0"]
-modulate = Color(1, 1, 1, 0.478431)
+modulate = Color(1, 1, 1, 0.627451)
 texture = ExtResource("2_gmatp")
 
 [node name="CollisionShape2D" parent="." index="1"]

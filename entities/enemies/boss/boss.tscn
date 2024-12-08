@@ -19,7 +19,7 @@ xp = 10000
 max_hp = 2000.0
 
 [node name="Sprite2D" parent="." index="0"]
-modulate = Color(1, 1, 1, 0.478431)
+modulate = Color(1, 1, 1, 0.627451)
 scale = Vector2(5, 5)
 texture = ExtResource("2_qffa2")
 
