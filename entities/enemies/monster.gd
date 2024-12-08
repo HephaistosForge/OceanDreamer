@@ -51,7 +51,7 @@ func _physics_process(delta: float) -> void:
 func attack_player_in_melee_if_possible():
 	if melee_attack_damage > 0 and can_attack:
 		var collision = get_last_slide_collision()
-		if collision: 
+		if collision and collision.get_collider() != null: 
 			if collision.get_collider().is_in_group("ship"):
 				can_attack = false
 				reload_timer.start()

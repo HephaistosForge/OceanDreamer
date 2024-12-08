@@ -12,6 +12,8 @@ const DELAY_SHORT = .75
 const DELAY_MEDIUM = 1
 const DELAY_LONG = 2
 const DELAY_BOSS = 3
+
+const DISTANCE_VERYSHORT = 750
 const DISTANCE_SHORT = 1500
 const DISTANCE_MEDIUM = 2000
 const DISTANCE_FAR = 2800
@@ -33,44 +35,44 @@ var waves = [
 		Batch.new(small, 3, 0.3, 3000), 
 		Batch.new(medium, 1, 0.4, 3000),
 		Batch.new(large, 1, 0.3, 1000),
-	], DELAY_SHORT, DISTANCE_MEDIUM, 90),
+	], DELAY_INSTANT, DISTANCE_MEDIUM, 90),
 	Wave.new([
-		Batch.new(small, 3, 0.5, 5000), 
-		Batch.new(medium, 1, 0.5, 5000),
+		Batch.new(small, 20, 0.5, 5000), 
+		Batch.new(medium, 10, 0.5, 5000),
 	], DELAY_SHORT, DISTANCE_MEDIUM, 200),
 	Wave.new([
 		Batch.new(medium, 1, 0.3, 3000),
 		Batch.new(large, 1, 0.7, 6000),
-	], DELAY_MEDIUM, DISTANCE_SHORT, 500),
+	], DELAY_INSTANT, DISTANCE_MEDIUM, 500),
 	Wave.new([
 		Batch.new(large, 1, 1, 10000),
-	], DELAY_SHORT, DISTANCE_FAR, 1200),
+	], DELAY_INSTANT, DISTANCE_FAR, 1200),
 	Wave.new([
 		Batch.new(medium, 1, 1, 10000),
 		Batch.new(boss, 1, 1, 2)
-	], DELAY_SHORT, DISTANCE_BOSS, 21600),
+	], DELAY_INSTANT, DISTANCE_BOSS, 21600),
 	Wave.new([
 		Batch.new(small, 10, 1, 10000),
-	], DELAY_SHORT, DISTANCE_SHORT, 2000),
+	], DELAY_INSTANT, DISTANCE_SHORT, 2000),
 	Wave.new([
 		Batch.new(large, 4, 1, 10000),
-	], DELAY_SHORT, DISTANCE_MEDIUM, 4000),
+	], DELAY_INSTANT, DISTANCE_MEDIUM, 4000),
 	Wave.new([
 		Batch.new(small, 5, 1, 10000),
 		Batch.new(medium, 3, 1, 10000),
 		Batch.new(large, 1, 1, 10000),
-	], DELAY_SHORT, DISTANCE_FAR, 7000),
+	], DELAY_INSTANT, DISTANCE_MEDIUM, 7000),
 	Wave.new([
 		Batch.new(small, 3, .5, 10000),
 		Batch.new(medium, 1, .3, 10000),
 		Batch.new(large, 6, 1, 12000),
-	], DELAY_SHORT, DISTANCE_FAR, 10000),
+	], DELAY_INSTANT, DISTANCE_SHORT, 10000),
 	Wave.new([
 		Batch.new(small, 3, .5, 10000),
 		Batch.new(medium, 1, .3, 10000),
 		Batch.new(large, 6, .7, 12000),
-		Batch.new(boss, 2, 1, 10),
-	], DELAY_SHORT, DISTANCE_BOSS, 60000),
+		Batch.new(boss, 1, 0.05, 10),
+	], DELAY_INSTANT, DISTANCE_BOSS, 60000),
 ]
 
 @onready var ship = get_tree().get_first_node_in_group("ship")

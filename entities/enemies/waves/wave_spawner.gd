@@ -16,7 +16,8 @@ var available_mutations = [
 	"speed",
 	"gigaspeed",
 	"damage",
-	"huge"
+	"huge",
+	"strong",
 ]
 
 func mutate(str, m):
@@ -33,7 +34,12 @@ func mutate(str, m):
 		"damage":
 			m.melee_attack_damage *= 1.3
 			color = Color.RED
+		"strong":
+			m.hp *= 2
+			m.attack_delay *= 0.5
+			color = Color.RED
 		"huge":
+			m.hp *= 1.3
 			m.scale *= Vector2.ONE * 1.3
 			m.melee_attack_damage *= 2
 			color = Color.DARK_GOLDENROD
@@ -48,7 +54,7 @@ func _ready():
 	
 	
 func mutate_monster(monster):
-	var up_to_mutations = level / 2
+	var up_to_mutations = level - 1
 	var mutation_count = randi_range(0, up_to_mutations)
 	for i in mutation_count:
 		mutate(available_mutations.pick_random(), monster)
