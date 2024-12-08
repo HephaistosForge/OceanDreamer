@@ -85,6 +85,8 @@ func shoot():
 		await get_tree().create_timer(burst_delay).timeout
 			
 func get_spray_angle(spray: int):
+	if spray_count == 1:
+		return global_rotation
 	var range = deg_to_rad(min(75.0, spray_count / 2.0 * 15))
 	var ratio = spray / float(spray_count-1)
 	return global_rotation - range + range * 2 * ratio
