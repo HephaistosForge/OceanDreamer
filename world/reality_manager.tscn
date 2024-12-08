@@ -44,7 +44,7 @@ position = Vector2(-579.1, 352.576)
 position = Vector2(-32, 18)
 node_a = NodePath("../Hand")
 node_b = NodePath("../FakeShip")
-softness = 1.22
+softness = 16.0
 
 [node name="FakeShip" type="RigidBody2D" parent="Bathtub"]
 position = Vector2(1593, -20)
