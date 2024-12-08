@@ -139,12 +139,11 @@
 		{
 			"description": "Greatly reduce range but increase cannonball size and damage",
 			"factor_cannon_ball_size": 2.5,
-			"delta_cannon_ball_burst_count": 1,
-			"delta_cannon_ball_spray_count": 1,
+			"delta_cannon_ball_spray_count": 2,
 			"factor_cannon_ball_damage": 1.4,
-			"factor_cannon_ball_flight_range": 0.3,
+			"factor_cannon_ball_flight_range": 0.4,
 			"factor_cannon_shooting_delay": 0.75,
-			"factor_cannon_velocity": 0.4,
+			"factor_cannon_velocity": 0.45,
 		},
 	]
 }
