@@ -15,6 +15,7 @@ const EXPLOSION_SCENE = preload("res://effects/explosion.tscn")
 @export var flight_range: float = 2
 @export var bounce_count: int = 0
 @export var pierce_count: int = 0
+@export var fragmentate_count: int = 0
 #@export var custom_modulate: Color = Color(255,255,255,255)
 
 @onready var camera = get_tree().get_first_node_in_group("camera")
@@ -29,7 +30,6 @@ func _ready():
 	add_child(reload_timer)
 	reload_timer.wait_time = shooting_delay
 	reload_timer.timeout.connect(func(): reloaded = true)
-	
 
 
 func apply_upgrade(upgrade: Upgrade):
@@ -46,6 +46,7 @@ func apply_upgrade(upgrade: Upgrade):
 	flight_range = upgrade.fma("cannon_ball_flight_range", flight_range)
 	bounce_count = upgrade.fma("cannon_ball_bounce_count", bounce_count)
 	pierce_count = upgrade.fma("cannon_ball_pierce_count", pierce_count)
+	fragmentate_count = upgrade.fma("cannon_ball_fragmentate_count", fragmentate_count)
 	#custom_modulate = upgrade.fma("cannon_ball_modulate", custom_modulate)
 
 
@@ -54,6 +55,7 @@ func _process(delta: float) -> void:
 	global_rotation = rotate_toward(global_rotation, target, delta * rotation_speed)
 	
 	if Input.is_action_pressed("shoot") and reloaded and can_shoot:
+		reload_timer.stop()
 		reloaded = false
 		
 		for burst in burst_count:
@@ -66,7 +68,7 @@ func _process(delta: float) -> void:
 			var velocity_direction = Vector2(cos(global_rotation), sin(global_rotation))
 			var _cannonball_velocity = velocity_direction * velocity + get_parent().velocity
 			var _cannonball_scale = Vector2.ONE * ball_size * global_scale
-			create_cannonball($SpawnAt.global_position, _cannonball_velocity, false, _cannonball_scale, damage, flight_range, bounce_count, pierce_count, Color(255,255,255,255), false)
+			create_cannonball($SpawnAt.global_position, _cannonball_velocity, false, _cannonball_scale, damage, flight_range, fragmentate_count, bounce_count, pierce_count, Color(1,1,1,1), false)
 		
 			Audio.play("cannon_shoot")
 			camera.trigger_shake(0.5 * ball_size, 0.03, 1, global_rotation)
@@ -75,7 +77,7 @@ func _process(delta: float) -> void:
 		reload_timer.start()
 
 
-func create_cannonball(_global_position, _velocity, _is_enemy, _scale, _damage, _seconds_flight_time, _bounce_count, _pierce_count, _color, _grace_period_active) -> void:
+func create_cannonball(_global_position, _velocity, _is_enemy, _scale, _damage, _seconds_flight_time, _fragmentate_count, _bounce_count, _pierce_count, _color, _grace_period_active) -> void:
 	var cannonball = CANNONBALL_SCENE.instantiate()
 	get_tree().current_scene.call_deferred("add_child", cannonball)
 	cannonball.global_position = _global_position
@@ -86,6 +88,8 @@ func create_cannonball(_global_position, _velocity, _is_enemy, _scale, _damage, 
 	cannonball.damage = _damage
 	cannonball.seconds_flight_time = _seconds_flight_time
 	cannonball.init_seconds_flight_time = _seconds_flight_time
+	cannonball.fragmentate_count = _fragmentate_count
 	cannonball.bounce_count = _bounce_count
+	cannonball.pierce_count = _pierce_count
 	cannonball.change_color(_color)
 	cannonball.grace_period_active = _grace_period_active
