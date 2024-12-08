@@ -1,63 +1,130 @@
-[gd_scene load_steps=3 format=3 uid="uid://bm05tr65hiukv"]
+[gd_scene load_steps=4 format=3 uid="uid://bm05tr65hiukv"]
 
-[ext_resource type="Theme" uid="uid://dyt6gjv55e2dy" path="res://ui_scenes/main_menu/menu_theme.tres" id="1_ihvt1"]
+[ext_resource type="Theme" uid="uid://c2sxl83j3rate" path="res://ui_scenes/main_menu/menu_theme.tres" id="1_ihvt1"]
 [ext_resource type="Script" path="res://ui_scenes/main_menu/options/options.gd" id="2_fqv7p"]
+[ext_resource type="Texture2D" uid="uid://dqdvqaev7k6t" path="res://ui_scenes/main_menu/background.png" id="3_1jvrw"]
 
-[node name="Options" type="VBoxContainer"]
-offset_right = 616.0
-offset_bottom = 56.0
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 8
 theme = ExtResource("1_ihvt1")
 script = ExtResource("2_fqv7p")
 
-[node name="Musik" type="HBoxContainer" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 2
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0.588235)
+z_index = -100
+offset_right = 1917.0
+offset_bottom = 1075.0
+texture = ExtResource("3_1jvrw")
 
-[node name="Label" type="Label" parent="Musik"]
-layout_mode = 2
-text = "Music Volume"
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -419.0
+offset_top = -50.0
+offset_right = 419.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
 
-[node name="CenterContainer2" type="CenterContainer" parent="Musik"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="Music_Slide" type="HSlider" parent="Musik/CenterContainer2"]
-custom_minimum_size = Vector2(400, 0)
+[node name="Label2" type="Label" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
-value = 100.0
-ticks_on_borders = true
-
-[node name="MusicVal" type="Label" parent="Musik"]
-custom_minimum_size = Vector2(40, 0)
-layout_mode = 2
-text = "100"
-horizontal_alignment = 1
-
-[node name="Sound" type="HBoxContainer" parent="."]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 2
-
-[node name="Label" type="Label" parent="Sound"]
-layout_mode = 2
+theme_override_font_sizes/font_size = 40
 text = "Sound Effects Volume"
 
-[node name="CenterContainer" type="CenterContainer" parent="Sound"]
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Music Volume"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Sound" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/VBoxContainer2/Sound"]
 layout_mode = 2
 
-[node name="Sound_Slide" type="HSlider" parent="Sound/CenterContainer"]
+[node name="Sound_Slide" type="HSlider" parent="HBoxContainer/VBoxContainer2/Sound/CenterContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 value = 100.0
 ticks_on_borders = true
 
-[node name="SoundVal" type="Label" parent="Sound"]
+[node name="SoundVal" type="Label" parent="HBoxContainer/VBoxContainer2/Sound"]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 text = "100"
 horizontal_alignment = 1
 
-[connection signal="value_changed" from="Musik/CenterContainer2/Music_Slide" to="." method="_on_music_slide_value_changed"]
-[connection signal="drag_ended" from="Sound/CenterContainer/Sound_Slide" to="." method="_on_sound_slide_drag_ended"]
-[connection signal="value_changed" from="Sound/CenterContainer/Sound_Slide" to="." method="_on_sound_slide_value_changed"]
+[node name="Musik" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="CenterContainer2" type="CenterContainer" parent="HBoxContainer/VBoxContainer2/Musik"]
+layout_mode = 2
+
+[node name="Music_Slide" type="HSlider" parent="HBoxContainer/VBoxContainer2/Musik/CenterContainer2"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+value = 100.0
+ticks_on_borders = true
+
+[node name="MusicVal" type="Label" parent="HBoxContainer/VBoxContainer2/Musik"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+text = "100"
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1920.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/margin_right = 150
+theme_override_constants/margin_bottom = 90
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2/MarginContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Back" type="Button" parent="VBoxContainer2/MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.321569, 0.321569, 0.607843, 1)
+theme_override_font_sizes/font_size = 60
+text = "Back
+"
+
+[connection signal="drag_ended" from="HBoxContainer/VBoxContainer2/Sound/CenterContainer/Sound_Slide" to="." method="_on_sound_slide_drag_ended"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer2/Sound/CenterContainer/Sound_Slide" to="." method="_on_sound_slide_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/VBoxContainer2/Musik/CenterContainer2/Music_Slide" to="." method="_on_music_slide_value_changed"]
+[connection signal="pressed" from="VBoxContainer2/MarginContainer2/HBoxContainer/Back" to="." method="_on_back_pressed"]
