@@ -30,7 +30,7 @@ func has(key: String) -> bool:
 func get_color() -> Color:
 	var c = of("color")
 	if c == null:
-		return Color.WHITE
+		return Color(1, 1, 1, 0)
 	return Color(c[0], c[1], c[2], c[3])
 	
 func fma(suffix: String, val: float):
