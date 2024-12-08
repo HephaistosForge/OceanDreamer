@@ -76,7 +76,7 @@ theme_override_constants/margin_right = 150
 layout_mode = 2
 alignment = 2
 
-[node name="Back" type="Button" parent="VBoxContainer/VBoxContainer2/MarginContainer2/HBoxContainer"]
+[node name="BackOptions" type="Button" parent="VBoxContainer/VBoxContainer2/MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.321569, 0.321569, 0.607843, 1)
@@ -84,5 +84,5 @@ theme_override_font_sizes/font_size = 60
 text = "Back
 "
 
-[connection signal="mouse_entered" from="VBoxContainer/VBoxContainer2/MarginContainer2/HBoxContainer/Back" to="." method="_on_back_mouse_entered"]
-[connection signal="pressed" from="VBoxContainer/VBoxContainer2/MarginContainer2/HBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/VBoxContainer2/MarginContainer2/HBoxContainer/BackOptions" to="." method="_on_back_options_mouse_entered"]
+[connection signal="pressed" from="VBoxContainer/VBoxContainer2/MarginContainer2/HBoxContainer/BackOptions" to="." method="_on_back_options_pressed"]
