@@ -33,11 +33,12 @@
 			"factor_cannon_ball_flight_range": null,
 			"delta_cannon_ball_burst_count": null,
 			"delta_cannon_ball_spray_count": null,
+			"cannon_ball_modulate": null,
 			"homing": null,
 			"explosive": null,
 			"wiggle": null,
 			"mutate": null,
-			"bounce_count": null,
+			"delta_cannon_ball_bounce_count": null,
 			"pierce_count": null,
 			"cannon_can_rotate": null,
 			"ship_can_move": null,
@@ -72,5 +73,11 @@
 			"factor_cannon_rotation_speed": 1.1,
 			"delta_cannon_ball_burst_count": 2,
 		},
+		{
+			"description": "Bounce + 1, increase cannonball speed but reduce damage",
+			"factor_cannon_ball_damage": 0.7,
+			"factor_cannon_velocity": 2.0,
+			"delta_cannon_ball_bounce_count": 1,
+		}
 	]
 }
