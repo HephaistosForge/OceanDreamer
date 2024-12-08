@@ -59,3 +59,5 @@ func transition_to_next_level(upgrade: Upgrade):
 		to_next_level.emit(level, upgrade)
 		upgrade.assert_all_keys_were_used()
 		Audio.play("level_up")
+		Audio.background_music_choice = 0
+		Audio._on_background_music_finished()
