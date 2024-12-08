@@ -56,7 +56,7 @@ func set_hp(new_hp):
 			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
 			
 	if hp <= 0 or is_zero_approx(hp):
-		death.emit()
+		death.emit(self)
 		dead = true
 	
 func take_damage(damage):
@@ -76,7 +76,7 @@ func fade_in():
 	tween.tween_property(self, "modulate", initial, 1.5) \
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	
-func despawn_with_animation():
+func despawn_with_animation(_ignore):
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2.ZERO, 0.2) \
 		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)

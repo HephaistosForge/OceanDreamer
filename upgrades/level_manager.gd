@@ -32,10 +32,10 @@ func get_random_upgrades():
 		next_upgrades.append(upgrade)
 	return next_upgrades
 
-func _on_monster_death():
-	update_remaining_monsters(remaining_monsters - 1)
+func _on_monster_death(monster):
+	update_remaining_monsters(remaining_monsters - monster.xp)
 	
-func on_player_death():
+func on_player_death(_player):
 	game_state = GameState.DEAD
 	game_over.emit()
 	

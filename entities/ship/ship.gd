@@ -54,7 +54,7 @@ func _on_next_level(_level, upgrade: Upgrade) -> void:
 	cannon.apply_upgrade(upgrade)
 
 
-func game_over() -> void:
+func game_over(_ignore) -> void:
 	Audio.play("game_over")
 	var tween = create_tween()
 	tween.tween_property(self, "scale", scale * 0.7, 3) \
