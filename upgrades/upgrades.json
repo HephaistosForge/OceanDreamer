@@ -103,8 +103,8 @@
 		},
 		{
 			"description": "Minimal reload time but deal almost no damage",
-			"factor_cannon_ball_damage": 0.2,
-			"factor_cannon_shooting_delay": 0.2,
+			"factor_cannon_ball_damage": 0.5,
+			"factor_cannon_shooting_delay": 0.4,
 		},
 	]
 }
