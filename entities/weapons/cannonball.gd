@@ -70,12 +70,16 @@ func _on_entity_entered(body: Node2D) -> void:
 		for i in fragmentate_count:
 			var randomizer_vec = Vector2(SPRAY_FACTOR_ARRAY[randi() % SPRAY_FACTOR_ARRAY.size()], SPRAY_FACTOR_ARRAY[randi() % SPRAY_FACTOR_ARRAY.size()])
 			var _cannonball_velocity = velocity * randomizer_vec
-			cannon.create_cannonball(position, _cannonball_velocity, false, scale * 0.5, damage * 0.25, init_seconds_flight_time, 0, 0, bounce_count - 1, Color(0, 2, 0, 1), true)
+			cannon.create_cannonball(position, _cannonball_velocity, false, \
+				scale * 0.5, damage * 0.25, init_seconds_flight_time, 0, 0, 
+				bounce_count - 1, $Sprite.self_modulate, true)
 		
 		if bounce_count > 0:
 			var randomizer_vec = Vector2(SPRAY_FACTOR_ARRAY[randi() % SPRAY_FACTOR_ARRAY.size()], SPRAY_FACTOR_ARRAY[randi() % SPRAY_FACTOR_ARRAY.size()])
 			var _cannonball_velocity = init_velocity * randomizer_vec
-			cannon.create_cannonball(position, _cannonball_velocity, false, scale, damage, init_seconds_flight_time, fragmentate_count, 0, bounce_count - 1, Color(2, 0, 0, 1), true)
+			cannon.create_cannonball(position, _cannonball_velocity, false, \
+				scale, damage, init_seconds_flight_time, fragmentate_count, 0, \
+				bounce_count - 1, $Sprite.self_modulate, true)
 		
 		if pierce_count > 0:
 			pierce_count -= 1

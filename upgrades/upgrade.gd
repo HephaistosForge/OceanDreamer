@@ -27,6 +27,12 @@ func icon() -> Texture2D:
 func has(key: String) -> bool:
 	return upgrade.has(key)
 	
+func get_color() -> Color:
+	var c = of("color")
+	if c == null:
+		return Color.WHITE
+	return Color(c[0], c[1], c[2], c[3])
+	
 func fma(suffix: String, val: float):
 	if of("set_" + suffix) != null:
 		return of("set_" + suffix)

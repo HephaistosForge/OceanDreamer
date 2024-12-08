@@ -16,7 +16,7 @@ const EXPLOSION_SCENE = preload("res://effects/explosion.tscn")
 @export var bounce_count: int = 0
 @export var pierce_count: int = 0
 @export var fragmentate_count: int = 0
-#@export var custom_modulate: Color = Color(255,255,255,255)
+@export var ball_modulate = Color.WHITE
 
 @onready var camera = get_tree().get_first_node_in_group("camera")
 
@@ -47,7 +47,7 @@ func apply_upgrade(upgrade: Upgrade):
 	bounce_count = upgrade.fma("cannon_ball_bounce_count", bounce_count)
 	pierce_count = upgrade.fma("cannon_ball_pierce_count", pierce_count)
 	fragmentate_count = upgrade.fma("cannon_ball_fragmentate_count", fragmentate_count)
-	#custom_modulate = upgrade.fma("cannon_ball_modulate", custom_modulate)
+	ball_modulate.blend(upgrade.get_color())
 
 
 func _process(delta: float) -> void:
@@ -58,24 +58,37 @@ func _process(delta: float) -> void:
 		reload_timer.stop()
 		reloaded = false
 		
-		for burst in burst_count:
+		shoot()
+		
+		reload_timer.start()
+
+func shoot():
+	for burst in burst_count:
+		for spray in spray_count:
 			explosion_effect = EXPLOSION_SCENE.instantiate()
 			add_child(explosion_effect)
 			explosion_effect.translate(Vector2(150, 0))
 			explosion_effect.global_rotation = global_rotation + PI / 2
 			explosion_effect.emitting = true
 			
-			var velocity_direction = Vector2(cos(global_rotation), sin(global_rotation))
+			var shot_angle = get_spray_angle(spray)
+
+			var velocity_direction = Vector2(cos(shot_angle), sin(shot_angle))
 			var _cannonball_velocity = velocity_direction * velocity + get_parent().velocity
 			var _cannonball_scale = Vector2.ONE * ball_size * global_scale
-			create_cannonball($SpawnAt.global_position, _cannonball_velocity, false, _cannonball_scale, damage, flight_range, fragmentate_count, bounce_count, pierce_count, Color(1,1,1,1), false)
+			create_cannonball($SpawnAt.global_position, _cannonball_velocity, \
+				false, _cannonball_scale, damage, flight_range, fragmentate_count, \
+				bounce_count, pierce_count, ball_modulate, false)
 		
 			Audio.play("cannon_shoot")
 			camera.trigger_shake(0.5 * ball_size, 0.03, 1, global_rotation)
-			await get_tree().create_timer(burst_delay).timeout
-		
-		reload_timer.start()
-
+		await get_tree().create_timer(burst_delay).timeout
+			
+func get_spray_angle(spray: int):
+	var range = deg_to_rad(min(75.0, spray_count / 2.0 * 15))
+	var ratio = spray / float(spray_count-1)
+	return global_rotation - range + range * 2 * ratio
+	
 
 func create_cannonball(_global_position, _velocity, _is_enemy, _scale, _damage, _seconds_flight_time, _fragmentate_count, _bounce_count, _pierce_count, _color, _grace_period_active) -> void:
 	var cannonball = CANNONBALL_SCENE.instantiate()
