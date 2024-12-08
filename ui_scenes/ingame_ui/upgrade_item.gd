@@ -1,4 +1,4 @@
-extends PanelContainer
+extends Control
 
 @onready var icon: TextureRect = $MarginContainer/HBoxContainer/TextureRect
 @onready var label: Label = $MarginContainer/HBoxContainer/Label

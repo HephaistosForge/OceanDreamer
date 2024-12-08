@@ -1,11 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://34j7k2pwvvtg"]
+[gd_scene load_steps=6 format=3 uid="uid://34j7k2pwvvtg"]
 
 [ext_resource type="PackedScene" uid="uid://tjhu343tjkvw" path="res://entities/enemies/monster.tscn" id="1_2rhcy"]
 [ext_resource type="Texture2D" uid="uid://4by14as6nrop" path="res://entities/enemies/boss/boss.png" id="2_qffa2"]
 [ext_resource type="PackedScene" uid="uid://c4x06yi0ho4mc" path="res://entities/enemies/waves/spawner.tscn" id="3_5gmoh"]
 [ext_resource type="PackedScene" uid="uid://pnved6uqqkab" path="res://entities/enemies/small/small.tscn" id="4_i7gy8"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ljwm7"]
+radius = 76.0
+height = 324.4
+
 [node name="Monster" instance=ExtResource("1_2rhcy")]
+wiggle_factor = 0.001
+apply_power_impulse_to_velocity = true
 max_hp = 100
 
 [node name="Sprite2D" parent="." index="0"]
@@ -14,8 +20,10 @@ scale = Vector2(5, 5)
 texture = ExtResource("2_qffa2")
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2(-539, 63)
+position = Vector2(-1031, 63)
+rotation = -1.57079
 scale = Vector2(5, 5)
+shape = SubResource("CapsuleShape2D_ljwm7")
 
 [node name="Spawner" parent="." index="2" instance=ExtResource("3_5gmoh")]
 spawn_delay = 3.0

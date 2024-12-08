@@ -1,22 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://ognu53ffqgc1"]
+[gd_scene load_steps=7 format=3 uid="uid://ognu53ffqgc1"]
 
 [ext_resource type="Theme" uid="uid://c2sxl83j3rate" path="res://ui_scenes/main_menu/menu_theme.tres" id="1_gvckj"]
 [ext_resource type="Texture2D" uid="uid://hy0fgtaqk61a" path="res://icon.svg" id="1_nm67r"]
+[ext_resource type="Texture2D" uid="uid://c3wvaodiapssn" path="res://ui_scenes/ingame_ui/plank.png" id="2_p2egg"]
 [ext_resource type="Script" path="res://ui_scenes/ingame_ui/upgrade_item.gd" id="2_sl8m2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_amq4u"]
+texture = ExtResource("2_p2egg")
 
 [sub_resource type="LabelSettings" id="LabelSettings_qxfkr"]
 font_size = 28
 
 [node name="UpgradeItem" type="PanelContainer"]
 theme = ExtResource("1_gvckj")
+theme_override_styles/panel = SubResource("StyleBoxTexture_amq4u")
 script = ExtResource("2_sl8m2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 25
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2

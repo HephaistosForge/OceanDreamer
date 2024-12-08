@@ -1,4 +1,4 @@
-extends CenterContainer
+extends Control
 
 const UPGRADE_ITEM = preload("res://ui_scenes/ingame_ui/upgrade_item.tscn")
 

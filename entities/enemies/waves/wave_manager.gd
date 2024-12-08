@@ -16,6 +16,7 @@ var waves = [
 		Batch.new(large, 1, 0.2, 10),
 	], 4, 2000),
 	Wave.new([Batch.new(small, 1, 1, 100)], 0.01, 3000),
+	Wave.new([Batch.new(boss, 1, 1, 1), Batch.new(small, 5, 1, 1000)], 3, 3000),
 ]
 
 @onready var ship = get_tree().get_first_node_in_group("ship")
