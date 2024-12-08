@@ -38,7 +38,7 @@
 			"explosive": null,
 			"wiggle": null,
 			"mutate": null,
-			"delta_cannon_ball_fragmentation_count": null,
+			"delta_cannon_ball_fragmentate_count": null,
 			"delta_cannon_ball_bounce_count": null,
 			"delta_cannon_ball_pierce_count": null,
 			"cannon_can_rotate": null,
@@ -52,10 +52,10 @@
 	],
 	"upgrades": [
 		{
-			"description": "More hard hitting cannon",
-			"factor_cannon_ball_damage": 1.3,
-			"factor_cannon_size": 1.1,
-			"factor_cannon_ball_size": 1.1,
+			"description": "Harder hitting cannon",
+			"factor_cannon_ball_damage": 1.5,
+			"factor_cannon_size": 1.3,
+			"factor_cannon_ball_size": 1.3,
 			"factor_cannon_velocity": 0.9,
 			"factor_cannon_rotation_speed": 0.9,
 		}, 
@@ -66,8 +66,8 @@
 			"factor_ship_size": 0.9,
 		},
 		{
-			"description": "Triple cannon burst",
-			"factor_cannon_ball_damage": 0.7,
+			"description": "Triple cannon burst but half damage",
+			"factor_cannon_ball_damage": 0.5,
 			"factor_cannon_size": 0.9,
 			"factor_cannon_ball_size": 0.7,
 			"factor_cannon_velocity": 1.1,
@@ -75,19 +75,36 @@
 			"delta_cannon_ball_burst_count": 2,
 		},
 		{
-			"description": "Bounce + 1, increase cannonball speed but reduce damage",
-			"factor_cannon_ball_damage": 0.7,
-			"factor_cannon_velocity": 2.0,
+			"description": "Bounce + 1",
 			"delta_cannon_ball_bounce_count": 1,
+			"color": [2,0,0,1],
 		},
 		{
-			"description": "Pierce + 1 but reduce damage",
-			"factor_cannon_ball_damage": 0.7,
+			"description": "Pierce + 1",
 			"delta_cannon_ball_pierce_count": 1,
+			"color": [0,0,2,1],
 		},
 		{
 			"description": "Fragmentation on impact + 3",
 			"delta_cannon_ball_fragmentate_count": 3,
+			"color": [0,2,0,1]
+		},
+		{
+			"description": "Cannon burst + 1 & spray + 1",
+			"delta_cannon_ball_burst_count": 1,
+			"delta_cannon_ball_spray_count": 1,
+			"factor_cannon_shooting_delay": 1.5,
+		},
+		{
+			"description": "Quadruple reload time and cannonball size, double movement speed",
+			"factor_cannon_ball_size": 4.0,
+			"factor_movement_speed": 2.0,
+			"factor_cannon_shooting_delay": 4.0,
+		},
+		{
+			"description": "Minimal reload time but deal almost no damage",
+			"factor_cannon_ball_damage": 0.2,
+			"factor_cannon_shooting_delay": 0.2,
 		},
 	]
 }
