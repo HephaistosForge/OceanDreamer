@@ -18,8 +18,8 @@ const sounds: Dictionary = {
 	"game_over": preload("res://audio/sound_effects/gameover.wav"),
 }
 
-var music_volume: float = 70
-var sound_volume: float = 50
+var music_volume: float = 75
+var sound_volume: float = 8
 var background_music_choice = 0
 
 @onready var background_player = AudioStreamPlayer.new()
