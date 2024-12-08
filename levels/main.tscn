@@ -21,7 +21,5 @@
 
 [node name="WaveManager" parent="." instance=ExtResource("6_d2ymk")]
 
-[connection signal="remaining_progress" from="LevelManager" to="UIOverlay" method="_on_level_manager_remaining_progress"]
 [connection signal="to_next_level" from="LevelManager" to="RealityManager" method="_on_level_manager_to_next_level"]
-[connection signal="to_upgrade_screen" from="LevelManager" to="UIOverlay" method="_on_level_manager_to_upgrade_screen"]
 [connection signal="to_upgrade_screen" from="LevelManager" to="RealityManager" method="_on_level_manager_to_upgrade_screen"]

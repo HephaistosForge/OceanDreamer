@@ -18,10 +18,10 @@ script = ExtResource("2_sl8m2")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 2
-theme_override_constants/margin_left = 35
-theme_override_constants/margin_top = 25
-theme_override_constants/margin_right = 30
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2

@@ -5,6 +5,7 @@ class_name Entity
 const RIPPLE_SCENE = preload("res://effects/RippleEffect.tscn")
 
 signal death
+signal hp_changed(new_value: int, old_value: int, max_hp: int)
 
 @export var max_hp: int = 100
 @export var is_enemy: bool = true
@@ -33,6 +34,8 @@ func set_hp(new_hp):
 	hp += delta
 	
 	if delta != 0:
+		hp_changed.emit(new_hp, hp-delta, max_hp)
+		
 		#var target_color = Color.RED if delta < 0 else Color.GREEN
 		var ratio = delta / float(max_hp)
 		var target_color = Color(0.6 - min(0, ratio), 0.6 + max(0, ratio), 0.6)
