@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://co1vd8dbimgqj"]
+[gd_scene load_steps=4 format=3 uid="uid://co1vd8dbimgqj"]
 
 [ext_resource type="Theme" uid="uid://c2sxl83j3rate" path="res://ui_scenes/main_menu/menu_theme.tres" id="1_lfw8c"]
 [ext_resource type="Script" path="res://ui_scenes/main_menu/main_menu.gd" id="2_va1mr"]
+[ext_resource type="Texture2D" uid="uid://dqdvqaev7k6t" path="res://ui_scenes/main_menu/background.png" id="3_58gs1"]
 
 [node name="MainMenu" type="Control" groups=["main_menu"]]
 layout_mode = 3
@@ -13,40 +14,14 @@ grow_vertical = 2
 theme = ExtResource("1_lfw8c")
 script = ExtResource("2_va1mr")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-z_index = -2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0784314, 0.0588235, 0.105882, 1)
+[node name="Background" type="TextureRect" parent="."]
+z_index = -100
+layout_mode = 0
+offset_right = 1917.0
+offset_bottom = 1075.0
+texture = ExtResource("3_58gs1")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-z_index = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -820.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0784314, 0.0588235, 0.105882, 1)
-
-[node name="ColorRect3" type="ColorRect" parent="."]
-z_index = 2
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 1042.0
-offset_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0784314, 0.0588235, 0.105882, 1)
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -54,81 +29,69 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer2"]
+[node name="Title" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 140
 theme_override_constants/margin_top = 50
 
-[node name="Label" type="Label" parent="VBoxContainer2/MarginContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/Title"]
 z_index = 3
 layout_mode = 2
+theme_override_colors/font_color = Color(0.321569, 0.321569, 0.607843, 1)
 theme_override_font_sizes/font_size = 120
-text = "<GAME NAME>"
+text = "Oceandreamer"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2"]
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 150
 
-[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer2/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 150
-theme_override_constants/margin_top = 250
+alignment = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2/HBoxContainer/MarginContainer2"]
-custom_minimum_size = Vector2(230, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 0
-theme_override_constants/separation = 8
 
-[node name="Play" type="Button" parent="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="Play" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.321569, 0.321569, 0.607843, 1)
 text = "Play"
 
-[node name="HowToPlay" type="Button" parent="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="HowToPlay" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.321569, 0.321569, 0.607843, 1)
 text = "How To Play"
 
-[node name="Options" type="Button" parent="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="Options" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0.321569, 0.321569, 0.607843, 1)
 text = "Options"
 
-[node name="Credits" type="Button" parent="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="Credits" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.321569, 0.321569, 0.607843, 1)
 text = "Credits"
 
-[node name="Exit" type="Button" parent="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer"]
+[node name="Exit" type="Button" parent="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_colors/font_color = Color(0.321569, 0.321569, 0.607843, 1)
 text = "Exit"
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-clip_contents = true
-layout_mode = 2
-offset_left = 514.0
-offset_top = 277.0
-offset_right = 1863.0
-offset_bottom = 982.0
-size_flags_horizontal = 3
-theme_override_constants/margin_left = 60
-theme_override_constants/margin_right = 80
-
-[node name="VBoxContainer" type="CenterContainer" parent="MarginContainer"]
-z_index = 1
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 4
-
-[connection signal="mouse_entered" from="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Play" to="." method="_on_button_hover"]
-[connection signal="pressed" from="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer/HowToPlay" to="." method="_on_button_hover"]
-[connection signal="pressed" from="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Options" to="." method="_on_button_hover"]
-[connection signal="pressed" from="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Options" to="." method="_on_options_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Credits" to="." method="_on_button_hover"]
-[connection signal="pressed" from="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
-[connection signal="mouse_entered" from="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Exit" to="." method="_on_button_hover"]
-[connection signal="pressed" from="VBoxContainer2/HBoxContainer/MarginContainer2/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_button_hover"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HowToPlay" to="." method="_on_button_hover"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/HowToPlay" to="." method="_on_how_to_play_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_button_hover"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Credits" to="." method="_on_button_hover"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+[connection signal="mouse_entered" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Exit" to="." method="_on_button_hover"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]

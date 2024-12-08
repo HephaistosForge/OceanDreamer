@@ -4,7 +4,9 @@ const background_music: Array = [
 	# input list of background music files goes here
 	# background music is randomly shuffled
 	# preload("<path_to_file>")
-	preload("res://audio/music/dreamsailor.ogg")
+	preload("res://audio/music/dreamsailor.ogg"),
+	preload("res://audio/music/dreamsailor_menu.ogg"),
+	preload("res://audio/music/dreamsailor_whoa_a_kraken.ogg")
 ]
 
 const sounds: Dictionary = {
@@ -18,6 +20,7 @@ const sounds: Dictionary = {
 
 var music_volume: float = 70
 var sound_volume: float = 50
+var background_music_choice = 0
 
 @onready var background_player = AudioStreamPlayer.new()
 
@@ -34,7 +37,11 @@ func _ready() -> void:
 
 func play(name_: String, volume_multiplier=1.0):
 	_create_sound_player(sounds[name_], null, false, volume_multiplier)
-	
+
+
+func play_sound_example() -> void:
+	play("cannon_shoot")
+
 
 # HELPER
 func set_sound_volume(percent:float) -> void:
@@ -71,7 +78,7 @@ func _on_background_music_finished() -> void:
 	if background_music.is_empty():
 		push_warning("No Background Music defined yet. Please fill the Array background_music with tracks to play")
 		return
-	background_player.stream = background_music.pick_random()
+	background_player.stream = background_music[background_music_choice] # Sorry aber Zugriff per Index muss reichen für Game Jam lol
 	background_player.play()
 
 
