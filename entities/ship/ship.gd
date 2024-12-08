@@ -6,8 +6,6 @@ extends Entity
 
 @onready var cannon = $Cannon
 
-var dead = false
-
 func _ready():
 	var level_manager = get_tree().get_first_node_in_group("level_manager")
 	level_manager.to_next_level.connect(_on_next_level)
@@ -57,8 +55,6 @@ func _on_next_level(_level, upgrade: Upgrade) -> void:
 
 
 func game_over() -> void:
-	if dead: return
-		
 	Audio.play("game_over")
 	var tween = create_tween()
 	tween.tween_property(self, "scale", scale * 0.7, 3) \

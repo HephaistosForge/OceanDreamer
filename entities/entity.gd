@@ -12,6 +12,8 @@ signal hp_changed(new_value: float, old_value: float, max_hp: float)
 @export var ripple_scale: float = 0.8 * 4
 @onready var hp = max_hp : set = set_hp
 
+var dead = false
+
 var ripple_effect: CPUParticles2D = null
 var modulate_tween = null
 
@@ -30,6 +32,8 @@ func _process(delta: float) -> void:
 
 
 func set_hp(new_hp):
+	if dead: return
+	
 	var delta = clamp(new_hp, 0, max_hp) - hp
 	hp += delta
 	
@@ -53,6 +57,7 @@ func set_hp(new_hp):
 			
 	if hp <= 0 or is_zero_approx(hp):
 		death.emit()
+		dead = true
 	
 func take_damage(damage):
 	set_hp(hp - damage)
@@ -73,6 +78,6 @@ func fade_in():
 	
 func despawn_with_animation():
 	var tween = create_tween()
-	tween.tween_property(self, "scale", Vector2.ZERO, 0.1) \
-		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_BACK)
+	tween.tween_property(self, "scale", Vector2.ZERO, 0.2) \
+		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_callback(queue_free)

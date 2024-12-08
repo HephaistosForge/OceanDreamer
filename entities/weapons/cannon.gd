@@ -59,10 +59,12 @@ func apply_upgrade(upgrade: Upgrade):
 
 
 func _process(delta: float) -> void:
+	if dead: return
+	
 	var target = global_position.angle_to_point(get_global_mouse_position())
 	global_rotation = rotate_toward(global_rotation, target, delta * rotation_speed)
 	
-	if Input.is_action_pressed("shoot") and reloaded and can_shoot and not dead:
+	if Input.is_action_pressed("shoot") and reloaded and can_shoot:
 		reload_timer.stop()
 		reloaded = false
 		shoot()

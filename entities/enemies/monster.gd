@@ -29,20 +29,21 @@ func _ready():
 
 func power_func(x):
 	return sin(x)**2 + 0.4
+	
+func _process(delta: float) -> void:
+	elapsed_time += delta
+	var anim_progression_point = elapsed_time * power_impulse_frequency
+	var power = power_func(anim_progression_point)
+	var target = global_position.angle_to_point(ship.global_position) \
+		+ sin(anim_progression_point) * wiggle_factor
+	global_rotation = rotate_toward(global_rotation, target, turn_speed * delta * power)
+	velocity = Vector2(cos(rotation), sin(rotation)) * speed * delta * 60
+	if apply_power_impulse_to_velocity:
+		velocity *= power
+	attack_player_in_melee_if_possible()
 
 func _physics_process(delta: float) -> void:
-	elapsed_time += delta
-	if ship and is_instance_valid(ship):
-		var anim_progression_point = elapsed_time * power_impulse_frequency
-		var power = power_func(anim_progression_point)
-		var target = global_position.angle_to_point(ship.global_position) \
-			+ sin(anim_progression_point) * wiggle_factor
-		global_rotation = rotate_toward(global_rotation, target, turn_speed * delta * power)
-		velocity = Vector2(cos(rotation), sin(rotation)) * speed * delta * 60
-		if apply_power_impulse_to_velocity:
-			velocity *= power
 	move_and_slide()
-	attack_player_in_melee_if_possible()
 
 func attack_player_in_melee_if_possible():
 	if melee_attack_damage > 0 and can_attack:

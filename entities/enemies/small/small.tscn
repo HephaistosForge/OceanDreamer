@@ -10,7 +10,7 @@ height = 58.0
 [node name="Monster" instance=ExtResource("1_nyft1")]
 speed = 200.0
 wiggle_factor = 0.17
-melee_attack_damage = 1
+melee_attack_damage = 100
 attack_delay = 0.5
 max_hp = 20.0
 ripple_scale = 0.3

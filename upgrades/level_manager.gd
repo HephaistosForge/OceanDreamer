@@ -5,6 +5,7 @@ enum GameState { PLAYING, UPGRADING, DEAD }
 signal to_next_level(level: int, upgrade: Upgrade)
 signal to_upgrade_screen(upgrades: Array[Upgrade])
 signal remaining_progress(count: int, total: int)
+signal game_over
 
 @export var upgrade_count = 3
 
@@ -36,6 +37,7 @@ func _on_monster_death():
 	
 func on_player_death():
 	game_state = GameState.DEAD
+	game_over.emit()
 	
 	
 func update_remaining_monsters(new_value):

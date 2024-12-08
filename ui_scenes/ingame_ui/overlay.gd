@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-var UPGRADE_DIALOG_SCENE = preload("res://ui_scenes/ingame_ui/upgrade_dialog.tscn")
+const  UPGRADE_DIALOG_SCENE = preload("res://ui_scenes/ingame_ui/upgrade_dialog.tscn")
+const GAME_OVER_DIALOG_SCENE = preload("res://ui_scenes/ingame_ui/game_over_dialog.tscn")
 
 func _ready():
 	var ship = get_tree().get_first_node_in_group("ship")
@@ -9,6 +10,11 @@ func _ready():
 	level_manager.to_upgrade_screen.connect(_on_level_manager_to_upgrade_screen)
 #	level_manager.to_next_level.connect(_on_level_manager_to_next_level)
 	level_manager.remaining_progress.connect(_on_level_manager_remaining_progress)
+	level_manager.game_over.connect(_on_game_over)
+	
+func _on_game_over():
+	var dialog = GAME_OVER_DIALOG_SCENE.instantiate()
+	$CenterContainer/Expander/HBoxContainer/LeftHalf.add_child(dialog)
 	
 func _on_hp_changed(new_value, old_value, max_value):
 	find_child("HP").text = str(new_value) + " HP"

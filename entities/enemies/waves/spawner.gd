@@ -25,7 +25,7 @@ func _spawn_enemy():
 	
 	for i in amount:
 		var monster = monsters.pick_random().instantiate() 
-		get_tree().root.add_child(monster)
+		get_tree().current_scene.add_child(monster)
 		monster.global_position = global_position + Vector2(cos(angle), sin(angle)) * distance
 		monster.global_rotation = randf_range(0, TAU) 
 

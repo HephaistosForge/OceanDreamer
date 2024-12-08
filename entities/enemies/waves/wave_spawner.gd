@@ -15,7 +15,7 @@ func _spawn_enemy():
 	var angle = randf_range(0, TAU)
 	
 	for monster in wave.create_enemies():
-		get_tree().root.add_child(monster)
+		get_tree().current_scene.add_child(monster)
 		monster.global_position = global_position + Vector2(cos(angle), sin(angle)) * wave.distance
 		monster.global_rotation = randf_range(0, TAU) 
 

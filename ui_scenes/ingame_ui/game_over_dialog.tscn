@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://hv44ofuskwdq"]
+
+[ext_resource type="Theme" uid="uid://c2sxl83j3rate" path="res://ui_scenes/main_menu/menu_theme.tres" id="1_vecey"]
+[ext_resource type="Script" path="res://ui_scenes/ingame_ui/game_over_dialog.gd" id="2_m3mul"]
+[ext_resource type="Texture2D" uid="uid://c3wvaodiapssn" path="res://ui_scenes/ingame_ui/plank.png" id="3_b186e"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_d8ffo"]
+font_size = 30
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_amq4u"]
+texture = ExtResource("3_b186e")
+
+[sub_resource type="LabelSettings" id="LabelSettings_qxfkr"]
+font_size = 28
+
+[node name="GameOver" type="CenterContainer"]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_vecey")
+script = ExtResource("2_m3mul")
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="UpgradesList" type="VBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/UpgradesList"]
+layout_mode = 2
+text = "The scary monsters won"
+label_settings = SubResource("LabelSettings_d8ffo")
+
+[node name="UpgradeItem" type="PanelContainer" parent="Panel/MarginContainer/UpgradesList"]
+layout_mode = 2
+theme = ExtResource("1_vecey")
+theme_override_styles/panel = SubResource("StyleBoxTexture_amq4u")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/MarginContainer/UpgradesList/UpgradeItem"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer/UpgradesList/UpgradeItem/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Panel/MarginContainer/UpgradesList/UpgradeItem/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Restart"
+label_settings = SubResource("LabelSettings_qxfkr")
+horizontal_alignment = 1
+
+[connection signal="gui_input" from="Panel/MarginContainer/UpgradesList/UpgradeItem" to="." method="_on_upgrade_item_gui_input"]
+[connection signal="mouse_entered" from="Panel/MarginContainer/UpgradesList/UpgradeItem" to="." method="_on_upgrade_item_mouse_entered"]
+[connection signal="mouse_exited" from="Panel/MarginContainer/UpgradesList/UpgradeItem" to="." method="_on_upgrade_item_mouse_exited"]
