@@ -68,7 +68,7 @@ func _on_entity_entered(body: Node2D) -> void:
 			var cannon = get_tree().get_first_node_in_group("cannon")
 			var randomizer_vec = Vector2(BOUNCE_FACTOR_ARRAY[randi() % BOUNCE_FACTOR_ARRAY.size()], BOUNCE_FACTOR_ARRAY[randi() % BOUNCE_FACTOR_ARRAY.size()])
 			var _cannonball_velocity = init_velocity * randomizer_vec
-			cannon.create_cannonball(position, _cannonball_velocity, false, scale, damage, init_seconds_flight_time, bounce_count - 1, 0, Color(240, 0, 0, 255), true)
+			cannon.create_cannonball(position, _cannonball_velocity, false, scale, damage, init_seconds_flight_time, bounce_count - 1, 0, Color(2, 0, 0, 1), true)
 		
 		if pierce_count > 0:
 			pierce_count -= 1

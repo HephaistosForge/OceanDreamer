@@ -66,7 +66,7 @@ func _process(delta: float) -> void:
 			var velocity_direction = Vector2(cos(global_rotation), sin(global_rotation))
 			var _cannonball_velocity = velocity_direction * velocity + get_parent().velocity
 			var _cannonball_scale = Vector2.ONE * ball_size * global_scale
-			create_cannonball($SpawnAt.global_position, _cannonball_velocity, false, _cannonball_scale, damage, flight_range, bounce_count, pierce_count, Color(255,255,255,255), false)
+			create_cannonball($SpawnAt.global_position, _cannonball_velocity, false, _cannonball_scale, damage, flight_range, bounce_count, pierce_count, Color(1,1,1,1), false)
 		
 			Audio.play("cannon_shoot")
 			camera.trigger_shake(0.5 * ball_size, 0.03, 1, global_rotation)
