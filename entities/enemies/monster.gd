@@ -15,6 +15,9 @@ var reload_timer: Timer = Timer.new()
 var can_attack = true
 var elapsed_time = 0
 
+func blend_coloring(color):
+	$Sprite2D.self_modulate = $Sprite2D.self_modulate.blend(color.lightened(0.5))
+
 func _ready():
 	super()
 	fade_in()

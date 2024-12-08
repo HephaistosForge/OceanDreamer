@@ -33,7 +33,7 @@ var waves = [
 		Batch.new(small, 3, 0.3, 3000), 
 		Batch.new(medium, 1, 0.4, 3000),
 		Batch.new(large, 1, 0.3, 1000),
-	], DELAY_MEDIUM, DISTANCE_MEDIUM, 90),
+	], DELAY_SHORT, DISTANCE_MEDIUM, 90),
 	Wave.new([
 		Batch.new(small, 3, 0.5, 5000), 
 		Batch.new(medium, 1, 0.5, 5000),
@@ -48,7 +48,7 @@ var waves = [
 	Wave.new([
 		Batch.new(medium, 1, 1, 10000),
 		Batch.new(boss, 1, 1, 2)
-	], DELAY_LONG, DISTANCE_BOSS, 21600),
+	], DELAY_SHORT, DISTANCE_BOSS, 21600),
 	Wave.new([
 		Batch.new(small, 10, 1, 10000),
 	], DELAY_SHORT, DISTANCE_SHORT, 2000),
@@ -59,12 +59,12 @@ var waves = [
 		Batch.new(small, 5, 1, 10000),
 		Batch.new(medium, 3, 1, 10000),
 		Batch.new(large, 1, 1, 10000),
-	], DELAY_MEDIUM, DISTANCE_FAR, 7000),
+	], DELAY_SHORT, DISTANCE_FAR, 7000),
 	Wave.new([
 		Batch.new(small, 3, .5, 10000),
 		Batch.new(medium, 1, .3, 10000),
 		Batch.new(large, 6, 1, 12000),
-	], DELAY_MEDIUM, DISTANCE_FAR, 10000),
+	], DELAY_SHORT, DISTANCE_FAR, 10000),
 	Wave.new([
 		Batch.new(small, 3, .5, 10000),
 		Batch.new(medium, 1, .3, 10000),
@@ -85,6 +85,7 @@ func _on_next_level(level: int, _upgrade):
 	if ship:
 		var spawner = WAVE_SPAWNER.instantiate()
 		spawner.wave = waves[min(level-1, len(waves)-1)]
+		spawner.level = level
 		var xp = spawner.wave.xp_required
 		# DEBUG OVERRIDE
 		# xp = 2
