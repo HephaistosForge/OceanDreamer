@@ -6,18 +6,21 @@ extends Entity
 
 @onready var cannon = $Cannon
 
+var dead = false
 
 func _ready():
-	get_tree().get_first_node_in_group("level_manager").to_next_level.connect(_on_next_level)
+	var level_manager = get_tree().get_first_node_in_group("level_manager")
+	level_manager.to_next_level.connect(_on_next_level)
 	super()
 	
 	death.connect(game_over)
+	death.connect(level_manager.on_player_death)
 
 
 func _physics_process(delta: float) -> void:
-	var speed = Input.get_action_strength("forward") \
-		- Input.get_action_strength("backward") * 0.2
-	var turn = Input.get_axis("turn_left", "turn_right")
+	var speed = (Input.get_action_strength("forward") \
+		- Input.get_action_strength("backward")) * 0.2 * int(not dead)
+	var turn = Input.get_axis("turn_left", "turn_right") * int(not dead)
 	
 	var rot_vec = Vector2(cos(rotation), sin(rotation))
 	
@@ -54,4 +57,16 @@ func _on_next_level(_level, upgrade: Upgrade) -> void:
 
 
 func game_over() -> void:
+	if dead: return
+		
 	Audio.play("game_over")
+	var tween = create_tween()
+	tween.tween_property(self, "scale", scale * 0.7, 3) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	tween.parallel().tween_property(self, "modulate", Color(0.3, 0.3, 0.6, 0.3), 3) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+	
+	dead = true
+	for child in get_children():
+		if child.is_in_group("cannon"):
+			child.dead = true

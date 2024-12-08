@@ -23,7 +23,7 @@ const EXPLOSION_SCENE = preload("res://effects/explosion.tscn")
 var reload_timer: Timer = Timer.new()
 var can_shoot = true
 var reloaded = true
-var explosion_effect: CPUParticles2D = null
+var dead = false
 
 
 func _ready():
@@ -47,14 +47,14 @@ func apply_upgrade(upgrade: Upgrade):
 	bounce_count = upgrade.fma("cannon_ball_bounce_count", bounce_count)
 	pierce_count = upgrade.fma("cannon_ball_pierce_count", pierce_count)
 	fragmentate_count = upgrade.fma("cannon_ball_fragmentate_count", fragmentate_count)
-	ball_modulate.blend(upgrade.get_color())
+	ball_modulate = ball_modulate.blend(upgrade.get_color())
 
 
 func _process(delta: float) -> void:
 	var target = global_position.angle_to_point(get_global_mouse_position())
 	global_rotation = rotate_toward(global_rotation, target, delta * rotation_speed)
 	
-	if Input.is_action_pressed("shoot") and reloaded and can_shoot:
+	if Input.is_action_pressed("shoot") and reloaded and can_shoot and not dead:
 		reload_timer.stop()
 		reloaded = false
 		shoot()
@@ -62,12 +62,8 @@ func _process(delta: float) -> void:
 
 func shoot():
 	for burst in burst_count:
+		add_explosion()
 		for spray in spray_count:
-			explosion_effect = EXPLOSION_SCENE.instantiate()
-			add_child(explosion_effect)
-			explosion_effect.translate(Vector2(150, 0))
-			explosion_effect.global_rotation = global_rotation + PI / 2
-			explosion_effect.emitting = true
 			
 			var shot_angle = get_spray_angle(spray)
 
@@ -89,6 +85,13 @@ func get_spray_angle(spray: int):
 	var ratio = spray / float(spray_count-1)
 	return global_rotation - range + range * 2 * ratio
 	
+func add_explosion():
+	var explosion_effect = EXPLOSION_SCENE.instantiate()
+	add_child(explosion_effect)
+	explosion_effect.translate(Vector2(150, 0))
+	explosion_effect.global_rotation = global_rotation + PI / 2
+	explosion_effect.emitting = true
+	explosion_effect.finished.connect(func(): explosion_effect.queue_free())
 
 func create_cannonball(_global_position, _velocity, _is_enemy, _scale, _damage, _seconds_flight_time, _fragmentate_count, _bounce_count, _pierce_count, _color, _grace_period_active) -> void:
 	var cannonball = CANNONBALL_SCENE.instantiate()

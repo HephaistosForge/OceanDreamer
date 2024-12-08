@@ -5,8 +5,8 @@ const RIPPLE_SCENE = preload("res://effects/RippleEffect.tscn")
 const GRACE_PERIOD_DURATION = .1
 const SPRAY_FACTOR_ARRAY = [.5, 1, -.5, -1]
 
-var ripple_effect: CPUParticles2D = null
-var ripple_scale: float = 0.6
+@onready var ripple_effect: CPUParticles2D = $RippleEffect
+var ripple_scale: float = 0.2 * 4
 
 var velocity = Vector2.ZERO
 var acceleration = Vector2.ZERO
@@ -24,31 +24,28 @@ var grace_period_active = false # Duration in which cannonball does not interact
 var init_velocity = Vector2.ZERO
 var init_seconds_flight_time = 0
 
+var curr_flight_time = 0
+
 
 func _ready() -> void:
-	get_tree().create_timer(seconds_flight_time * 1.5).timeout.connect(despawn)
+	get_tree().create_timer(seconds_flight_time).timeout.connect(despawn)
 	
 	if grace_period_active: _activate_grace_period()
 	
-	ripple_effect = RIPPLE_SCENE.instantiate()
-	self.add_child(ripple_effect)
-	ripple_effect.scale_amount_max = ripple_scale
-	ripple_effect.scale_amount_min = ripple_effect.scale_amount_max
-	ripple_effect.amount = 3
-	ripple_effect.one_shot = true
-	ripple_effect.emitting = false
+	ripple_effect.scale_amount_max = ripple_scale * scale.length()
+	ripple_effect.scale_amount_min = ripple_scale * scale.length()
 
 
 func despawn():
 	var tween = create_tween()
-	tween.tween_property($Sprite2D, "self_modulate", Color(0.3, 0.3, 0.6, 0), 3) \
+	tween.tween_property($Sprite2D, "self_modulate", Color(0.3, 0.3, 0.6, 0), 2) \
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	tween.parallel().tween_property(self, "scale", Vector2.ZERO, 6) \
+	tween.parallel().tween_property(self, "scale", Vector2.ZERO, 4) \
 		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 	tween.tween_callback(queue_free)
 	
-	ripple_effect.emitting = true
-	velocity *= 0.5
+	# tmuripple_effect.emitting = true
+	velocity *= 0.3
 
 
 func _activate_grace_period() -> void:
@@ -56,9 +53,10 @@ func _activate_grace_period() -> void:
 	get_tree().create_timer(GRACE_PERIOD_DURATION).timeout.connect(func(): grace_period_active = false)
 
 
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
+	curr_flight_time += delta
 	position += velocity * delta
-	velocity -= velocity * delta / seconds_flight_time
+	velocity = init_velocity * exp(-curr_flight_time)
 
 
 func _on_entity_entered(body: Node2D) -> void:
@@ -72,14 +70,14 @@ func _on_entity_entered(body: Node2D) -> void:
 			var _cannonball_velocity = velocity * randomizer_vec
 			cannon.create_cannonball(position, _cannonball_velocity, false, \
 				scale * 0.5, damage * 0.25, init_seconds_flight_time, 0, 0, 
-				bounce_count - 1, $Sprite.self_modulate, true)
+				bounce_count - 1, $Sprite2D.self_modulate, true)
 		
 		if bounce_count > 0:
 			var randomizer_vec = Vector2(SPRAY_FACTOR_ARRAY[randi() % SPRAY_FACTOR_ARRAY.size()], SPRAY_FACTOR_ARRAY[randi() % SPRAY_FACTOR_ARRAY.size()])
 			var _cannonball_velocity = init_velocity * randomizer_vec
 			cannon.create_cannonball(position, _cannonball_velocity, false, \
-				scale, damage, init_seconds_flight_time, fragmentate_count, 0, \
-				bounce_count - 1, $Sprite.self_modulate, true)
+				scale, damage, init_seconds_flight_time, 0, 0, \
+				bounce_count - 1, $Sprite2D.self_modulate, true)
 		
 		if pierce_count > 0:
 			pierce_count -= 1

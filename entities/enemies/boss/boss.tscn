@@ -12,7 +12,7 @@ height = 324.4
 [node name="Monster" instance=ExtResource("1_2rhcy")]
 wiggle_factor = 0.0
 xp = 10000
-max_hp = 100
+max_hp = 10000.0
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(1, 1, 1, 0.478431)

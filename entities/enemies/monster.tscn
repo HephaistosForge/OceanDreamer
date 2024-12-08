@@ -11,7 +11,6 @@ z_index = -1
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_j2033")
-max_hp = 30
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.641361, 0.103913, 0.123813, 1)

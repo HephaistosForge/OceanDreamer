@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcgxol7iuc75o"]
+[gd_scene load_steps=5 format=3 uid="uid://dcgxol7iuc75o"]
 
-[ext_resource type="Texture2D" uid="uid://bptlrur4qgf8a" path="res://effects/ripple.png" id="1_rx78g"]
+[ext_resource type="Texture2D" uid="uid://dddljg8fde5c1" path="res://effects/ripple_small.png" id="1_2i1ki"]
+[ext_resource type="Script" path="res://effects/ripple_effect.gd" id="2_vavgs"]
 
 [sub_resource type="Curve" id="Curve_gum6v"]
 _data = [Vector2(0, 0), 0.0, 1.4, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -13,9 +14,10 @@ colors = PackedColorArray(0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 [node name="RippleEffect" type="CPUParticles2D"]
 z_index = -1
 amount = 6
-texture = ExtResource("1_rx78g")
+texture = ExtResource("1_2i1ki")
 gravity = Vector2(0, 0)
-scale_amount_min = 0.8
-scale_amount_max = 0.8
+scale_amount_min = 3.6
+scale_amount_max = 3.6
 scale_amount_curve = SubResource("Curve_gum6v")
 color_ramp = SubResource("Gradient_w2lsw")
+script = ExtResource("2_vavgs")

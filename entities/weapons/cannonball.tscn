@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://hnwpogbt087y"]
+[gd_scene load_steps=5 format=3 uid="uid://hnwpogbt087y"]
 
 [ext_resource type="Script" path="res://entities/weapons/cannonball.gd" id="1_8dncf"]
 [ext_resource type="Texture2D" uid="uid://cxdx6wgybx3dd" path="res://entities/weapons/cannonball.png" id="1_qspim"]
+[ext_resource type="PackedScene" uid="uid://dcgxol7iuc75o" path="res://effects/RippleEffect.tscn" id="3_v53it"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qiv36"]
 
@@ -16,5 +17,11 @@ texture = ExtResource("1_qspim")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_qiv36")
+
+[node name="RippleEffect" parent="." instance=ExtResource("3_v53it")]
+emitting = false
+amount = 1
+one_shot = true
+explosiveness = 0.6
 
 [connection signal="body_entered" from="." to="." method="_on_entity_entered"]

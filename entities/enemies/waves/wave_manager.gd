@@ -14,7 +14,7 @@ var waves = [
 		Batch.new(small, 3, 0.5, 300), 
 		Batch.new(medium, 1, 0.3, 300),
 		Batch.new(large, 1, 0.2, 100),
-	], 3, 2000, 30),
+	], 3, 2000, 20),
 	Wave.new([Batch.new(small, 1, 1, 1000)], 0.1, 3000, 50),
 	Wave.new([Batch.new(boss, 1, 1, 1), Batch.new(small, 5, 1, 1000)], 3, 3000, 10000),
 ]
@@ -31,8 +31,11 @@ func _on_next_level(level: int, _upgrade):
 	if ship:
 		var spawner = WAVE_SPAWNER.instantiate()
 		spawner.wave = waves[min(level-1, len(waves)-1)]
-		level_manager.total_monsters = spawner.wave.xp_required
-		level_manager.update_remaining_monsters(spawner.wave.xp_required)
+		var xp = spawner.wave.xp_required
+		# DEBUG OVERRIDE
+		# xp = 2
+		level_manager.total_monsters = xp
+		level_manager.update_remaining_monsters(xp)
 		ship.add_child(spawner)
 		
 	

@@ -5,11 +5,11 @@ class_name Entity
 const RIPPLE_SCENE = preload("res://effects/RippleEffect.tscn")
 
 signal death
-signal hp_changed(new_value: int, old_value: int, max_hp: int)
+signal hp_changed(new_value: float, old_value: float, max_hp: float)
 
-@export var max_hp: int = 100
+@export var max_hp: float = 100
 @export var is_enemy: bool = true
-@export var ripple_scale: float = 0.8
+@export var ripple_scale: float = 0.8 * 4
 @onready var hp = max_hp : set = set_hp
 
 var ripple_effect: CPUParticles2D = null
@@ -30,14 +30,14 @@ func _process(delta: float) -> void:
 
 
 func set_hp(new_hp):
-	var delta = int(clamp(new_hp, 0, max_hp) - hp)
+	var delta = clamp(new_hp, 0, max_hp) - hp
 	hp += delta
 	
-	if delta != 0:
+	if not is_zero_approx(delta):
 		hp_changed.emit(new_hp, hp-delta, max_hp)
 		
 		#var target_color = Color.RED if delta < 0 else Color.GREEN
-		var ratio = delta / float(max_hp)
+		var ratio = delta / max_hp
 		var target_color = Color(0.6 - min(0, ratio), 0.6 + max(0, ratio), 0.6)
 		if modulate_tween != null: modulate_tween.kill()
 		modulate_tween = create_tween()
@@ -51,7 +51,7 @@ func set_hp(new_hp):
 		modulate_tween.parallel().tween_property(self, "modulate", Color.WHITE, 0.3) \
 			.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_QUART)
 			
-	if hp == 0:
+	if hp <= 0 or is_zero_approx(hp):
 		death.emit()
 	
 func take_damage(damage):

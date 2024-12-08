@@ -1,5 +1,6 @@
 extends Node
 
+enum GameState { PLAYING, UPGRADING, DEAD }
 
 signal to_next_level(level: int, upgrade: Upgrade)
 signal to_upgrade_screen(upgrades: Array[Upgrade])
@@ -12,7 +13,8 @@ signal remaining_progress(count: int, total: int)
 var level = 1
 var total_monsters = 1
 var remaining_monsters = total_monsters
-var is_in_upgrade_state = false
+var game_state = GameState.PLAYING
+
 
 func _ready():
 	remaining_progress.emit(remaining_monsters, total_monsters)
@@ -32,6 +34,10 @@ func get_random_upgrades():
 func _on_monster_death():
 	update_remaining_monsters(remaining_monsters - 1)
 	
+func on_player_death():
+	game_state = GameState.DEAD
+	
+	
 func update_remaining_monsters(new_value):
 	remaining_monsters = clamp(new_value, 0, total_monsters)
 	remaining_progress.emit(remaining_monsters, total_monsters)
@@ -39,13 +45,13 @@ func update_remaining_monsters(new_value):
 		transition_to_upgrade_screen()
 		
 func transition_to_upgrade_screen():
-	if not is_in_upgrade_state:
-		is_in_upgrade_state = true
+	if game_state == GameState.PLAYING:
+		game_state = GameState.UPGRADING
 		to_upgrade_screen.emit(get_random_upgrades())
 		
 func transition_to_next_level(upgrade: Upgrade):
-	if is_in_upgrade_state:
-		is_in_upgrade_state = false
+	if game_state == GameState.UPGRADING:
+		game_state = GameState.PLAYING
 		level += 1
 		update_remaining_monsters(total_monsters)
 		to_next_level.emit(level, upgrade)
