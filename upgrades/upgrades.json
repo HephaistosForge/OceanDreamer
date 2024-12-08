@@ -39,7 +39,7 @@
 			"wiggle": null,
 			"mutate": null,
 			"delta_cannon_ball_bounce_count": null,
-			"pierce_count": null,
+			"delta_cannon_ball_pierce_count": null,
 			"cannon_can_rotate": null,
 			"ship_can_move": null,
 			"can_cloak": null,
@@ -78,6 +78,11 @@
 			"factor_cannon_ball_damage": 0.7,
 			"factor_cannon_velocity": 2.0,
 			"delta_cannon_ball_bounce_count": 1,
-		}
+		},
+		{
+			"description": "Pierce + 1 but reduce damage",
+			"factor_cannon_ball_damage": 0.7,
+			"delta_cannon_ball_pierce_count": 1,
+		},
 	]
 }

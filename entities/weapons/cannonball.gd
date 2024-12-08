@@ -2,7 +2,7 @@ extends Area2D
 
 const CANNONBALL_SCENE = preload("res://entities/weapons/cannonball.tscn")
 const RIPPLE_SCENE = preload("res://effects/RippleEffect.tscn")
-const GRACE_PERIOD_DURATION = .2
+const GRACE_PERIOD_DURATION = .1
 const BOUNCE_FACTOR_ARRAY = [.5, 1, -.5, -1]
 
 var ripple_effect: CPUParticles2D = null
@@ -16,6 +16,7 @@ var damage = 10
 var is_enemy = true
 var seconds_flight_time = 2
 var bounce_count = 0
+var pierce_count = 0
 
 var grace_period_active = false
 
@@ -26,8 +27,7 @@ var init_seconds_flight_time = 0
 func _ready() -> void:
 	get_tree().create_timer(seconds_flight_time * 1.5).timeout.connect(despawn)
 	
-	if grace_period_active:
-		get_tree().create_timer(GRACE_PERIOD_DURATION).timeout.connect(func(): grace_period_active = false)
+	if grace_period_active: _activate_grace_period()
 	
 	ripple_effect = RIPPLE_SCENE.instantiate()
 	self.add_child(ripple_effect)
@@ -50,6 +50,11 @@ func despawn():
 	velocity *= 0.5
 
 
+func _activate_grace_period() -> void:
+	grace_period_active = true
+	get_tree().create_timer(GRACE_PERIOD_DURATION).timeout.connect(func(): grace_period_active = false)
+
+
 func _physics_process(delta: float) -> void:
 	position += velocity * delta
 	velocity -= velocity * delta / seconds_flight_time
@@ -63,9 +68,16 @@ func _on_entity_entered(body: Node2D) -> void:
 			var cannon = get_tree().get_first_node_in_group("cannon")
 			var randomizer_vec = Vector2(BOUNCE_FACTOR_ARRAY[randi() % BOUNCE_FACTOR_ARRAY.size()], BOUNCE_FACTOR_ARRAY[randi() % BOUNCE_FACTOR_ARRAY.size()])
 			var _cannonball_velocity = init_velocity * randomizer_vec
-			cannon.create_cannonball(position, _cannonball_velocity, false, scale, damage, init_seconds_flight_time, bounce_count - 1, Color(240, 0, 0, 255), true)
+			cannon.create_cannonball(position, _cannonball_velocity, false, scale, damage, init_seconds_flight_time, bounce_count - 1, 0, Color(240, 0, 0, 255), true)
 		
-		queue_free()
+		if pierce_count > 0:
+			pierce_count -= 1
+			_activate_grace_period()
+			# Half damage but increase velocity so that piercing bullet can still travel further
+			velocity *= 2
+			damage *= 0.5
+		else:
+			queue_free()
 
 
 func change_color(color: Color) -> void:
