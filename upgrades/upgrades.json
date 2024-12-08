@@ -132,9 +132,9 @@
 		{
 			"description": "Greatly increase range and cannonball speed",
 			"factor_cannon_ball_damage": 1.1,
-			"factor_cannon_ball_flight_range": 2.5,
+			"factor_cannon_ball_flight_range": 2.7,
 			"factor_cannon_shooting_delay": 0.9,
-			"factor_cannon_velocity": 1.8,
+			"factor_cannon_velocity": 2.2,
 		},
 		{
 			"description": "Greatly reduce range but increase cannonball size and damage",
