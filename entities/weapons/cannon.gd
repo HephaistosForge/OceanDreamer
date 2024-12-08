@@ -54,6 +54,7 @@ func _process(delta: float) -> void:
 	global_rotation = rotate_toward(global_rotation, target, delta * rotation_speed)
 	
 	if Input.is_action_pressed("shoot") and reloaded and can_shoot:
+		reload_timer.stop()
 		reloaded = false
 		
 		for burst in burst_count:
