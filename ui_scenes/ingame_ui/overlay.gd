@@ -7,7 +7,7 @@ func _ready():
 	ship.hp_changed.connect(_on_hp_changed)
 	var level_manager = get_tree().get_first_node_in_group("level_manager")
 	level_manager.to_upgrade_screen.connect(_on_level_manager_to_upgrade_screen)
-	level_manager.to_next_level.connect(_on_level_manager_to_next_level)
+#	level_manager.to_next_level.connect(_on_level_manager_to_next_level)
 	level_manager.remaining_progress.connect(_on_level_manager_remaining_progress)
 	
 func _on_hp_changed(new_value, old_value, max_value):
@@ -18,12 +18,18 @@ func _on_hp_changed(new_value, old_value, max_value):
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	bar.max_value = max_value
 	
-func _on_level_manager_to_next_level(level, _upgrade):
-	find_child("Level").text = "Level " + str(level)
+#func _on_level_manager_to_next_level(level, _upgrade):
+	#find_child("Level").text = "Level " + str(level)
 
 func _on_level_manager_remaining_progress(count: Variant, total: Variant) -> void:
-	var label = $CenterContainer/Top/HBoxContainer/EnemyKillCountRequirementLabel
-	label.text = str(count) + "/" + str(total)
+	#var label = $CenterContainer/Top/HBoxContainer/EnemyKillCountRequirementLabel
+	
+	var bar = find_child("XpBar")
+	bar.max_value = total
+	var tween = create_tween()
+	tween.parallel().tween_property(bar, "value", count, 0.1) \
+		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_QUAD)
+	#label.text = str(count) + "/" + str(total)
 
 
 func _on_level_manager_to_upgrade_screen(upgrades) -> void:

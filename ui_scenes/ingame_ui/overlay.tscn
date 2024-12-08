@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bohyqueorty2n"]
+[gd_scene load_steps=6 format=3 uid="uid://bohyqueorty2n"]
 
 [ext_resource type="Script" path="res://ui_scenes/ingame_ui/overlay.gd" id="1_4niua"]
 [ext_resource type="Theme" uid="uid://c2sxl83j3rate" path="res://ui_scenes/main_menu/menu_theme.tres" id="1_mk57u"]
+[ext_resource type="Texture2D" uid="uid://bwkwuxfdfxc7n" path="res://ui_scenes/ingame_ui/BarOutside.png" id="3_wyqqk"]
+[ext_resource type="Texture2D" uid="uid://i0gsqp7wp1h5" path="res://ui_scenes/ingame_ui/BarInside.png" id="4_bnao6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_y1t66"]
 font_size = 100
@@ -25,6 +27,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="EnemyKillCountRequirementLabel" type="Label" parent="CenterContainer/Top/HBoxContainer"]
+visible = false
 layout_mode = 2
 text = "5"
 label_settings = SubResource("LabelSettings_y1t66")
@@ -56,25 +59,76 @@ theme_override_constants/margin_bottom = 10
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/Bottom"]
 layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
 
-[node name="HpBar" type="TextureProgressBar" parent="CenterContainer/Bottom/HBoxContainer2"]
-layout_mode = 2
+[node name="Node2D" type="Node2D" parent="CenterContainer/Bottom/HBoxContainer2"]
+scale = Vector2(0.35, 0.35)
+
+[node name="HpBar" type="TextureProgressBar" parent="CenterContainer/Bottom/HBoxContainer2/Node2D"]
+custom_minimum_size = Vector2(200.38, 80)
+offset_left = -37.5
+offset_top = -156.25
+offset_right = 1238.5
+offset_bottom = -6.25
+size_flags_horizontal = 0
+size_flags_vertical = 0
+step = 0.01
+value = 100.0
+texture_under = ExtResource("3_wyqqk")
+texture_progress = ExtResource("4_bnao6")
+tint_progress = Color(0.95, 0.250483, 0.057, 1)
+
+[node name="XpBar" type="TextureProgressBar" parent="CenterContainer/Bottom/HBoxContainer2/Node2D"]
+custom_minimum_size = Vector2(200.38, 80)
+offset_left = 4071.43
+offset_top = -165.714
+offset_right = 5347.43
+offset_bottom = -15.7141
+size_flags_horizontal = 0
+size_flags_vertical = 0
+max_value = 5.0
+step = 0.01
+fill_mode = 1
+texture_under = ExtResource("3_wyqqk")
+texture_progress = ExtResource("4_bnao6")
+tint_progress = Color(0.224792, 0.635016, 0.35984, 1)
 
 [node name="HP" type="Label" parent="CenterContainer/Bottom/HBoxContainer2"]
+visible = false
 layout_mode = 2
 text = "100 HP"
 label_settings = SubResource("LabelSettings_y1t66")
 vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
 
+[node name="aaaa" type="Label" parent="CenterContainer/Bottom/HBoxContainer2"]
+visible = false
+layout_mode = 2
+text = "aaaaaaaaaaaaaaaaa"
+label_settings = SubResource("LabelSettings_y1t66")
+vertical_alignment = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/Bottom/HBoxContainer2"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/Bottom/HBoxContainer2"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Level" type="Label" parent="CenterContainer/Bottom/HBoxContainer2"]
+visible = false
 layout_mode = 2
 text = "Level 1
 "
 label_settings = SubResource("LabelSettings_y1t66")
 vertical_alignment = 2
 metadata/_edit_use_anchors_ = true
+
+[node name="GridContainer" type="GridContainer" parent="CenterContainer/Bottom/HBoxContainer2"]
+visible = false
+layout_mode = 2
