@@ -11,9 +11,12 @@ radius = 76.0
 height = 324.4
 
 [node name="Monster" instance=ExtResource("1_2rhcy")]
+speed = 50.0
+turn_speed = 1.0
 wiggle_factor = 0.0
+melee_attack_damage = 10
 xp = 10000
-max_hp = 10000.0
+max_hp = 2000.0
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(1, 1, 1, 0.478431)
