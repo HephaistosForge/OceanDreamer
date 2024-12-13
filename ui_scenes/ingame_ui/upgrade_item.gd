@@ -11,7 +11,7 @@ func _ready() -> void:
 func set_upgrade(new_upgrade: Upgrade):
 	upgrade = new_upgrade
 	icon.texture = upgrade.icon()
-	label.text = upgrade.of("description")
+	label.text = upgrade.description
 
 func _on_mouse_click(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:

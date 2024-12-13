@@ -1,0 +1,52 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://gtbopq2yipij"]
+
+[ext_resource type="Script" path="res://upgrades/upgrade.gd" id="1_cqa5m"]
+
+[resource]
+script = ExtResource("1_cqa5m")
+description = "Better ship survivability"
+tier = 0
+icon_path = "res://assets/icons/default.svg"
+delta_hp = 0
+factor_hp = 3.0
+delta_ship_size = 0
+factor_ship_size = 1.2
+delta_movement_speed = 0
+factor_movement_speed = 0.9
+delta_max_speed = 0
+factor_max_speed = 1.8
+delta_rotation_speed = 0
+factor_rotation_speed = 0.9
+delta_cannon_rotation_speed = 0
+factor_cannon_rotation_speed = 0.9
+delta_cannon_shooting_delay = 0
+factor_cannon_shooting_delay = 0.9
+delta_cannon_size = 0
+factor_cannon_size = 1.1
+delta_cannon_velocity = 0
+factor_cannon_velocity = 1.0
+delta_cannon_ball_damage = 0
+factor_cannon_ball_damage = 1.3
+delta_cannon_ball_knockback = 0
+factor_cannon_ball_knockback = 1.0
+delta_cannon_ball_size = 0
+factor_cannon_ball_size = 1.0
+delta_cannon_ball_flight_range = 0
+factor_cannon_ball_flight_range = 1.0
+delta_cannon_ball_burst_count = 0
+delta_cannon_ball_spray_count = 0
+cannon_ball_modulate = Array[float]([1.0, 1.0, 1.0, 0.0])
+delta_cannon_ball_fragmentate_count = 0
+delta_cannon_ball_bounce_count = 0
+delta_cannon_ball_pierce_count = 0
+homing = 0
+explosive = 0
+wiggle = 0
+mutate = 0
+cannon_can_rotate = 0
+ship_can_move = 0
+can_cloak = 0
+shield_count = 0
+shield_hp = 0
+shield_duration = 0
+upgrade_selection_count = 0

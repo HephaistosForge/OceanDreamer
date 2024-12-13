@@ -21,16 +21,15 @@ func _ready():
 	remaining_progress.emit(remaining_monsters, total_monsters)
 
 
-func get_random_upgrades():
-	var next_upgrades = []
+func get_random_upgrades() -> Array[Upgrade]:
+	var random_index = randi_range(0, upgrades.options.size() - 1)
+	var next_upgrades: Array[Upgrade] = []
+	
 	for i in upgrade_count:
-		var upgrade
-		while true:
-			upgrade = upgrades.random(level)
-			if upgrade not in next_upgrades:
-				break
-		next_upgrades.append(upgrade)
+		next_upgrades.append(upgrades.options[(random_index + i) % upgrades.options.size()])
+	
 	return next_upgrades
+
 
 func _on_monster_death(monster):
 	update_remaining_monsters(remaining_monsters - monster.xp)
@@ -57,7 +56,6 @@ func transition_to_next_level(upgrade: Upgrade):
 		level += 1
 		update_remaining_monsters(total_monsters)
 		to_next_level.emit(level, upgrade)
-		upgrade.assert_all_keys_were_used()
 		Audio.play("level_up")
 		Audio.background_music_choice = 0
 		Audio._on_background_music_finished()
