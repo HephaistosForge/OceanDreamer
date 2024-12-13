@@ -45,12 +45,23 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_next_level(_level, upgrade: Upgrade) -> void:
-	speed_multiplier = upgrade.fma("movement_speed", speed_multiplier)
-	max_speed = upgrade.fma("max_speed", max_speed)
-	max_hp = upgrade.fma("hp", max_hp)
-	rotation_speed = upgrade.fma("rotation_speed", rotation_speed)
+	speed_multiplier = upgrade.fma(upgrade.delta_movement_speed, speed_multiplier)
+	speed_multiplier = upgrade.fma(upgrade.factor_movement_speed, speed_multiplier)
+	
+	max_speed = upgrade.fma(upgrade.delta_max_speed, max_speed)
+	max_speed = upgrade.fma(upgrade.factor_max_speed, max_speed)
+	
+	max_hp = upgrade.fma(upgrade.delta_hp, max_hp)
+	max_hp = upgrade.fma(upgrade.factor_hp, max_hp)
+	
+	rotation_speed = upgrade.fma(upgrade.delta_rotation_speed, rotation_speed)
+	rotation_speed = upgrade.fma(upgrade.factor_rotation_speed, rotation_speed)
+	
+	scale = Vector2.ONE * upgrade.fma(upgrade.delta_ship_size, scale.x)
+	scale = Vector2.ONE * upgrade.fma(upgrade.factor_ship_size, scale.x)
+	
 	hp = max_hp
-	scale = Vector2.ONE * upgrade.fma("ship_size", scale.x)
+	
 	cannon.apply_upgrade(upgrade)
 
 

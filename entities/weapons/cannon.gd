@@ -10,7 +10,7 @@ const EXPLOSION_SCENE = preload("res://effects/explosion.tscn")
 @export var knockback: float = 0
 @export var ball_size: float = 1
 @export var burst_count: int = 1
-@export var burst_delay: float = 0.1
+@export var burst_delay: float = 0.05
 @export var spray_count: int = 1
 @export var flight_range: float = 2
 @export var bounce_count: int = 0
@@ -41,22 +41,41 @@ func _ready():
 
 
 func apply_upgrade(upgrade: Upgrade):
-	velocity = upgrade.fma("cannon_velocity", velocity)
-	rotation_speed = upgrade.fma("cannon_rotation_speed", rotation_speed)
-	shooting_delay = upgrade.fma("cannon_shooting_delay", shooting_delay)
+	var u = upgrade
+	
+	velocity = u.fma(u.delta_cannon_velocity, velocity)
+	velocity = u.fma(u.factor_cannon_velocity, velocity)
+	
+	rotation_speed = u.fma(u.delta_rotation_speed, rotation_speed)
+	rotation_speed = u.fma(u.factor_rotation_speed, rotation_speed)
+	
+	shooting_delay = u.fma(u.delta_cannon_shooting_delay, shooting_delay)
+	shooting_delay = u.fma(u.factor_cannon_shooting_delay, shooting_delay)
 	reload_timer.wait_time = shooting_delay
-	damage = upgrade.fma("cannon_ball_damage", damage)
-	knockback = upgrade.fma("cannon_ball_knockback", knockback)
-	ball_size = upgrade.fma("cannon_ball_size", ball_size)
-	burst_count = upgrade.fma("cannon_ball_burst_count", burst_count)
-	burst_delay = upgrade.fma("cannon_ball_burst_delay", burst_delay)
-	spray_count = upgrade.fma("cannon_ball_spray_count", spray_count)
-	scale = Vector2.ONE * upgrade.fma("cannon_size", scale.x)
-	flight_range = upgrade.fma("cannon_ball_flight_range", flight_range)
-	bounce_count = upgrade.fma("cannon_ball_bounce_count", bounce_count)
-	pierce_count = upgrade.fma("cannon_ball_pierce_count", pierce_count)
-	fragmentate_count = upgrade.fma("cannon_ball_fragmentate_count", fragmentate_count)
-	ball_modulate = ball_modulate.blend(upgrade.get_color())
+	
+	damage = u.fma(u.delta_cannon_ball_damage, damage)
+	damage = u.fma(u.factor_cannon_ball_damage, damage)
+	
+	knockback = u.fma(u.delta_cannon_ball_knockback, knockback)
+	knockback = u.fma(u.delta_cannon_ball_knockback, knockback)
+	
+	ball_size = u.fma(u.delta_cannon_ball_size, ball_size)
+	ball_size = u.fma(u.factor_cannon_ball_size, ball_size)
+	
+	burst_count = u.fma(u.delta_cannon_ball_burst_count, burst_count)
+	spray_count = u.fma(u.delta_cannon_ball_spray_count, spray_count)
+	
+	scale = Vector2.ONE * u.fma(u.delta_cannon_size, scale.x)
+	scale = Vector2.ONE * u.fma(u.factor_cannon_size, scale.x)
+	
+	flight_range = u.fma(u.delta_cannon_ball_flight_range, flight_range)
+	flight_range = u.fma(u.factor_cannon_ball_flight_range, flight_range)
+	
+	bounce_count = u.fma(u.delta_cannon_ball_bounce_count, bounce_count)
+	pierce_count = u.fma(u.delta_cannon_ball_pierce_count, pierce_count)
+	fragmentate_count = u.fma(u.delta_cannon_ball_fragmentate_count, fragmentate_count)
+	
+	ball_modulate = ball_modulate.blend(u.get_color())
 
 
 func _process(delta: float) -> void:
