@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="CannonStats" load_steps=2 format=3 uid="uid://brj6eh6hophth"]
+
+[ext_resource type="Script" path="res://stats/weapons/cannon/cannon_stats.gd" id="1_e2vvp"]
+
+[resource]
+script = ExtResource("1_e2vvp")
+turn_speed = "50"
+size = "1"
+clip_delay = "2"
+intra_clip_delay = "0.2"
+shot_velocity = "50"
+shot_damage = "10"
+shot_knockback = ""
+shot_size = "1"
+shot_range = "10"
+shot_burst_count = "1"
+shot_spray_count = "1"
+shot_bounce_count = ""
+shot_pierce_count = ""
+shot_fragmentate_count = ""
+shot_homingness = ""
+shot_explosiveness = ""
+shot_wiggleness = ""
+shot_mutativeness = ""
+shot_modulate = Color(1, 1, 1, 1)

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="EntityStats" load_steps=3 format=3 uid="uid://bsvmoh2y5ig5q"]
+
+[ext_resource type="Script" path="res://stats/entity_stats.gd" id="1_5ulot"]
+[ext_resource type="Resource" uid="uid://brj6eh6hophth" path="res://stats/weapons/cannon/base_cannon.tres" id="2_tjxyx"]
+
+[resource]
+script = ExtResource("1_5ulot")
+hp = "100"
+acceleration = "100"
+max_speed = "100"
+turn_speed = "100"
+size = "1"
+weapon = ExtResource("2_tjxyx")

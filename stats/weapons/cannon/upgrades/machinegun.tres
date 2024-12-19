@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="EntityStats" load_steps=4 format=3 uid="uid://dfh4rrf834lmq"]
+
+[ext_resource type="Script" path="res://stats/entity_stats.gd" id="1_quhe7"]
+[ext_resource type="Script" path="res://stats/weapons/cannon/cannon_stats.gd" id="2_oyeyl"]
+
+[sub_resource type="Resource" id="Resource_rx7cf"]
+script = ExtResource("2_oyeyl")
+turn_speed = "x*0.9"
+size = ""
+clip_delay = "x*0.6"
+intra_clip_delay = ""
+burst_count = ""
+spray_count = ""
+modulate = Color(1, 1, 1, 0)
+shot_velocity = ""
+shot_damage = "x*0.7"
+shot_knockback = "x*1.1"
+shot_size = "x*0.8"
+shot_range = ""
+shot_bounce_count = ""
+shot_pierce_count = ""
+shot_fragmentate_count = ""
+shot_homingness = ""
+shot_explosiveness = ""
+shot_wiggleness = ""
+shot_mutativeness = ""
+shot_modulate = Color(1, 1, 1, 0)
+
+[resource]
+script = ExtResource("1_quhe7")
+hp = ""
+acceleration = ""
+max_speed = ""
+turn_speed = ""
+size = ""
+weapon = SubResource("Resource_rx7cf")
