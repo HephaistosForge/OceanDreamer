@@ -25,9 +25,11 @@ shot_explosiveness = ""
 shot_wiggleness = ""
 shot_mutativeness = ""
 shot_modulate = Color(1, 1, 1, 0)
+upgrades_directory = ""
 
 [resource]
 script = ExtResource("1_hwv5l")
+name = "Bouncy"
 hp = ""
 acceleration = ""
 max_speed = ""

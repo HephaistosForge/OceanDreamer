@@ -1,12 +1,11 @@
 extends Entity
 
-@export var max_speed: int = 1000
-@export var speed_multiplier: int = 2000
-@export var rotation_speed: float = 2
+@export var stats: EntityStats = preload("res://stats/ships/dinghy.tres")
 
-@onready var cannon = $Cannon
+@onready var weapon = $Cannon
 
 func _ready():
+	_apply_stats(stats)
 	var level_manager = get_tree().get_first_node_in_group("level_manager")
 	level_manager.to_next_level.connect(_on_next_level)
 	super()
@@ -30,39 +29,30 @@ func _physics_process(delta: float) -> void:
 	velocity -= delta * velocity * 0.2
 	
 	# increase velocity if action is pressed
-	velocity += speed * Vector2(cos(rotation), sin(rotation)) * speed_multiplier * delta
+	velocity += speed * rot_vec * stats.acceleration * delta
 	
 	# normalize velocity after soem max speed
-	velocity /= max(1, velocity.length() / max_speed)
+	velocity /= max(1, velocity.length() / stats.max_speed)
 	
 	# Rotate ship, and also rotate the velocity vector in that range, to simulate
 	# the pressure difference on both sides of the ship
-	var delta_rotate = turn * delta * rotation_speed
+	var delta_rotate = turn * delta * stats.turn_speed
 	velocity = velocity.rotated(delta_rotate / 2)
 	rotate(delta_rotate)
 	
 	move_and_slide()
 
 
-func _on_next_level(_level, upgrade: Upgrade) -> void:
-	speed_multiplier = upgrade.fma(upgrade.delta_movement_speed, speed_multiplier)
-	speed_multiplier = upgrade.fma(upgrade.factor_movement_speed, speed_multiplier)
+func _on_next_level(_level, upgrade: Stats) -> void:
+	_apply_stats(stats.merged(upgrade))
 	
-	max_speed = upgrade.fma(upgrade.delta_max_speed, max_speed)
-	max_speed = upgrade.fma(upgrade.factor_max_speed, max_speed)
+func _apply_stats(new_stats: Stats):
+	self.stats = new_stats
+	self.stats.eval()
+	self.scale = Vector2.ONE * stats.size
+	self.hp = max_hp
 	
-	max_hp = upgrade.fma(upgrade.delta_hp, max_hp)
-	max_hp = upgrade.fma(upgrade.factor_hp, max_hp)
-	
-	rotation_speed = upgrade.fma(upgrade.delta_rotation_speed, rotation_speed)
-	rotation_speed = upgrade.fma(upgrade.factor_rotation_speed, rotation_speed)
-	
-	scale = Vector2.ONE * upgrade.fma(upgrade.delta_ship_size, scale.x)
-	scale = Vector2.ONE * upgrade.fma(upgrade.factor_ship_size, scale.x)
-	
-	hp = max_hp
-	
-	cannon.apply_upgrade(upgrade)
+	weapon.stats = stats.weapon
 
 
 func game_over(_ignore) -> void:

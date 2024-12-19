@@ -1,9 +1,16 @@
 extends Resource
 class_name Stats
 
+const SKIP_PROPERTIES = ["name", "upgrades_directory"]
+
 # ===============================================================
 # Public
 # ===============================================================
+
+func eval():
+	for property in _get_property_names_to_upgrade():
+		set(property, _eval_curr_value(property))
+		print(get(property))
 
 func merge(other: Stats) -> void:
 	if other == null:
@@ -39,6 +46,8 @@ func changes_on_upgrade(upgrade: Stats, filter_unchanged=true):
 func _get_property_names_to_upgrade() -> Array[String]:
 	var names: Array[String] = []
 	for property in get_property_list():
+		if property in SKIP_PROPERTIES:
+			continue
 		if property["usage"] & PROPERTY_USAGE_SCRIPT_VARIABLE:
 			names.append(property["name"])
 	return names
@@ -55,7 +64,7 @@ func _eval_float(formula, x):
 func _eval_formula(formula, value):
 
 	if value is Stats:
-		return value.merge(formula)
+		return value.merged(formula)
 	if formula is Stats:
 		return formula
 	if formula is Color:
@@ -64,6 +73,8 @@ func _eval_formula(formula, value):
 	
 func _eval_curr_value(property: String):
 	var value = get(property)
+	if value is Stats:
+		value.eval()
 	if value is String:
 		return _eval_formula(value, 0.0)
 	return value

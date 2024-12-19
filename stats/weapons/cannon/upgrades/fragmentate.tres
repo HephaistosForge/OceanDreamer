@@ -26,9 +26,9 @@ shot_wiggleness = ""
 shot_mutativeness = ""
 shot_modulate = Color(1, 1, 1, 0)
 
-
 [resource]
 script = ExtResource("1_6ehsg")
+name = "Fragmentation"
 hp = ""
 acceleration = ""
 max_speed = ""

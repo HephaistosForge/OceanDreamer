@@ -2,14 +2,18 @@ extends Node
 
 enum GameState { PLAYING, UPGRADING, DEAD }
 
-signal to_next_level(level: int, upgrade: Upgrade)
-signal to_upgrade_screen(upgrades: Array[Upgrade])
+signal to_next_level(level: int, upgrade: Stats)
+signal to_upgrade_screen(upgrades: Array[Stats])
 signal remaining_progress(count: int, total: int)
 signal game_over
 
 @export var upgrade_count = 3
 
 @onready var upgrades = Upgrades.new()
+
+# TODO: in the future the level manager will have to know about the weapon anyways,
+# as the player will have to choose beforehand or something. For now this is ok though
+@onready var ship = get_tree().get_first_node_in_group("ship")
 
 var level = 1
 var total_monsters = 1
@@ -20,16 +24,22 @@ var game_state = GameState.PLAYING
 func _ready():
 	remaining_progress.emit(remaining_monsters, total_monsters)
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("cheat_upgrade"):
+		transition_to_upgrade_screen()
 
-func get_random_upgrades() -> Array[Upgrade]:
-	var random_index = randi_range(0, upgrades.options.size() - 1)
-	var next_upgrades: Array[Upgrade] = []
-	
+func get_random_upgrades():
+	var next_upgrades = []
 	for i in upgrade_count:
-		next_upgrades.append(upgrades.options[(random_index + i) % upgrades.options.size()])
-	
+		var upgrade
+		while true:
+			upgrade = upgrades.random_upgrade(ship.stats.weapon)
+			if upgrade == null:
+				push_error("no upgrade found")
+			if upgrade not in next_upgrades:
+				break
+		next_upgrades.append(upgrade)
 	return next_upgrades
-
 
 func _on_monster_death(monster):
 	update_remaining_monsters(remaining_monsters - monster.xp)
@@ -50,7 +60,7 @@ func transition_to_upgrade_screen():
 		game_state = GameState.UPGRADING
 		to_upgrade_screen.emit(get_random_upgrades())
 		
-func transition_to_next_level(upgrade: Upgrade):
+func transition_to_next_level(upgrade: Stats):
 	if game_state == GameState.UPGRADING:
 		game_state = GameState.PLAYING
 		level += 1

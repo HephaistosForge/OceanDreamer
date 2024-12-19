@@ -11,7 +11,7 @@ clip_delay = "x*0.85"
 intra_clip_delay = ""
 burst_count = ""
 spray_count = "x+4"
-modulate = Color(0.33, 1.0, 0.0, 1.0)
+modulate = Color(0.33, 1, 0, 1)
 shot_velocity = ""
 shot_damage = "x*1.4"
 shot_knockback = "x*2.0"
@@ -24,10 +24,11 @@ shot_homingness = ""
 shot_explosiveness = ""
 shot_wiggleness = ""
 shot_mutativeness = ""
-shot_modulate = Color(0.33, 1.0, 0.0, 1.0)
+shot_modulate = Color(0.33, 1, 0, 1)
 
 [resource]
 script = ExtResource("1_afloq")
+name = "Shotgun"
 hp = ""
 acceleration = ""
 max_speed = ""

@@ -28,6 +28,7 @@ shot_modulate = Color(1, 1, 1, 0)
 
 [resource]
 script = ExtResource("1_l4yag")
+name = "Flamethrower"
 hp = ""
 acceleration = ""
 max_speed = ""

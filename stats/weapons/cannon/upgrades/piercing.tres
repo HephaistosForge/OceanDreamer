@@ -28,6 +28,7 @@ shot_modulate = Color(1, 1, 1, 0)
 
 [resource]
 script = ExtResource("1_oc5pl")
+name = "Piercing"
 hp = ""
 acceleration = ""
 max_speed = ""

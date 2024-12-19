@@ -8,10 +8,10 @@ var upgrade
 func _ready() -> void:
 	pass
 
-func set_upgrade(new_upgrade: Upgrade):
+func set_upgrade(new_upgrade: Stats):
 	upgrade = new_upgrade
-	icon.texture = upgrade.icon()
-	label.text = upgrade.description
+	# icon.texture = upgrade.icon()
+	label.text = upgrade.name
 
 func _on_mouse_click(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:

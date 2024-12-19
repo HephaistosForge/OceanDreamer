@@ -28,6 +28,7 @@ shot_modulate = Color(1, 1, 1, 0)
 
 [resource]
 script = ExtResource("1_quhe7")
+name = "Machine gun"
 hp = ""
 acceleration = ""
 max_speed = ""

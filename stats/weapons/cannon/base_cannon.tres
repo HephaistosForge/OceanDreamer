@@ -4,17 +4,18 @@
 
 [resource]
 script = ExtResource("1_e2vvp")
-turn_speed = "50"
+turn_speed = "10"
 size = "1"
-clip_delay = "2"
-intra_clip_delay = "0.2"
-shot_velocity = "50"
+clip_delay = "0.5"
+intra_clip_delay = "0.05"
+burst_count = "1"
+spray_count = "1"
+modulate = Color(1, 1, 1, 1)
+shot_velocity = "1000"
 shot_damage = "10"
 shot_knockback = ""
 shot_size = "1"
-shot_range = "10"
-shot_burst_count = "1"
-shot_spray_count = "1"
+shot_range = "2"
 shot_bounce_count = ""
 shot_pierce_count = ""
 shot_fragmentate_count = ""
@@ -23,3 +24,4 @@ shot_explosiveness = ""
 shot_wiggleness = ""
 shot_mutativeness = ""
 shot_modulate = Color(1, 1, 1, 1)
+upgrades_directory = "res://stats/weapons/cannon/upgrades"

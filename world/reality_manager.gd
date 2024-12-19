@@ -6,7 +6,7 @@ extends Node2D
 func _ready():
 	$Bathtub.modulate = Color(1, 1, 1, 0)
 
-func _on_level_manager_to_next_level(level: int, upgrade: Upgrade) -> void:
+func _on_level_manager_to_next_level(level: int, upgrade: Stats) -> void:
 	transition(false)
 
 

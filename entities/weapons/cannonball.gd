@@ -8,16 +8,10 @@ const SPRAY_FACTOR_ARRAY = [.5, 1, -.5, -1]
 @onready var ripple_effect: CPUParticles2D = $RippleEffect
 var ripple_scale: float = 0.2 * 4
 
+var stats: CannonStats
+
 var velocity = Vector2.ZERO
-var acceleration = Vector2.ZERO
-var acceleration_cutoff_distance = 1
-var distance_travelled = 0
-var damage = 10
-var is_enemy = true
-var seconds_flight_time = 2
-var fragmentate_count = 0
-var bounce_count = 0
-var pierce_count = 0
+var is_enemy = false
 
 var grace_period_active = false # Duration in which cannonball does not interact with hit bodies
 
@@ -25,16 +19,29 @@ var init_velocity = Vector2.ZERO
 var init_seconds_flight_time = 0
 
 var curr_flight_time = 0
+var pierced = 0
 
-
-func _ready() -> void:
-	get_tree().create_timer(seconds_flight_time).timeout.connect(despawn)
-	
-	if grace_period_active: _activate_grace_period()
-	
+func _ready():
+	get_tree().create_timer(stats.shot_range).timeout.connect(despawn)
 	ripple_effect.scale_amount_max = ripple_scale * scale.length()
 	ripple_effect.scale_amount_min = ripple_scale * scale.length()
+	
+func setup(_position, _velocity, _scale, _stats, _grace_period_active=false) -> void:
+	self.stats = _stats
+	
+	
+	global_position = _position
+	velocity = _velocity
+	init_velocity = _velocity
+	scale = _scale
+	
+	grace_period_active = _grace_period_active
+	if grace_period_active: _activate_grace_period()
 
+func clone(_velocity, _scale, stats):
+	var cloned = duplicate()
+	cloned.setup(global_position, _velocity, _scale, stats)
+	return cloned
 
 func despawn():
 	monitorable = false
@@ -63,30 +70,25 @@ func _process(delta: float) -> void:
 
 func _on_entity_entered(body: Node2D) -> void:
 	if not grace_period_active and body is Entity and body.is_enemy != is_enemy:
-		body.take_damage(damage)
+		body.take_damage(stats.shot_damage)
 		
-		var cannon = get_tree().get_first_node_in_group("cannon")
+		# var cannon = get_tree().get_first_node_in_group("cannon")
 		
-		for i in fragmentate_count:
-			var randomizer_vec = Vector2(SPRAY_FACTOR_ARRAY[randi() % SPRAY_FACTOR_ARRAY.size()], SPRAY_FACTOR_ARRAY[randi() % SPRAY_FACTOR_ARRAY.size()])
+		for i in stats.shot_fragmentate_count:
+			var randomizer_vec = Vector2(SPRAY_FACTOR_ARRAY.pick_random(), SPRAY_FACTOR_ARRAY.pick_random())
 			var _cannonball_velocity = velocity * randomizer_vec
-			cannon.create_cannonball(position, _cannonball_velocity, false, \
-				scale * 0.5, damage * 0.25, init_seconds_flight_time, 0, 0, 
-				bounce_count - 1, $Sprite2D.self_modulate, true)
+			# TODO: apply damage reduction via stats
+			clone(_cannonball_velocity, scale*0.5, stats)
+			
 		
-		if bounce_count > 0:
-			var randomizer_vec = Vector2(SPRAY_FACTOR_ARRAY[randi() % SPRAY_FACTOR_ARRAY.size()], SPRAY_FACTOR_ARRAY[randi() % SPRAY_FACTOR_ARRAY.size()])
+		if stats.shot_bounce_count > 0:
+			var randomizer_vec = Vector2(SPRAY_FACTOR_ARRAY.pick_random(), SPRAY_FACTOR_ARRAY.pick_random())
 			var _cannonball_velocity = init_velocity * randomizer_vec
-			cannon.create_cannonball(position, _cannonball_velocity, false, \
-				scale, damage, init_seconds_flight_time, 0, 0, \
-				bounce_count - 1, $Sprite2D.self_modulate, true)
+			clone(_cannonball_velocity, scale, stats)
 		
-		if pierce_count > 0:
-			pierce_count -= 1
+		if pierced < stats.shot_pierce_count:
+			pierced -= 1
 			_activate_grace_period()
-			# Half damage but increase velocity so that piercing bullet can still travel further
-			velocity *= 2
-			damage *= 0.5
 		else:
 			queue_free()
 
