@@ -43,7 +43,8 @@ func shoot():
 func get_spray_angle(spray: int):
 	if stats.spray_count == 1:
 		return global_rotation
-	var range = deg_to_rad(min(75.0, stats.spray_count / 2.0 * 15))
+	var range = deg_to_rad(min(75.0, stats.spray_count / 2.0 * 15)) * stats.spray_angle_factor
+	range = clamp(range, 0, PI)
 	var ratio = spray / float(stats.spray_count-1)
 	return global_rotation - range + range * 2 * ratio
 	

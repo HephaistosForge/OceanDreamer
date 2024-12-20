@@ -18,7 +18,7 @@ func set_upgrade(curr_stats: Stats, new_upgrade: Stats):
 	var increase = new_dps / curr_dps * 100 - 100
 	var sign = "+" if increase > 0 else ""
 	dps_label.text = sign + str(int(increase)) + "% DPS"
-	dps_label.modulate = Color.GREEN if increase > 0 else Color.RED
+	dps_label.modulate = Color.DARK_GREEN if increase > 0 else Color.RED
 
 func _on_mouse_click(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.pressed:

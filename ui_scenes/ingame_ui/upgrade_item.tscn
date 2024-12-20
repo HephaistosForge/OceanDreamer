@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ognu53ffqgc1"]
+[gd_scene load_steps=8 format=3 uid="uid://ognu53ffqgc1"]
 
 [ext_resource type="Theme" uid="uid://c2sxl83j3rate" path="res://ui_scenes/main_menu/menu_theme.tres" id="1_gvckj"]
 [ext_resource type="Texture2D" uid="uid://hy0fgtaqk61a" path="res://icon.svg" id="1_nm67r"]
@@ -10,6 +10,9 @@ texture = ExtResource("2_p2egg")
 
 [sub_resource type="LabelSettings" id="LabelSettings_qxfkr"]
 font_size = 28
+
+[sub_resource type="LabelSettings" id="LabelSettings_wkhoh"]
+font_size = 20
 
 [node name="UpgradeItem" type="PanelContainer"]
 theme = ExtResource("1_gvckj")
@@ -40,7 +43,7 @@ label_settings = SubResource("LabelSettings_qxfkr")
 [node name="DPS" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "20% more damage"
-label_settings = SubResource("LabelSettings_qxfkr")
+label_settings = SubResource("LabelSettings_wkhoh")
 
 [connection signal="gui_input" from="." to="." method="_on_mouse_click"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

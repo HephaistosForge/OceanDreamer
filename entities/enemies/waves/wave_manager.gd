@@ -50,10 +50,10 @@ var waves = [
 	Wave.new([
 		Batch.new(medium, 1, 1, 10000),
 		Batch.new(boss, 1, 1, 2)
-	], DELAY_INSTANT, DISTANCE_BOSS, 21600),
+	], DELAY_INSTANT, DISTANCE_BOSS, 20000),
 	Wave.new([
 		Batch.new(small, 10, 1, 10000),
-	], DELAY_INSTANT, DISTANCE_SHORT, 2000),
+	], DELAY_INSTANT, DISTANCE_FAR, 2000),
 	Wave.new([
 		Batch.new(large, 4, 1, 10000),
 	], DELAY_INSTANT, DISTANCE_MEDIUM, 4000),

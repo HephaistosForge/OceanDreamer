@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="EntityStats" load_steps=4 format=3 uid="uid://cgd5gftdbnfno"]
+
+[ext_resource type="Script" path="res://stats/entity_stats.gd" id="1_bf6bs"]
+[ext_resource type="Script" path="res://stats/weapons/cannon/cannon_stats.gd" id="2_4a1sx"]
+
+[sub_resource type="Resource" id="Resource_gcn5f"]
+script = ExtResource("2_4a1sx")
+turn_speed = "x*0.5"
+size = "x*1.5"
+clip_delay = "x*2"
+intra_clip_delay = "x*2"
+burst_count = "max(1, x-1)"
+spray_angle_factor = ""
+spray_count = "max(1, x-1)"
+modulate = Color(1, 1, 1, 0)
+shot_velocity = "x*2"
+shot_damage = "x*2"
+shot_knockback = "x*2+1"
+shot_size = "x*2"
+shot_range = "x*0.5"
+shot_bounce_count = ""
+shot_pierce_count = "x+3"
+shot_fragmentate_count = ""
+shot_homingness = ""
+shot_explosiveness = "x+1"
+shot_wiggleness = ""
+shot_mutativeness = ""
+shot_modulate = Color(0, 0, 0, 0.925)
+upgrades_directory = ""
+
+[resource]
+script = ExtResource("1_bf6bs")
+name = "Bomba"
+hp = ""
+acceleration = ""
+max_speed = ""
+turn_speed = ""
+size = ""
+weapon = SubResource("Resource_gcn5f")

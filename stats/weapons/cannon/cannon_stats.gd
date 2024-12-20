@@ -9,6 +9,7 @@ class_name CannonStats
 @export var intra_clip_delay = ""
 
 @export var burst_count = ""
+@export var spray_angle_factor = ""
 @export var spray_count = ""
 
 @export var modulate = Color(1, 1, 1, 0)

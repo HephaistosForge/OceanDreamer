@@ -6,7 +6,7 @@ for line in open("dps.txt"):
     name, dps = line.strip().split(":")
     # if "+" in name:
     #     continue
-    data["Combination"].append(name)
+    data["Combination"].append(name.removesuffix(" dps"))
     data["DPS"].append(float(dps))
 
 
@@ -34,9 +34,11 @@ def get_color(name):
 
 color = [get_color(a) for a in a[1]]
 
+names = [name + (" " * (i % 2) * 50) for i, name in enumerate(df["Combination"])]
+
 
 plt.figure(figsize=(12, 6))
-plt.barh(df["Combination"], df["DPS"], color=color)
+plt.barh(names, df["DPS"], color=color)
 plt.xlabel("DPS")
 plt.ylabel("Combination")
 plt.title("DPS for Weapon Combinations")
