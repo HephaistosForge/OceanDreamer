@@ -30,7 +30,7 @@ upgrades_directory = ""
 
 [resource]
 script = ExtResource("1_6uhct")
-name = "Flechete"
+name = "Flechette"
 hp = ""
 acceleration = ""
 max_speed = ""

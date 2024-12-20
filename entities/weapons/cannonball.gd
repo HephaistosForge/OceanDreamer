@@ -82,6 +82,8 @@ func _on_entity_entered(body: Node2D) -> void:
 	if not grace_period_active and body is Entity and body.is_enemy != is_enemy:
 		body.take_damage(stats.shot_damage * damage_multiplier)
 		
+		body.acceleration += stats.shot_knockback * velocity * stats.shot_size / body.scale / body.weight
+		
 		if fragmentate:
 			for i in stats.shot_fragmentate_count:
 				var _cannonball_velocity = velocity * _random_direction()

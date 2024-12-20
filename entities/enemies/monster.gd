@@ -14,6 +14,7 @@ extends Entity
 var reload_timer: Timer = Timer.new()
 var can_attack = true
 var elapsed_time = 0
+var acceleration = Vector2.ZERO
 
 func blend_coloring(color):
 	$Sprite2D.self_modulate = $Sprite2D.self_modulate.blend(color.lightened(0.7))
@@ -40,7 +41,8 @@ func _process(delta: float) -> void:
 	var target = global_position.angle_to_point(ship.global_position) \
 		+ sin(anim_progression_point) * wiggle_factor
 	global_rotation = rotate_toward(global_rotation, target, turn_speed * delta * power)
-	velocity = Vector2(cos(rotation), sin(rotation)) * speed * delta * 60
+	velocity = Vector2.from_angle(rotation) * speed * delta * 60 + acceleration
+	acceleration -= acceleration * delta
 	if apply_power_impulse_to_velocity:
 		velocity *= power
 	attack_player_in_melee_if_possible()
