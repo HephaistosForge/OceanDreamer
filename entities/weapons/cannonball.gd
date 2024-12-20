@@ -3,7 +3,6 @@ extends Area2D
 const CANNONBALL_SCENE = preload("res://entities/weapons/cannonball.tscn")
 const RIPPLE_SCENE = preload("res://effects/RippleEffect.tscn")
 const GRACE_PERIOD_DURATION = .1
-const SPRAY_FACTOR_ARRAY = [.5, 1, -.5, -1]
 
 @onready var ripple_effect: CPUParticles2D = $RippleEffect
 var ripple_scale: float = 0.2 * 4
@@ -20,6 +19,7 @@ var init_seconds_flight_time = 0
 
 var curr_flight_time = 0
 var pierced = 0
+var bounced = 0
 
 func _ready():
 	get_tree().create_timer(stats.shot_range).timeout.connect(despawn)
@@ -67,6 +67,11 @@ func _process(delta: float) -> void:
 	position += velocity * delta
 	velocity = init_velocity * exp(-curr_flight_time)
 
+func _random_direction() -> Vector2:
+	# https://www.desmos.com/calculator/mukpqhzoet
+	var amplitude = randfn(0.75, 0.15)
+	var angle = randf_range(0, PI)
+	return Vector2.from_angle(angle) * amplitude
 
 func _on_entity_entered(body: Node2D) -> void:
 	if not grace_period_active and body is Entity and body.is_enemy != is_enemy:
@@ -75,15 +80,13 @@ func _on_entity_entered(body: Node2D) -> void:
 		# var cannon = get_tree().get_first_node_in_group("cannon")
 		
 		for i in stats.shot_fragmentate_count:
-			var randomizer_vec = Vector2(SPRAY_FACTOR_ARRAY.pick_random(), SPRAY_FACTOR_ARRAY.pick_random())
-			var _cannonball_velocity = velocity * randomizer_vec
+			var _cannonball_velocity = velocity * _random_direction()
 			# TODO: apply damage reduction via stats
 			clone(_cannonball_velocity, scale*0.5, stats)
 			
 		
 		if stats.shot_bounce_count > 0:
-			var randomizer_vec = Vector2(SPRAY_FACTOR_ARRAY.pick_random(), SPRAY_FACTOR_ARRAY.pick_random())
-			var _cannonball_velocity = init_velocity * randomizer_vec
+			var _cannonball_velocity = init_velocity * _random_direction()
 			clone(_cannonball_velocity, scale, stats)
 		
 		if pierced < stats.shot_pierce_count:

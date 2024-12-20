@@ -46,7 +46,7 @@ func changes_on_upgrade(upgrade: Stats, filter_unchanged=true):
 func _get_property_names_to_upgrade() -> Array[String]:
 	var names: Array[String] = []
 	for property in get_property_list():
-		if property in SKIP_PROPERTIES:
+		if property["name"] in SKIP_PROPERTIES:
 			continue
 		if property["usage"] & PROPERTY_USAGE_SCRIPT_VARIABLE:
 			names.append(property["name"])
@@ -59,16 +59,25 @@ func _eval_float(formula, x):
 		return x
 	var expression = Expression.new()
 	expression.parse(formula, ["x"])
+	print(formula, " x: ", x)
 	return expression.execute([x])
 	
+func _eval_color(new, previous) -> Color:
+	if new is Color and previous is Color:
+		return previous.blend(new)
+	if new is Color:
+		return new
+	if previous is Color:
+		return previous
+	return Color.WHITE
+	
 func _eval_formula(formula, value):
-
 	if value is Stats:
 		return value.merged(formula)
 	if formula is Stats:
 		return formula
-	if formula is Color:
-		return value
+	if value is Color or formula is Color:
+		return _eval_color(formula, value)
 	return _eval_float(formula, value)
 	
 func _eval_curr_value(property: String):
