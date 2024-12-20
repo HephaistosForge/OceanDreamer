@@ -5,18 +5,18 @@
 
 [sub_resource type="Resource" id="Resource_rqh5b"]
 script = ExtResource("2_uriiv")
-turn_speed = ""
+turn_speed = "x*1.5"
 size = ""
-clip_delay = ""
-intra_clip_delay = ""
+clip_delay = "x*0.9"
+intra_clip_delay = "x*0.9"
 burst_count = ""
 spray_count = ""
 modulate = Color(1, 1, 1, 0)
-shot_velocity = ""
+shot_velocity = "x*1.3"
 shot_damage = ""
 shot_knockback = ""
 shot_size = ""
-shot_range = ""
+shot_range = "x*1.3"
 shot_bounce_count = ""
 shot_pierce_count = ""
 shot_fragmentate_count = ""
@@ -29,10 +29,10 @@ upgrades_directory = ""
 
 [resource]
 script = ExtResource("1_ukryv")
-name = "Mobility TODO"
-hp = ""
-acceleration = ""
-max_speed = ""
-turn_speed = ""
-size = ""
+name = "Mobility"
+hp = "x*1.2"
+acceleration = "x*1.5"
+max_speed = "x*1.5"
+turn_speed = "x*1.5"
+size = "x*0.9"
 weapon = SubResource("Resource_rqh5b")

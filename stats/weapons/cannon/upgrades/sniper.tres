@@ -13,18 +13,19 @@ burst_count = ""
 spray_count = ""
 modulate = Color(1, 1, 1, 0)
 shot_velocity = "x*2"
-shot_damage = "x*4"
+shot_damage = "x*3"
 shot_knockback = ""
 shot_size = "x*0.8"
 shot_range = "x*1.8"
 shot_bounce_count = ""
-shot_pierce_count = "x+3"
+shot_pierce_count = "x+2"
 shot_fragmentate_count = ""
 shot_homingness = ""
 shot_explosiveness = ""
 shot_wiggleness = ""
 shot_mutativeness = ""
 shot_modulate = Color(0.35, 0.35, 0.35, 1)
+upgrades_directory = ""
 
 [resource]
 script = ExtResource("1_gycvu")

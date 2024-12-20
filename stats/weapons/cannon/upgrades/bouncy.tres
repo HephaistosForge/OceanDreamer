@@ -17,14 +17,14 @@ shot_damage = "x*1.1"
 shot_knockback = ""
 shot_size = ""
 shot_range = "x*1.5"
-shot_bounce_count = "x+3"
+shot_bounce_count = "x+1"
 shot_pierce_count = ""
 shot_fragmentate_count = ""
 shot_homingness = ""
 shot_explosiveness = ""
 shot_wiggleness = ""
 shot_mutativeness = ""
-shot_modulate = Color(1, 1, 1, 0)
+shot_modulate = Color(0.563461, 0, 0.0649652, 0.631373)
 upgrades_directory = ""
 
 [resource]

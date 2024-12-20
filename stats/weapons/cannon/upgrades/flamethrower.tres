@@ -13,10 +13,10 @@ burst_count = ""
 spray_count = "x+1"
 modulate = Color(1, 1, 1, 0)
 shot_velocity = "x*0.8"
-shot_damage = "x*1.2"
+shot_damage = ""
 shot_knockback = ""
-shot_size = "x*1.8"
-shot_range = ""
+shot_size = "x*1.4"
+shot_range = "x*0.7"
 shot_bounce_count = ""
 shot_pierce_count = ""
 shot_fragmentate_count = ""
@@ -24,7 +24,8 @@ shot_homingness = ""
 shot_explosiveness = ""
 shot_wiggleness = ""
 shot_mutativeness = ""
-shot_modulate = Color(1, 1, 1, 0)
+shot_modulate = Color(0.703988, 0.325756, 0.304043, 0.54902)
+upgrades_directory = ""
 
 [resource]
 script = ExtResource("1_l4yag")
