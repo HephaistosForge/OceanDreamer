@@ -3,6 +3,7 @@ extends CharacterBody2D
 class_name Entity 
 
 const RIPPLE_SCENE = preload("res://effects/RippleEffect.tscn")
+const DAMAGE_LABEL_SCENE = preload("res://ui_scenes/labels/damage_label.tscn")
 
 signal death
 signal hp_changed(new_value: float, old_value: float, max_hp: float)
@@ -38,6 +39,10 @@ func set_hp(new_hp):
 	hp += delta
 	
 	if not is_zero_approx(delta):
+		var label = DAMAGE_LABEL_SCENE.instantiate()
+		get_tree().current_scene.add_child(label)
+		label.global_position = global_position
+		label.set_damage(delta)
 		hp_changed.emit(new_hp, hp-delta, max_hp)
 		
 		#var target_color = Color.RED if delta < 0 else Color.GREEN
