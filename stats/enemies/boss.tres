@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EntityStats" load_steps=2 format=3 uid="uid://k521m5bt7fbl"]
+
+[ext_resource type="Script" path="res://stats/entity_stats.gd" id="1_kcka4"]
+
+[resource]
+script = ExtResource("1_kcka4")
+name = "Boss"
+hp = "1000"
+acceleration = ""
+max_speed = ""
+turn_speed = ""
+size = ""

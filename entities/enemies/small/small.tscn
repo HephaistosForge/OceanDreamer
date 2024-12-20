@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://pnved6uqqkab"]
+[gd_scene load_steps=5 format=3 uid="uid://pnved6uqqkab"]
 
 [ext_resource type="PackedScene" uid="uid://tjhu343tjkvw" path="res://entities/enemies/monster.tscn" id="1_nyft1"]
+[ext_resource type="Resource" uid="uid://bvt3j21d41dko" path="res://stats/enemies/small.tres" id="2_k6a8a"]
 [ext_resource type="Texture2D" uid="uid://da36q2s8k55bx" path="res://entities/enemies/small/small.png" id="2_y4y8f"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8353h"]
@@ -12,8 +13,8 @@ speed = 200.0
 wiggle_factor = 0.17
 melee_attack_damage = 1
 attack_delay = 0.5
-max_hp = 20.0
 ripple_scale = 0.3
+stats = ExtResource("2_k6a8a")
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(1, 1, 1, 0.54902)

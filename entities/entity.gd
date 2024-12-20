@@ -8,7 +8,7 @@ const DAMAGE_LABEL_SCENE = preload("res://ui_scenes/labels/damage_label.tscn")
 signal death
 signal hp_changed(new_value: float, old_value: float, max_hp: float)
 
-@export var max_hp: float = 100
+var max_hp: float = 100
 @export var weight: float = 1
 @export var is_enemy: bool = true
 @export var ripple_scale: float = 0.8 * 4

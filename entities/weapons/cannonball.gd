@@ -23,6 +23,8 @@ var pierced = 0
 var bounced = 0
 var damage_multiplier = 1
 
+var homing_target = null
+
 func _ready():
 	get_tree().create_timer(stats.shot_range).timeout.connect(despawn)
 	ripple_effect.scale_amount_max = ripple_scale * scale.length()
@@ -38,6 +40,8 @@ func setup(_position, _velocity, _scale, _stats, _grace_period_active=false) -> 
 	scale = _scale
 	modulate = modulate.blend(stats.shot_modulate)
 	grace_period_active = _grace_period_active
+	if stats.shot_homingness > 0:
+		$Homing.monitoring = true
 
 func clone(_velocity, _scale, stats):
 	var cloned = duplicate()
@@ -71,6 +75,9 @@ func _process(delta: float) -> void:
 	curr_flight_time += delta
 	position += velocity * delta
 	velocity = init_velocity * exp(-curr_flight_time)
+	if homing_target and is_instance_valid(homing_target):
+		var homing_dir = (homing_target.global_position - global_position).normalized()
+		velocity += homing_dir * stats.shot_homingness * 1000 * exp(-curr_flight_time)
 
 func _random_direction() -> Vector2:
 	# https://www.desmos.com/calculator/mukpqhzoet
@@ -104,3 +111,9 @@ func _on_entity_entered(body: Node2D) -> void:
 
 func change_color(color: Color) -> void:
 	$Sprite2D.self_modulate = color
+
+
+func _on_body_entered_in_homing(body: Node2D) -> void:
+	if not grace_period_active and body is Entity and body.is_enemy != is_enemy and homing_target == null:
+		homing_target = body
+		$Homing.set.call_deferred("monitoring", false)

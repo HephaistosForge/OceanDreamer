@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EntityStats" load_steps=2 format=3 uid="uid://dn4h2xd6jh2co"]
+
+[ext_resource type="Script" path="res://stats/entity_stats.gd" id="1_lhpvf"]
+
+[resource]
+script = ExtResource("1_lhpvf")
+name = "Large"
+hp = "100"
+acceleration = ""
+max_speed = ""
+turn_speed = ""
+size = ""

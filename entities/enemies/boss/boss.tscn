@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://34j7k2pwvvtg"]
+[gd_scene load_steps=8 format=3 uid="uid://34j7k2pwvvtg"]
 
 [ext_resource type="PackedScene" uid="uid://tjhu343tjkvw" path="res://entities/enemies/monster.tscn" id="1_2rhcy"]
+[ext_resource type="Resource" uid="uid://k521m5bt7fbl" path="res://stats/enemies/boss.tres" id="2_hs6au"]
 [ext_resource type="Texture2D" uid="uid://4by14as6nrop" path="res://entities/enemies/boss/boss.png" id="2_qffa2"]
 [ext_resource type="PackedScene" uid="uid://c4x06yi0ho4mc" path="res://entities/enemies/waves/spawner.tscn" id="3_5gmoh"]
 [ext_resource type="PackedScene" uid="uid://pnved6uqqkab" path="res://entities/enemies/small/small.tscn" id="4_i7gy8"]
@@ -16,8 +17,8 @@ turn_speed = 0.1
 wiggle_factor = 0.0
 melee_attack_damage = 40
 xp = 10000
-max_hp = 2000.0
 weight = 250.0
+stats = ExtResource("2_hs6au")
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(1, 1, 1, 0.54902)

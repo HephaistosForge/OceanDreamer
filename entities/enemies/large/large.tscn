@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2iwlq8iuc8df"]
+[gd_scene load_steps=5 format=3 uid="uid://b2iwlq8iuc8df"]
 
 [ext_resource type="PackedScene" uid="uid://tjhu343tjkvw" path="res://entities/enemies/monster.tscn" id="1_ey8y0"]
+[ext_resource type="Resource" uid="uid://dn4h2xd6jh2co" path="res://stats/enemies/large.tres" id="2_3ruea"]
 [ext_resource type="Texture2D" uid="uid://d0v7qag7uf1wx" path="res://entities/enemies/large/large.png" id="2_gmatp"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ic58k"]
@@ -17,6 +18,7 @@ attack_delay = 3.0
 xp = 5
 weight = 20.0
 ripple_scale = 0.6
+stats = ExtResource("2_3ruea")
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(1, 1, 1, 0.54902)
