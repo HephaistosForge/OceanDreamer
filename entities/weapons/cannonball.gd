@@ -52,9 +52,9 @@ func despawn():
 	#monitorable = false
 	#monitoring = false
 	var tween = create_tween()
-	tween.tween_property($Sprite2D, "self_modulate", Color(0.3, 0.3, 0.6, 0), 2) \
+	tween.tween_property($Sprite2D, "self_modulate", Color(0.3, 0.3, 0.6, 0), 1.5) \
 		.set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
-	tween.parallel().tween_property(self, "scale", Vector2.ZERO, 4) \
+	tween.parallel().tween_property(self, "scale", Vector2.ZERO, 2) \
 		.set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 	tween.tween_callback(queue_free)
 	

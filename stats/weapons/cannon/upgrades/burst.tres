@@ -10,6 +10,7 @@ size = ""
 clip_delay = "x*0.9"
 intra_clip_delay = "x*0.9"
 burst_count = "x+1"
+spray_angle_factor = ""
 spray_count = ""
 modulate = Color(1, 1, 1, 0)
 shot_velocity = "x*1.4"

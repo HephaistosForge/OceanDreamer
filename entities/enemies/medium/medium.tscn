@@ -11,6 +11,7 @@ height = 72.0
 turn_speed = 5.0
 xp = 2
 max_hp = 50.0
+weight = 5.0
 ripple_scale = 0.4
 
 [node name="Sprite2D" parent="." index="0"]

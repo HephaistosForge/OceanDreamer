@@ -21,6 +21,7 @@ func transition(to_reality: bool):
 	var target_color = Color.WHITE if to_reality else Color(1, 1, 1, 0)
 	$Bathtub.global_position = ship.global_position
 	$Bathtub/FakeShip.ship = ship if to_reality else null
+	var zoom = camera.reality_zoom if to_reality else camera.dream_zoom
 	
 	if to_reality:
 		handle_cannons(to_reality)
@@ -28,7 +29,7 @@ func transition(to_reality: bool):
 	#ship.global_position = $Bathtub/HandJoint.global_position
 	
 	var tween = create_tween()
-	tween.tween_property(camera, "zoom", camera.zoom * factor, 1) \
+	tween.tween_property(camera, "zoom", zoom, 1) \
 		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_property($Bathtub, "modulate", target_color, 1) \
 		.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)

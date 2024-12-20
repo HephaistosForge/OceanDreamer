@@ -17,6 +17,7 @@ wiggle_factor = 0.0
 melee_attack_damage = 40
 xp = 10000
 max_hp = 2000.0
+weight = 250.0
 
 [node name="Sprite2D" parent="." index="0"]
 modulate = Color(1, 1, 1, 0.54902)
