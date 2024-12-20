@@ -31,3 +31,10 @@ class_name CannonStats
 @export var shot_mutativeness = ""
 
 @export var shot_modulate: Color = Color(1, 1, 1, 0)
+
+func dps() -> float:
+	var damage_per_click = shot_damage * spray_count * (shot_pierce_count + shot_bounce_count + 1) \
+		+ shot_fragmentate_count * shot_damage/4 
+	var average_reload = (clip_delay + (burst_count - 1) * intra_clip_delay) / burst_count
+	return damage_per_click / average_reload
+	

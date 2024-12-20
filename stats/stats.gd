@@ -10,7 +10,7 @@ const SKIP_PROPERTIES = ["name", "upgrades_directory"]
 func eval():
 	for property in _get_property_names_to_upgrade():
 		set(property, _eval_curr_value(property))
-		print(get(property))
+		# print(get(property))
 
 func merge(other: Stats) -> void:
 	if other == null:
@@ -19,7 +19,7 @@ func merge(other: Stats) -> void:
 		var before = _eval_curr_value(property)
 		var after = _eval_formula(other.get(property), before) 
 		set(property, after)
-		print("property ", property, ": ", before, " -> ", after)
+		# print("property ", property, ": ", before, " -> ", after)
 	
 func merged(other: Stats) -> Stats:
 	var duplicated = duplicate(true)
@@ -59,7 +59,7 @@ func _eval_float(formula, x):
 		return x
 	var expression = Expression.new()
 	expression.parse(formula, ["x"])
-	print(formula, " x: ", x)
+	# print(formula, " x: ", x)
 	return expression.execute([x])
 	
 func _eval_color(new, previous) -> Color:

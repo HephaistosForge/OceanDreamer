@@ -14,7 +14,6 @@ func load_from_dir(path: String):
 		while file_name != "":
 			if not dir.current_is_dir():
 				weapon_to_upgrades[path].append(load(path + "/" + file_name))
-				print(file_name)
 			file_name = dir.get_next()
 		return weapon_to_upgrades[path] 
 	else:
