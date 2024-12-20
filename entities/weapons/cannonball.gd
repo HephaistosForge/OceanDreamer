@@ -19,7 +19,7 @@ var init_seconds_flight_time = 0
 
 var curr_flight_time = 0
 var fragmentate = true
-var pierced = 0
+var pierced = []
 var bounced = 0
 var damage_multiplier = 1
 
@@ -41,13 +41,13 @@ func setup(_position, _velocity, _scale, _stats, _grace_period_active=false) -> 
 	modulate = modulate.blend(stats.shot_modulate)
 	grace_period_active = _grace_period_active
 	if stats.shot_homingness > 0:
-		$Homing.monitoring = true
+		$Homing.set.call_deferred("monitoring", true)
 
 func clone(_velocity, _scale, stats):
 	var cloned = duplicate()
 	cloned.setup(global_position, _velocity, _scale, stats, true)
 	cloned.fragmentate = false
-	cloned.pierced = 999999
+	cloned.pierced = null
 	cloned.bounced = bounced
 	get_tree().current_scene.add_child.call_deferred(cloned)
 	return cloned
@@ -84,9 +84,14 @@ func _random_direction() -> Vector2:
 	var amplitude = randfn(0.75, 0.15)
 	var angle = randf_range(0, PI)
 	return Vector2.from_angle(angle) * amplitude
+	
+func was_pierced(body):
+	if pierced == null:
+		return false
+	return body.get_instance_id() in pierced
 
 func _on_entity_entered(body: Node2D) -> void:
-	if not grace_period_active and body is Entity and body.is_enemy != is_enemy:
+	if not grace_period_active and body is Entity and body.is_enemy != is_enemy and not was_pierced(body):
 		body.take_damage(stats.shot_damage * damage_multiplier)
 		
 		body.acceleration += stats.shot_knockback * velocity * stats.shot_size / body.scale / body.weight
@@ -98,9 +103,8 @@ func _on_entity_entered(body: Node2D) -> void:
 				cloned.damage_multiplier *= 0.25
 			fragmentate = false
 			
-		if pierced < stats.shot_pierce_count:
-			pierced += 1
-			_activate_grace_period()
+		if pierced != null and len(pierced) < stats.shot_pierce_count:
+			pierced.append(body.get_instance_id())
 			return
 		elif bounced < stats.shot_bounce_count:
 			var _cannonball_velocity = init_velocity * _random_direction()
