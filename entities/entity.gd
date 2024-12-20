@@ -12,7 +12,9 @@ signal hp_changed(new_value: float, old_value: float, max_hp: float)
 @export var weight: float = 1
 @export var is_enemy: bool = true
 @export var ripple_scale: float = 0.8 * 4
-@onready var hp = max_hp : set = set_hp
+var hp = max_hp : set = set_hp
+
+@export var stats: Stats : set = set_stats
 
 var dead = false
 
@@ -28,6 +30,12 @@ func _ready():
 	ripple_effect.scale_amount_max = ripple_scale
 	ripple_effect.scale_amount_min = ripple_effect.scale_amount_max
 	hp_changed.connect(_create_damage_label)
+	
+func set_stats(other: Stats):
+	stats = other
+	stats.eval()
+	max_hp = stats.hp
+	hp = max_hp
 
 func _create_damage_label(new_hp, old_hp, max_hp):		
 	var label = DAMAGE_LABEL_SCENE.instantiate()

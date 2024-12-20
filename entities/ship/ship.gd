@@ -1,14 +1,13 @@
 extends Entity
 
-@export var stats: EntityStats = preload("res://stats/ships/dinghy.tres")
-
 @onready var weapon = $Cannon
 
 func _ready():
-	_apply_stats(stats)
+	super()
+	weapon.stats = stats.weapon
+	
 	var level_manager = get_tree().get_first_node_in_group("level_manager")
 	level_manager.to_next_level.connect(_on_next_level)
-	super()
 	
 	death.connect(game_over)
 	death.connect(level_manager.on_player_death)
@@ -44,15 +43,13 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_next_level(_level, upgrade: Stats) -> void:
-	_apply_stats(stats.merged(upgrade))
+	set_stats(stats.merged(upgrade))
 	
-func _apply_stats(new_stats: Stats):
-	self.stats = new_stats
-	self.stats.eval()
+func set_stats(new_stats: Stats):
+	super(new_stats)
 	self.scale = Vector2.ONE * stats.size
-	self.hp = max_hp
-	
-	weapon.stats = stats.weapon
+	if weapon != null:
+		weapon.stats = stats.weapon
 
 
 func game_over(_ignore) -> void:
