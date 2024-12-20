@@ -3,7 +3,7 @@ extends Node2D
 @onready var label = $Label
 
 func set_damage(damage):
-	label.text = round(damage)
+	label.text = str(round(damage))
 	modulate = Color("0be876") if damage > 0 else Color("e20d51")
 	label.label_settings.font_size = 18 * (log(abs(damage)+1)+1)
 	var tween = create_tween()

@@ -7,8 +7,6 @@ signal to_upgrade_screen(upgrades: Array[Stats])
 signal remaining_progress(count: int, total: int)
 signal game_over
 
-@export var upgrade_count = 3
-
 @onready var upgrades = Upgrades.new()
 
 # TODO: in the future the level manager will have to know about the weapon anyways,
@@ -26,9 +24,9 @@ func _ready():
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("cheat_upgrade"):
-		transition_to_upgrade_screen()
+		transition_to_upgrade_screen(7)
 
-func get_random_upgrades():
+func get_random_upgrades(upgrade_count=3):
 	var next_upgrades = []
 	for i in upgrade_count:
 		var upgrade
@@ -55,10 +53,10 @@ func update_remaining_monsters(new_value):
 	if remaining_monsters <= 0:
 		transition_to_upgrade_screen()
 		
-func transition_to_upgrade_screen():
+func transition_to_upgrade_screen(upgrade_count=3):
 	if game_state == GameState.PLAYING:
 		game_state = GameState.UPGRADING
-		to_upgrade_screen.emit(get_random_upgrades())
+		to_upgrade_screen.emit(get_random_upgrades(upgrade_count))
 		
 func transition_to_next_level(upgrade: Stats):
 	if game_state == GameState.UPGRADING:

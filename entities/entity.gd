@@ -26,11 +26,16 @@ func _ready():
 	self.add_child(ripple_effect)
 	ripple_effect.scale_amount_max = ripple_scale
 	ripple_effect.scale_amount_min = ripple_effect.scale_amount_max
+	hp_changed.connect(_create_damage_label)
 
+func _create_damage_label(new_hp, old_hp, max_hp):		
+	var label = DAMAGE_LABEL_SCENE.instantiate()
+	get_tree().current_scene.add_child(label)
+	label.global_position = global_position
+	label.set_damage(new_hp - old_hp)
 
 func _process(delta: float) -> void:
 	ripple_effect.lifetime = 2 * exp(-velocity.length() / 1000)
-
 
 func set_hp(new_hp):
 	if dead: return
@@ -39,10 +44,6 @@ func set_hp(new_hp):
 	hp += delta
 	
 	if not is_zero_approx(delta):
-		var label = DAMAGE_LABEL_SCENE.instantiate()
-		get_tree().current_scene.add_child(label)
-		label.global_position = global_position
-		label.set_damage(delta)
 		hp_changed.emit(new_hp, hp-delta, max_hp)
 		
 		#var target_color = Color.RED if delta < 0 else Color.GREEN
