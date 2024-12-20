@@ -10,7 +10,7 @@ func _on_level_manager_to_next_level(level: int, upgrade: Stats) -> void:
 	transition(false)
 
 
-func _on_level_manager_to_upgrade_screen(upgrades) -> void:
+func _on_level_manager_to_upgrade_screen(stats, upgrades) -> void:
 	transition(true)
 	
 	

@@ -28,7 +28,7 @@ func _ready():
 	death.connect(despawn_with_animation)
 	
 	get_tree().get_first_node_in_group("level_manager") \
-		.to_upgrade_screen.connect(func(_ignore): despawn_with_animation(null))
+		.to_upgrade_screen.connect(func(_stats, _upg): despawn_with_animation(null))
 
 func power_func(x):
 	return sin(x)**2 + 0.4

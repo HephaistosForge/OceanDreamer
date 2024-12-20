@@ -36,6 +36,7 @@ func setup(_position, _velocity, _scale, _stats, _grace_period_active=false) -> 
 	velocity = _velocity
 	init_velocity = _velocity
 	scale = _scale
+	modulate = modulate.blend(stats.shot_modulate)
 	grace_period_active = _grace_period_active
 
 func clone(_velocity, _scale, stats):
@@ -44,7 +45,7 @@ func clone(_velocity, _scale, stats):
 	cloned.fragmentate = false
 	cloned.pierced = 999999
 	cloned.bounced = bounced
-	get_tree().current_scene.add_child(cloned)
+	get_tree().current_scene.add_child.call_deferred(cloned)
 	return cloned
 
 func despawn():
@@ -84,19 +85,19 @@ func _on_entity_entered(body: Node2D) -> void:
 		if fragmentate:
 			for i in stats.shot_fragmentate_count:
 				var _cannonball_velocity = velocity * _random_direction()
-				# TODO: apply damage reduction via stats
 				var cloned = clone(_cannonball_velocity, scale*0.5, stats)
 				cloned.damage_multiplier *= 0.25
+			fragmentate = false
 			
 		if pierced < stats.shot_pierce_count:
 			pierced += 1
 			_activate_grace_period()
+			return
 		elif bounced < stats.shot_bounce_count:
 			var _cannonball_velocity = init_velocity * _random_direction()
 			var cloned = clone(_cannonball_velocity, scale, stats)
 			cloned.bounced = bounced + 1
-		else:
-			queue_free()
+		queue_free()
 
 
 func change_color(color: Color) -> void:

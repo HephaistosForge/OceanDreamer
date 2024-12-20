@@ -24,7 +24,7 @@ shot_homingness = ""
 shot_explosiveness = ""
 shot_wiggleness = ""
 shot_mutativeness = ""
-shot_modulate = Color(0.39652, 0.770036, 0, 0.568627)
+shot_modulate = Color(0, 1.3, 0.162, 0.847)
 upgrades_directory = ""
 
 [resource]

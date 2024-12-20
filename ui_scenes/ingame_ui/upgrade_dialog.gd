@@ -8,8 +8,8 @@ func _ready():
 func _on_next_level(level, upgrade):
 	queue_free()
 
-func show_and_pick_upgrades(upgrades):
+func show_and_pick_upgrades(curr_stats, upgrades):
 	for upgrade in upgrades:
 		var item = UPGRADE_ITEM.instantiate()
 		$Panel/MarginContainer/UpgradesList.add_child(item)
-		item.set_upgrade.call_deferred(upgrade)
+		item.set_upgrade.call_deferred(curr_stats, upgrade)

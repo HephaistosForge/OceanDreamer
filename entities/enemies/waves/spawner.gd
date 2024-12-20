@@ -16,7 +16,7 @@ func _ready():
 	timer.timeout.connect(_spawn_enemy)
 	var level_manager = get_tree().get_first_node_in_group("level_manager")
 	level_manager.to_next_level.connect(func(_a, _b): allow_spawning = true)
-	level_manager.to_upgrade_screen.connect(func(_a): allow_spawning = false)
+	level_manager.to_upgrade_screen.connect(func(_a, _b): allow_spawning = false)
 	
 	
 func _spawn_enemy():

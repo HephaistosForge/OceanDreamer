@@ -32,7 +32,7 @@ func mutate(str, m):
 			m.turn_speed *= 0.7
 			color = Color.CYAN
 		"damage":
-			m.melee_attack_damage *= 1.3
+			m.melee_attack_damage *= 1.1
 			color = Color.RED
 		"strong":
 			m.hp *= 2
@@ -41,7 +41,8 @@ func mutate(str, m):
 		"huge":
 			m.hp *= 1.3
 			m.scale *= Vector2.ONE * 1.3
-			m.melee_attack_damage *= 2
+			m.speed *= 0.8
+			m.melee_attack_damage *= 1.3
 			color = Color.DARK_GOLDENROD
 	m.blend_coloring(color)
 			
@@ -50,7 +51,7 @@ func _ready():
 	$Timer.wait_time = wave.delay
 	$Timer.timeout.connect(_spawn_enemy)
 	var level_manager = get_tree().get_first_node_in_group("level_manager")
-	level_manager.to_upgrade_screen.connect(func(_a): queue_free())
+	level_manager.to_upgrade_screen.connect(func(_a, _b): queue_free())
 	
 	
 func mutate_monster(monster):

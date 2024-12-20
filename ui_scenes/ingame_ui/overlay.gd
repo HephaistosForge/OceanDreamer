@@ -38,7 +38,7 @@ func _on_level_manager_remaining_progress(count: Variant, total: Variant) -> voi
 	#label.text = str(count) + "/" + str(total)
 
 
-func _on_level_manager_to_upgrade_screen(upgrades) -> void:
+func _on_level_manager_to_upgrade_screen(curr_stats, upgrades) -> void:
 	var dialog = UPGRADE_DIALOG_SCENE.instantiate()
-	dialog.show_and_pick_upgrades(upgrades)
+	dialog.show_and_pick_upgrades(curr_stats, upgrades)
 	$CenterContainer/Expander/HBoxContainer/LeftHalf.add_child(dialog)

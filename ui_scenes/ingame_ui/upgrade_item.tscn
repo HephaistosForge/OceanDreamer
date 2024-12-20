@@ -27,11 +27,17 @@ theme_override_constants/margin_bottom = 50
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 texture = ExtResource("1_nm67r")
 expand_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "20% more damage"
+label_settings = SubResource("LabelSettings_qxfkr")
+
+[node name="DPS" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 text = "20% more damage"
 label_settings = SubResource("LabelSettings_qxfkr")

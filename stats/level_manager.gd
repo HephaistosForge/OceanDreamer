@@ -3,7 +3,7 @@ extends Node
 enum GameState { PLAYING, UPGRADING, DEAD }
 
 signal to_next_level(level: int, upgrade: Stats)
-signal to_upgrade_screen(upgrades: Array[Stats])
+signal to_upgrade_screen(curr_stats: Stats, upgrades: Array[Stats])
 signal remaining_progress(count: int, total: int)
 signal game_over
 
@@ -56,7 +56,7 @@ func update_remaining_monsters(new_value):
 func transition_to_upgrade_screen(upgrade_count=3):
 	if game_state == GameState.PLAYING:
 		game_state = GameState.UPGRADING
-		to_upgrade_screen.emit(get_random_upgrades(upgrade_count))
+		to_upgrade_screen.emit(ship.stats, get_random_upgrades(upgrade_count))
 		
 func transition_to_next_level(upgrade: Stats):
 	if game_state == GameState.UPGRADING:
